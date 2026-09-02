@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vehicle Inventory | SaudBahwanAutomotives</title>
+
+    <meta name="description" content="Browse available vehicles at SaudBahwanAutomotives.">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ================= INVENTORY PAGE ================= */
+
+        .inventory-page {
+            padding: 150px 0 100px;
+            min-height: 100vh;
+            background: #0b0d10;
+        }
+
+        .inventory-header {
+            margin-bottom: 45px;
+        }
+
+        .inventory-header h1 {
+            font-size: clamp(42px, 6vw, 68px);
+            line-height: 1;
+            letter-spacing: -2px;
+            margin-bottom: 18px;
+        }
+
+        .inventory-header p {
+            color: #999;
+            max-width: 650px;
+            font-size: 15px;
+        }
+
+        .inventory-filters {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            background: #15181c;
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 20px;
+            margin-bottom: 45px;
+        }
+
+        .filter-box {
+            background: #0d0f12;
+            padding: 13px 16px;
+        }
+
+        .filter-box label {
+            display: block;
+            color: #777;
+            font-size: 9px;
+            letter-spacing: 2px;
+            margin-bottom: 7px;
+        }
+
+        .filter-box select,
+        .filter-box input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .filter-box option {
+            background: #15181c;
+        }
+
+        .inventory-count {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .inventory-card {
+            background: #13161a;
+            border: 1px solid rgba(255,255,255,0.08);
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .inventory-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.25);
+        }
+
+        .inventory-image {
+            height: 245px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .inventory-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .inventory-card:hover .inventory-image img {
+            transform: scale(1.05);
+        }
+
+        .inventory-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: #fff;
+            color: #000;
+            padding: 6px 10px;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .inventory-details {
+            padding: 22px;
+        }
+
+        .inventory-year {
+            color: #777;
+            font-size: 12px;
+        }
+
+        .inventory-details h2 {
+            font-size: 22px;
+            margin: 4px 0 8px;
+        }
+
+        .inventory-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            color: #999;
+            font-size: 11px;
+        }
+
+        .inventory-specs span {
+            border-right: 1px solid #444;
+            padding-right: 8px;
+        }
+
+        .inventory-specs span:last-child {
+            border-right: none;
+        }
+
+        .inventory-footer {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .inventory-price {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .details-btn {
+            font-size: 11px;
+            border-bottom: 1px solid #777;
+            padding-bottom: 4px;
+        }
+
+        .reserve-mini {
+            display: block;
+            margin-top: 18px;
+            width: 100%;
+            padding: 12px;
+            text-align: center;
+            background: #fff;
+            color: #000;
+            font-size: 11px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .reserve-mini:hover {
+            background: #d7d7d7;
+        }
+
+        @media (max-width: 900px) {
+
+            .inventory-filters {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .inventory-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .inventory-page {
+                padding-top: 120px;
+            }
+
+            .inventory-filters {
+                grid-template-columns: 1fr;
+            }
+
+            .inventory-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .inventory-image {
+                height: 240px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="container nav">
+
+        <a href="index.html" class="logo">
+            <span>SAUD</span>BAHWAN
+            <small>AUTOMOTIVES</small>
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="inventory.html">Inventory</a>
+            <a href="index.html#about">About Us</a>
+            <a href="index.html#services">Services</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <a href="inventory.html" class="nav-button">
+            Browse Cars
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- ================= INVENTORY ================= -->
+
+<main class="inventory-page">
+
+    <div class="container">
+
+        <div class="inventory-header">
+
+            <p class="section-label">
+                OUR VEHICLES
+            </p>
+
+            <h1>
+                Find Your<br>
+                <span style="font-weight:300;color:#aaa;">
+                    Next Vehicle.
+                </span>
+            </h1>
+
+            <p>
+                Explore our selection of quality vehicles.
+                Use the filters below to narrow down your search.
+            </p>
+
+        </div>
+
+
+        <!-- FILTERS -->
+
+        <div class="inventory-filters">
+
+            <div class="filter-box">
+
+                <label>MAKE</label>
+
+                <select id="makeFilter">
+                    <option value="all">All Makes</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Lexus">Lexus</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Mercedes-Benz">Mercedes-Benz</option>
+                    <option value="Nissan">Nissan</option>
+                    <option value="Ford">Ford</option>
+                </select>
+
+            </div>
+
+
+            <div class="filter-box">
+
+                <label>PRICE</label>
+
+                <select id="priceFilter">
+                    <option value="all">Any Price</option>
+                    <option value="20000">Under $20,000</option>
+                    <option value="40000">$20,000 - $40,000</option>
+                    <option value="60000">$40,000 - $60,000</option>
+                    <option value="60001">$60,000+</option>
+                </select>
+
+            </div>
+
+
+            <div class="filter-box">
+
+                <label>YEAR</label>
+
+                <select id="yearFilter">
+                    <option value="all">Any Year</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                </select>
+
+            </div>
+
+
+            <div class="filter-box">
+
+                <label>SEARCH</label>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search vehicle..."
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="inventory-count" id="inventoryCount">
+            Showing 6 vehicles
+        </div>
+
+
+        <!-- VEHICLES -->
+
+        <div class="inventory-grid" id="inventoryGrid">
+
+
+            <!-- CAR 1 -->
+
+            <article
+                class="inventory-card"
+                data-make="Toyota"
+                data-price="82900"
+                data-year="2023"
+                data-name="Toyota Land Cruiser"
+            >
+
+                <div class="inventory-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=85"
+                        alt="Toyota Land Cruiser"
+                    >
+
+                    <span class="inventory-badge">
+                        Available
+                    </span>
+
+                </div>
+
+                <div class="inventory-details">
+
+                    <p class="inventory-year">2023</p>
+
+                    <h2>Toyota Land Cruiser</h2>
+
+                    <div class="inventory-specs">
+                        <span>32,000 km</span>
+                        <span>Automatic</span>
+                        <span>Diesel</span>
+                    </div>
+
+                    <div class="inventory-footer">
+
+                        <strong class="inventory-price">
+                            $82,900
+                        </strong>
+
+                        <a href="car.html" class="details-btn">
+                            View Details →
+                        </a>
+
+                    </div>
+
+                    <a href="car.html" class="reserve-mini">
+                        Reserve This Car
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- CAR 2 -->
+
+            <article
+                class="inventory-card"
+                data-make="BMW"
+                data-price="68500"
+                data-year="2024"
+                data-name="BMW X5"
+            >
+
+                <div class="inventory-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=85"
+                        alt="BMW X5"
+                    >
+
+                    <span class="inventory-badge">
+                        Available
+                    </span>
+
+                </div>
+
+                <div class="inventory-details">
+
+                    <p class="inventory-year">2024</p>
+
+                    <h2>BMW X5</h2>
+
+                    <div class="inventory-specs">
+                        <span>18,500 km</span>
+                        <span>Automatic</span>
+                        <span>Petrol</span>
+                    </div>
+
+                    <div class="inventory-footer">
+
+                        <strong class="inventory-price">
+                            $68,500
+                        </strong>
+
+                        <a href="car.html" class="details-btn">
+                            View Details →
+                        </a>
+
+                    </div>
+
+                    <a href="car.html" class="reserve-mini">
+                        Reserve This Car
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- CAR 3 -->
+
+            <article
+                class="inventory-card"
+                data-make="Mercedes-Benz"
+                data-price="74900"
+                data-year="2024"
+                data-name="Mercedes-Benz GLE"
+            >
+
+                <div class="inventory-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1200&q=85"
+                        alt="Mercedes-Benz GLE"
+                    >
+
+                    <span class="inventory-badge">
+                        Available
+                    </span>
+
+                </div>
+
+                <div class="inventory-details">
+
+                    <p class="inventory-year">2024</p>
+
+                    <h2>Mercedes-Benz GLE</h2>
+
+                    <div class="inventory-specs">
+                        <span>14,200 km</span>
+                        <span>Automatic</span>
+                        <span>Petrol</span>
+                    </div>
+
+                    <div class="inventory-footer">
+
+                        <strong class="inventory-price">
+                            $74,900
+                        </strong>
+
+                        <a href="car.html" class="details-btn">
+                            View Details →
+                        </a>
+
+                    </div>
+
+                    <a href="car.html" class="reserve-mini">
+                        Reserve This Car
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- CAR 4 -->
+
+            <article
+                class="inventory-card"
+                data-make="Lexus"
+                data-price="59900"
+                data-year="2023"
+                data-name="Lexus RX 350"
+            >
+
+                <div class="inventory-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=85"
+                        alt="Lexus RX 350"
+                    >
+
+                    <span class="inventory-badge">
+                        Available
+                    </span>
+
+                </div>
+
+                <div class="inventory-details">
+
+                    <p class="inventory-year">2023</p>
+
+                    <h2>Lexus RX 350</h2>
+
+                    <div class="inventory-specs">
+                        <span>27,400 km</span>
+                        <span>Automatic</span>
+                        <span>Petrol</span>
+                    </div>
+
+                    <div class="inventory-footer">
+
+                        <strong class="inventory-price">
+                            $59,900
+                        </strong>
+
+                        <a href="car.html" class="details-btn">
+                            View Details →
+                        </a>
+
+                    </div>
+
+                    <a href="car.html" class="reserve-mini">
+                        Reserve This Car
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- CAR 5 -->
+
+            <article
+                class="inventory-card"
+                data-make="Nissan"
+                data-price="36900"
+                data-year="2024"
+                data-name="Nissan Patrol"
+            >
+
+                <div class="inventory-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1200&q=85"
+                        alt="Nissan Patrol"
+                    >
+
+                    <span class="inventory-badge">
+                        Available
+                    </span>
+
+                </div>
+
+                <div class="inventory-details">
+
+                    <p class="inventory-year">2024</p>
+
+                    <h2>Nissan Patrol</h2>
+
+                    <div class="inventory-specs">
+                        <span>21,000 km</span>
+                        <span>Automatic</span>
+                        <span>Petrol</span>
+                    </div>
+
+                    <div class="inventory-footer">
+
+                        <strong class="inventory-price">
+                            $36,900
+                        </strong>
+
+                        <a href="car.html" class="details-btn">
+                            View Details →
+                        </a>
+
+                    </div>
+
+                    <a href="car.html" class="reserve-mini">
+                        Reserve This Car
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- CAR 6 -->
+
+            <article
+                class="inventory-card"
+                data-make="Ford"
+                data-price="42900"
+                data-year="2022"
+                data-name="Ford Ranger"
+            >
+
+                <div class="inventory-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1559416523-140ddc3d238c?auto=format&fit=crop&w=1200&q=85"
+                        alt="Ford Ranger"
+                    >
+
+                    <span class="inventory-badge">
+                        Available
+                    </span>
+
+                </div>
+
+                <div class="inventory-details">
+
+                    <p class="inventory-year">2022</p>
+
+                    <h2>Ford Ranger</h2>
+
+                    <div class="inventory-specs">
+                        <span>39,500 km</span>
+                        <span>Automatic</span>
+                        <span>Diesel</span>
+                    </div>
+
+                    <div class="inventory-footer">
+
+                        <strong class="inventory-price">
+                            $42,900
+                        </strong>
+
+                        <a href="car.html" class="details-btn">
+                            View Details →
+                        </a>
+
+                    </div>
+
+                    <a href="car.html" class="reserve-mini">
+                        Reserve This Car
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+const makeFilter = document.getElementById("makeFilter");
+const priceFilter = document.getElementById("priceFilter");
+const yearFilter = document.getElementById("yearFilter");
+const searchInput = document.getElementById("searchInput");
+
+const cards = document.querySelectorAll(".inventory-card");
+const count = document.getElementById("inventoryCount");
+
+
+function filterVehicles() {
+
+    const make = makeFilter.value;
+    const price = priceFilter.value;
+    const year = yearFilter.value;
+    const search = searchInput.value.toLowerCase();
+
+    let visible = 0;
+
+
+    cards.forEach(card => {
+
+        const cardMake = card.dataset.make;
+        const cardPrice = Number(card.dataset.price);
+        const cardYear = card.dataset.year;
+        const cardName = card.dataset.name.toLowerCase();
+
+
+        let matchesMake =
+            make === "all" ||
+            cardMake === make;
+
+
+        let matchesPrice = true;
+
+        if (price === "20000") {
+            matchesPrice = cardPrice < 20000;
+        }
+
+        if (price === "40000") {
+            matchesPrice =
+                cardPrice >= 20000 &&
+                cardPrice <= 40000;
+        }
+
+        if (price === "60000") {
+            matchesPrice =
+                cardPrice > 40000 &&
+                cardPrice <= 60000;
+        }
+
+        if (price === "60001") {
+            matchesPrice = cardPrice > 60000;
+        }
+
+
+        let matchesYear =
+            year === "all" ||
+            cardYear === year;
+
+
+        let matchesSearch =
+            search === "" ||
+            cardName.includes(search);
+
+
+        if (
+            matchesMake &&
+            matchesPrice &&
+            matchesYear &&
+            matchesSearch
+        ) {
+
+            card.style.display = "";
+
+            visible++;
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+
+    count.textContent =
+        `Showing ${visible} vehicle${visible === 1 ? "" : "s"}`;
+
+}
+
+
+makeFilter.addEventListener("change", filterVehicles);
+priceFilter.addEventListener("change", filterVehicles);
+yearFilter.addEventListener("change", filterVehicles);
+searchInput.addEventListener("input", filterVehicles);
+
+</script>
+
+</body>
+</html>
