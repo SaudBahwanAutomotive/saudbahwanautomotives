@@ -1,105 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Vehicle Inventory | SaudBahwanAutomotives</title>
 
-    <meta name="description" content="Browse available vehicles at SaudBahwanAutomotives.">
+    <meta name="description"
+        content="Explore available vehicles at SaudBahwanAutomotives.">
 
     <link rel="stylesheet" href="style.css">
 
     <style>
-        /* ================= INVENTORY PAGE ================= */
 
         .inventory-page {
-            padding: 150px 0 100px;
-            min-height: 100vh;
-            background: #0b0d10;
+            padding: 130px 20px 80px;
         }
 
         .inventory-header {
-            margin-bottom: 45px;
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 45px;
         }
 
         .inventory-header h1 {
-            font-size: clamp(42px, 6vw, 68px);
-            line-height: 1;
-            letter-spacing: -2px;
-            margin-bottom: 18px;
+            font-size: 48px;
+            margin: 10px 0 15px;
         }
 
         .inventory-header p {
             color: #999;
-            max-width: 650px;
-            font-size: 15px;
+            line-height: 1.7;
         }
 
-        .inventory-filters {
+        .filters {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            padding: 20px;
+            background: #15181d;
+            border: 1px solid #272b32;
+            border-radius: 12px;
+
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            background: #15181c;
-            border: 1px solid rgba(255,255,255,0.08);
-            padding: 20px;
-            margin-bottom: 45px;
+            gap: 15px;
         }
 
-        .filter-box {
-            background: #0d0f12;
-            padding: 13px 16px;
-        }
-
-        .filter-box label {
-            display: block;
-            color: #777;
-            font-size: 9px;
-            letter-spacing: 2px;
-            margin-bottom: 7px;
-        }
-
-        .filter-box select,
-        .filter-box input {
+        .filters select,
+        .filters input {
             width: 100%;
-            background: transparent;
-            border: none;
+            box-sizing: border-box;
+            padding: 13px;
+            background: #0b0d10;
+            color: white;
+            border: 1px solid #30343c;
+            border-radius: 7px;
             outline: none;
-            color: #fff;
-            font-size: 14px;
         }
 
-        .filter-box option {
-            background: #15181c;
+        .filters select:focus,
+        .filters input:focus {
+            border-color: #d4af37;
         }
 
         .inventory-count {
+            max-width: 1200px;
+            margin: 0 auto 20px;
             color: #888;
-            font-size: 13px;
-            margin-bottom: 20px;
+            font-size: 14px;
         }
 
         .inventory-grid {
+            max-width: 1200px;
+            margin: auto;
+
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
+            gap: 25px;
         }
 
         .inventory-card {
-            background: #13161a;
-            border: 1px solid rgba(255,255,255,0.08);
+            background: #15181d;
+            border: 1px solid #252a31;
+            border-radius: 14px;
             overflow: hidden;
-            transition: 0.3s;
+            transition: transform .2s, border-color .2s;
         }
 
         .inventory-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255,255,255,0.25);
+            transform: translateY(-4px);
+            border-color: #d4af37;
         }
 
         .inventory-image {
-            height: 245px;
             position: relative;
+            height: 240px;
             overflow: hidden;
         }
 
@@ -107,61 +103,46 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 0.5s;
+            display: block;
         }
 
-        .inventory-card:hover .inventory-image img {
-            transform: scale(1.05);
-        }
-
-        .inventory-badge {
+        .status {
             position: absolute;
-            top: 14px;
-            left: 14px;
-            background: #fff;
-            color: #000;
+            top: 15px;
+            left: 15px;
+
+            background: #d4af37;
+            color: #111;
+
             padding: 6px 10px;
-            font-size: 9px;
+            border-radius: 5px;
+
+            font-size: 12px;
             font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
         }
 
-        .inventory-details {
+        .inventory-info {
             padding: 22px;
         }
 
         .inventory-year {
-            color: #777;
-            font-size: 12px;
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 5px;
         }
 
-        .inventory-details h2 {
-            font-size: 22px;
-            margin: 4px 0 8px;
+        .inventory-info h2 {
+            margin: 0 0 10px;
+            font-size: 23px;
         }
 
         .inventory-specs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
             color: #999;
-            font-size: 11px;
+            font-size: 14px;
+            margin-bottom: 20px;
         }
 
-        .inventory-specs span {
-            border-right: 1px solid #444;
-            padding-right: 8px;
-        }
-
-        .inventory-specs span:last-child {
-            border-right: none;
-        }
-
-        .inventory-footer {
-            margin-top: 20px;
-            padding-top: 18px;
-            border-top: 1px solid rgba(255,255,255,0.08);
+        .inventory-bottom {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -169,66 +150,82 @@
         }
 
         .inventory-price {
-            font-size: 18px;
+            color: #d4af37;
+            font-size: 21px;
             font-weight: 700;
         }
 
         .details-btn {
-            font-size: 11px;
-            border-bottom: 1px solid #777;
-            padding-bottom: 4px;
+            color: white;
+            text-decoration: none;
+            border: 1px solid #383d46;
+            padding: 9px 12px;
+            border-radius: 6px;
+            font-size: 13px;
         }
 
-        .reserve-mini {
-            display: block;
-            margin-top: 18px;
-            width: 100%;
-            padding: 12px;
+        .details-btn:hover {
+            color: #d4af37;
+            border-color: #d4af37;
+        }
+
+        .loading {
+            grid-column: 1 / -1;
             text-align: center;
-            background: #fff;
-            color: #000;
-            font-size: 11px;
-            font-weight: 700;
-            transition: 0.3s;
+            padding: 60px 20px;
+            color: #888;
         }
 
-        .reserve-mini:hover {
-            background: #d7d7d7;
+        .empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
         }
 
-        @media (max-width: 900px) {
-
-            .inventory-filters {
-                grid-template-columns: 1fr 1fr;
-            }
+        @media (max-width: 950px) {
 
             .inventory-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
+
+            .filters {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
         }
 
         @media (max-width: 600px) {
 
             .inventory-page {
-                padding-top: 120px;
+                padding-top: 105px;
             }
 
-            .inventory-filters {
-                grid-template-columns: 1fr;
+            .inventory-header h1 {
+                font-size: 36px;
             }
 
             .inventory-grid {
                 grid-template-columns: 1fr;
             }
 
-            .inventory-image {
-                height: 240px;
+            .filters {
+                grid-template-columns: 1fr;
             }
+
+            .inventory-image {
+                height: 220px;
+            }
+
         }
+
     </style>
+
 </head>
 
+
 <body>
+
 
 <!-- ================= HEADER ================= -->
 
@@ -237,17 +234,40 @@
     <div class="container nav">
 
         <a href="index.html" class="logo">
+
             <span>SAUD</span>BAHWAN
-            <small>AUTOMOTIVES</small>
+
+            <small>
+                AUTOMOTIVES
+            </small>
+
         </a>
 
+
         <nav class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="inventory.html">Inventory</a>
-            <a href="index.html#about">About Us</a>
-            <a href="index.html#services">Services</a>
-            <a href="contact.html">Contact</a>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="inventory.html">
+                Inventory
+            </a>
+
+            <a href="index.html#about">
+                About Us
+            </a>
+
+            <a href="index.html#services">
+                Services
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
         </nav>
+
 
         <a href="inventory.html" class="nav-button">
             Browse Cars
@@ -262,548 +282,571 @@
 
 <main class="inventory-page">
 
-    <div class="container">
 
-        <div class="inventory-header">
+    <div class="inventory-header">
 
-            <p class="section-label">
-                OUR VEHICLES
-            </p>
+        <p class="section-label">
+            OUR COLLECTION
+        </p>
 
-            <h1>
-                Find Your<br>
-                <span style="font-weight:300;color:#aaa;">
-                    Next Vehicle.
-                </span>
-            </h1>
+        <h1>
+            Vehicle Inventory
+        </h1>
 
-            <p>
-                Explore our selection of quality vehicles.
-                Use the filters below to narrow down your search.
-            </p>
+        <p>
+            Explore our available vehicles and find the right
+            combination of performance, comfort and value.
+        </p>
 
-        </div>
+    </div>
 
 
-        <!-- FILTERS -->
+    <!-- ================= FILTERS ================= -->
 
-        <div class="inventory-filters">
+    <div class="filters">
 
-            <div class="filter-box">
+        <select id="makeFilter">
 
-                <label>MAKE</label>
+            <option value="">
+                All Makes
+            </option>
 
-                <select id="makeFilter">
-                    <option value="all">All Makes</option>
-                    <option value="Toyota">Toyota</option>
-                    <option value="Lexus">Lexus</option>
-                    <option value="BMW">BMW</option>
-                    <option value="Mercedes-Benz">Mercedes-Benz</option>
-                    <option value="Nissan">Nissan</option>
-                    <option value="Ford">Ford</option>
-                </select>
+        </select>
 
-            </div>
 
+        <select id="priceFilter">
 
-            <div class="filter-box">
+            <option value="">
+                Any Price
+            </option>
 
-                <label>PRICE</label>
+            <option value="under20">
+                Under $20,000
+            </option>
 
-                <select id="priceFilter">
-                    <option value="all">Any Price</option>
-                    <option value="20000">Under $20,000</option>
-                    <option value="40000">$20,000 - $40,000</option>
-                    <option value="60000">$40,000 - $60,000</option>
-                    <option value="60001">$60,000+</option>
-                </select>
+            <option value="20to40">
+                $20,000 - $40,000
+            </option>
 
-            </div>
+            <option value="40to60">
+                $40,000 - $60,000
+            </option>
 
+            <option value="over60">
+                $60,000+
+            </option>
 
-            <div class="filter-box">
+        </select>
 
-                <label>YEAR</label>
 
-                <select id="yearFilter">
-                    <option value="all">Any Year</option>
-                    <option value="2025">2025</option>
-                    <option value="2024">2024</option>
-                    <option value="2023">2023</option>
-                    <option value="2022">2022</option>
-                    <option value="2021">2021</option>
-                </select>
+        <select id="yearFilter">
 
-            </div>
+            <option value="">
+                Any Year
+            </option>
 
+        </select>
 
-            <div class="filter-box">
 
-                <label>SEARCH</label>
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Search vehicles...">
 
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Search vehicle..."
-                >
+    </div>
 
-            </div>
 
-        </div>
+    <div class="inventory-count" id="inventoryCount">
+        Loading vehicles...
+    </div>
 
 
-        <div class="inventory-count" id="inventoryCount">
-            Showing 6 vehicles
-        </div>
+    <!-- ================= VEHICLES ================= -->
 
+    <div class="inventory-grid" id="inventoryGrid">
 
-        <!-- VEHICLES -->
-
-        <div class="inventory-grid" id="inventoryGrid">
-
-
-            <!-- CAR 1 -->
-
-            <article
-                class="inventory-card"
-                data-make="Toyota"
-                data-price="82900"
-                data-year="2023"
-                data-name="Toyota Land Cruiser"
-            >
-
-                <div class="inventory-image">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=85"
-                        alt="Toyota Land Cruiser"
-                    >
-
-                    <span class="inventory-badge">
-                        Available
-                    </span>
-
-                </div>
-
-                <div class="inventory-details">
-
-                    <p class="inventory-year">2023</p>
-
-                    <h2>Toyota Land Cruiser</h2>
-
-                    <div class="inventory-specs">
-                        <span>32,000 km</span>
-                        <span>Automatic</span>
-                        <span>Diesel</span>
-                    </div>
-
-                    <div class="inventory-footer">
-
-                        <strong class="inventory-price">
-                            $82,900
-                        </strong>
-
-                        <a href="car.html" class="details-btn">
-                            View Details →
-                        </a>
-
-                    </div>
-
-                    <a href="car.html" class="reserve-mini">
-                        Reserve This Car
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- CAR 2 -->
-
-            <article
-                class="inventory-card"
-                data-make="BMW"
-                data-price="68500"
-                data-year="2024"
-                data-name="BMW X5"
-            >
-
-                <div class="inventory-image">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=85"
-                        alt="BMW X5"
-                    >
-
-                    <span class="inventory-badge">
-                        Available
-                    </span>
-
-                </div>
-
-                <div class="inventory-details">
-
-                    <p class="inventory-year">2024</p>
-
-                    <h2>BMW X5</h2>
-
-                    <div class="inventory-specs">
-                        <span>18,500 km</span>
-                        <span>Automatic</span>
-                        <span>Petrol</span>
-                    </div>
-
-                    <div class="inventory-footer">
-
-                        <strong class="inventory-price">
-                            $68,500
-                        </strong>
-
-                        <a href="car.html" class="details-btn">
-                            View Details →
-                        </a>
-
-                    </div>
-
-                    <a href="car.html" class="reserve-mini">
-                        Reserve This Car
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- CAR 3 -->
-
-            <article
-                class="inventory-card"
-                data-make="Mercedes-Benz"
-                data-price="74900"
-                data-year="2024"
-                data-name="Mercedes-Benz GLE"
-            >
-
-                <div class="inventory-image">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1200&q=85"
-                        alt="Mercedes-Benz GLE"
-                    >
-
-                    <span class="inventory-badge">
-                        Available
-                    </span>
-
-                </div>
-
-                <div class="inventory-details">
-
-                    <p class="inventory-year">2024</p>
-
-                    <h2>Mercedes-Benz GLE</h2>
-
-                    <div class="inventory-specs">
-                        <span>14,200 km</span>
-                        <span>Automatic</span>
-                        <span>Petrol</span>
-                    </div>
-
-                    <div class="inventory-footer">
-
-                        <strong class="inventory-price">
-                            $74,900
-                        </strong>
-
-                        <a href="car.html" class="details-btn">
-                            View Details →
-                        </a>
-
-                    </div>
-
-                    <a href="car.html" class="reserve-mini">
-                        Reserve This Car
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- CAR 4 -->
-
-            <article
-                class="inventory-card"
-                data-make="Lexus"
-                data-price="59900"
-                data-year="2023"
-                data-name="Lexus RX 350"
-            >
-
-                <div class="inventory-image">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1200&q=85"
-                        alt="Lexus RX 350"
-                    >
-
-                    <span class="inventory-badge">
-                        Available
-                    </span>
-
-                </div>
-
-                <div class="inventory-details">
-
-                    <p class="inventory-year">2023</p>
-
-                    <h2>Lexus RX 350</h2>
-
-                    <div class="inventory-specs">
-                        <span>27,400 km</span>
-                        <span>Automatic</span>
-                        <span>Petrol</span>
-                    </div>
-
-                    <div class="inventory-footer">
-
-                        <strong class="inventory-price">
-                            $59,900
-                        </strong>
-
-                        <a href="car.html" class="details-btn">
-                            View Details →
-                        </a>
-
-                    </div>
-
-                    <a href="car.html" class="reserve-mini">
-                        Reserve This Car
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- CAR 5 -->
-
-            <article
-                class="inventory-card"
-                data-make="Nissan"
-                data-price="36900"
-                data-year="2024"
-                data-name="Nissan Patrol"
-            >
-
-                <div class="inventory-image">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1200&q=85"
-                        alt="Nissan Patrol"
-                    >
-
-                    <span class="inventory-badge">
-                        Available
-                    </span>
-
-                </div>
-
-                <div class="inventory-details">
-
-                    <p class="inventory-year">2024</p>
-
-                    <h2>Nissan Patrol</h2>
-
-                    <div class="inventory-specs">
-                        <span>21,000 km</span>
-                        <span>Automatic</span>
-                        <span>Petrol</span>
-                    </div>
-
-                    <div class="inventory-footer">
-
-                        <strong class="inventory-price">
-                            $36,900
-                        </strong>
-
-                        <a href="car.html" class="details-btn">
-                            View Details →
-                        </a>
-
-                    </div>
-
-                    <a href="car.html" class="reserve-mini">
-                        Reserve This Car
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- CAR 6 -->
-
-            <article
-                class="inventory-card"
-                data-make="Ford"
-                data-price="42900"
-                data-year="2022"
-                data-name="Ford Ranger"
-            >
-
-                <div class="inventory-image">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1559416523-140ddc3d238c?auto=format&fit=crop&w=1200&q=85"
-                        alt="Ford Ranger"
-                    >
-
-                    <span class="inventory-badge">
-                        Available
-                    </span>
-
-                </div>
-
-                <div class="inventory-details">
-
-                    <p class="inventory-year">2022</p>
-
-                    <h2>Ford Ranger</h2>
-
-                    <div class="inventory-specs">
-                        <span>39,500 km</span>
-                        <span>Automatic</span>
-                        <span>Diesel</span>
-                    </div>
-
-                    <div class="inventory-footer">
-
-                        <strong class="inventory-price">
-                            $42,900
-                        </strong>
-
-                        <a href="car.html" class="details-btn">
-                            View Details →
-                        </a>
-
-                    </div>
-
-                    <a href="car.html" class="reserve-mini">
-                        Reserve This Car
-                    </a>
-
-                </div>
-
-            </article>
-
-
+        <div class="loading">
+            Loading available vehicles...
         </div>
 
     </div>
 
+
 </main>
 
 
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container footer-grid">
+
+
+        <div>
+
+            <div class="logo footer-logo">
+
+                <span>SAUD</span>BAHWAN
+
+                <small>
+                    AUTOMOTIVES
+                </small>
+
+            </div>
+
+            <p>
+                Your destination for quality vehicles
+                and a better automotive buying experience.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Quick Links
+            </h4>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="inventory.html">
+                Inventory
+            </a>
+
+            <a href="index.html#about">
+                About Us
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Services
+            </h4>
+
+            <a href="inventory.html">
+                Vehicle Sales
+            </a>
+
+            <a href="contact.html">
+                Test Drives
+            </a>
+
+            <a href="inventory.html">
+                Reservations
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h4>
+                Contact
+            </h4>
+
+            <p>
+                Email: info@example.com
+            </p>
+
+            <p>
+                Phone: +000 000 000
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 SaudBahwanAutomotives. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- ================= SUPABASE ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="app.js"></script>
+
+
+<!-- ================= INVENTORY SCRIPT ================= -->
+
 <script>
+
+const inventoryGrid = document.getElementById("inventoryGrid");
+const inventoryCount = document.getElementById("inventoryCount");
 
 const makeFilter = document.getElementById("makeFilter");
 const priceFilter = document.getElementById("priceFilter");
 const yearFilter = document.getElementById("yearFilter");
 const searchInput = document.getElementById("searchInput");
 
-const cards = document.querySelectorAll(".inventory-card");
-const count = document.getElementById("inventoryCount");
+let vehicles = [];
 
 
-function filterVehicles() {
+async function loadVehicles() {
 
-    const make = makeFilter.value;
-    const price = priceFilter.value;
-    const year = yearFilter.value;
-    const search = searchInput.value.toLowerCase();
+    inventoryGrid.innerHTML = `
+        <div class="loading">
+            Loading available vehicles...
+        </div>
+    `;
 
-    let visible = 0;
+    try {
 
-
-    cards.forEach(card => {
-
-        const cardMake = card.dataset.make;
-        const cardPrice = Number(card.dataset.price);
-        const cardYear = card.dataset.year;
-        const cardName = card.dataset.name.toLowerCase();
-
-
-        let matchesMake =
-            make === "all" ||
-            cardMake === make;
+        const { data, error } = await supabaseClient
+            .from("vehicles")
+            .select("*")
+            .order("created_at", {
+                ascending: false
+            });
 
 
-        let matchesPrice = true;
-
-        if (price === "20000") {
-            matchesPrice = cardPrice < 20000;
-        }
-
-        if (price === "40000") {
-            matchesPrice =
-                cardPrice >= 20000 &&
-                cardPrice <= 40000;
-        }
-
-        if (price === "60000") {
-            matchesPrice =
-                cardPrice > 40000 &&
-                cardPrice <= 60000;
-        }
-
-        if (price === "60001") {
-            matchesPrice = cardPrice > 60000;
+        if (error) {
+            throw error;
         }
 
 
-        let matchesYear =
-            year === "all" ||
-            cardYear === year;
+        vehicles = data || [];
 
 
-        let matchesSearch =
-            search === "" ||
-            cardName.includes(search);
+        populateFilters();
 
+        displayVehicles(vehicles);
 
-        if (
-            matchesMake &&
-            matchesPrice &&
-            matchesYear &&
-            matchesSearch
-        ) {
+    } catch (error) {
 
-            card.style.display = "";
+        console.error("Vehicle loading error:", error);
 
-            visible++;
+        inventoryGrid.innerHTML = `
+            <div class="empty">
+                Unable to load vehicles right now.
+            </div>
+        `;
 
-        } else {
+        inventoryCount.textContent =
+            "Unable to load inventory.";
 
-            card.style.display = "none";
-
-        }
-
-    });
-
-
-    count.textContent =
-        `Showing ${visible} vehicle${visible === 1 ? "" : "s"}`;
+    }
 
 }
 
 
-makeFilter.addEventListener("change", filterVehicles);
-priceFilter.addEventListener("change", filterVehicles);
-yearFilter.addEventListener("change", filterVehicles);
-searchInput.addEventListener("input", filterVehicles);
+function populateFilters() {
+
+    const makes = [
+        ...new Set(
+            vehicles
+                .map(vehicle => vehicle.make)
+                .filter(Boolean)
+        )
+    ].sort();
+
+
+    const years = [
+        ...new Set(
+            vehicles
+                .map(vehicle => vehicle.year)
+                .filter(Boolean)
+        )
+    ].sort((a, b) => b - a);
+
+
+    makeFilter.innerHTML = `
+        <option value="">
+            All Makes
+        </option>
+    `;
+
+
+    makes.forEach(make => {
+
+        makeFilter.innerHTML += `
+            <option value="${escapeHtml(make)}">
+                ${escapeHtml(make)}
+            </option>
+        `;
+
+    });
+
+
+    yearFilter.innerHTML = `
+        <option value="">
+            Any Year
+        </option>
+    `;
+
+
+    years.forEach(year => {
+
+        yearFilter.innerHTML += `
+            <option value="${year}">
+                ${year}
+            </option>
+        `;
+
+    });
+
+}
+
+
+function displayVehicles(list) {
+
+    inventoryCount.textContent =
+        `Showing ${list.length} vehicle${list.length === 1 ? "" : "s"}`;
+
+
+    if (!list.length) {
+
+        inventoryGrid.innerHTML = `
+            <div class="empty">
+                No vehicles match your search.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    inventoryGrid.innerHTML = list.map(vehicle => {
+
+        const image =
+            vehicle.image_url ||
+            "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80";
+
+
+        const price = Number(vehicle.price || 0);
+
+
+        return `
+
+            <article class="inventory-card">
+
+                <div class="inventory-image">
+
+                    <img
+                        src="${escapeHtml(image)}"
+                        alt="${escapeHtml(vehicle.make)} ${escapeHtml(vehicle.model)}">
+
+                    <span class="status">
+                        ${escapeHtml(vehicle.status || "Available")}
+                    </span>
+
+                </div>
+
+
+                <div class="inventory-info">
+
+                    <p class="inventory-year">
+                        ${escapeHtml(vehicle.year)}
+                    </p>
+
+                    <h2>
+                        ${escapeHtml(vehicle.make)}
+                        ${escapeHtml(vehicle.model)}
+                    </h2>
+
+                    <p class="inventory-specs">
+
+                        ${escapeHtml(vehicle.transmission || "Automatic")}
+                        •
+                        ${escapeHtml(vehicle.fuel_type || "Petrol")}
+                        •
+                        ${Number(vehicle.mileage || 0).toLocaleString()} km
+
+                    </p>
+
+
+                    <div class="inventory-bottom">
+
+                        <div class="inventory-price">
+                            $${price.toLocaleString()}
+                        </div>
+
+                        <a
+                            href="car.html?id=${encodeURIComponent(vehicle.id)}"
+                            class="details-btn">
+
+                            View Details →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        `;
+
+    }).join("");
+
+}
+
+
+function filterVehicles() {
+
+    const make =
+        makeFilter.value.toLowerCase();
+
+    const price =
+        priceFilter.value;
+
+    const year =
+        yearFilter.value;
+
+    const search =
+        searchInput.value.toLowerCase().trim();
+
+
+    const filtered =
+        vehicles.filter(vehicle => {
+
+
+            const vehicleMake =
+                String(vehicle.make || "").toLowerCase();
+
+
+            const vehicleName =
+                `${vehicle.make || ""} ${vehicle.model || ""}`.toLowerCase();
+
+
+            const vehiclePrice =
+                Number(vehicle.price || 0);
+
+
+            const vehicleYear =
+                String(vehicle.year || "");
+
+
+            if (
+                make &&
+                vehicleMake !== make
+            ) {
+                return false;
+            }
+
+
+            if (
+                year &&
+                vehicleYear !== year
+            ) {
+                return false;
+            }
+
+
+            if (
+                search &&
+                !vehicleName.includes(search)
+            ) {
+                return false;
+            }
+
+
+            if (
+                price === "under20" &&
+                vehiclePrice >= 20000
+            ) {
+                return false;
+            }
+
+
+            if (
+                price === "20to40" &&
+                (
+                    vehiclePrice < 20000 ||
+                    vehiclePrice > 40000
+                )
+            ) {
+                return false;
+            }
+
+
+            if (
+                price === "40to60" &&
+                (
+                    vehiclePrice < 40000 ||
+                    vehiclePrice > 60000
+                )
+            ) {
+                return false;
+            }
+
+
+            if (
+                price === "over60" &&
+                vehiclePrice < 60000
+            ) {
+                return false;
+            }
+
+
+            return true;
+
+        });
+
+
+    displayVehicles(filtered);
+
+}
+
+
+function escapeHtml(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+makeFilter.addEventListener(
+    "change",
+    filterVehicles
+);
+
+priceFilter.addEventListener(
+    "change",
+    filterVehicles
+);
+
+yearFilter.addEventListener(
+    "change",
+    filterVehicles
+);
+
+searchInput.addEventListener(
+    "input",
+    filterVehicles
+);
+
+
+// Start loading inventory
+loadVehicles();
 
 </script>
 
+
 </body>
-</html>
+
+                </html>
