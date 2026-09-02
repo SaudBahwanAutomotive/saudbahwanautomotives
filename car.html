@@ -12,24 +12,24 @@
     .car-page {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 120px 20px 70px;
+      padding: 50px 20px 80px;
     }
 
-    .breadcrumb {
-      color: #999;
+    .back-link {
+      display: inline-block;
       margin-bottom: 25px;
-      font-size: 14px;
+      color: #aaa;
+      text-decoration: none;
     }
 
-    .breadcrumb a {
-      color: #d4af37;
-      text-decoration: none;
+    .back-link:hover {
+      color: #fff;
     }
 
     .car-layout {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 45px;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 40px;
       align-items: start;
     }
 
@@ -39,42 +39,45 @@
       overflow: hidden;
     }
 
-    .car-main-image {
+    .car-image-box img {
       width: 100%;
-      height: 500px;
+      height: 520px;
       object-fit: cover;
       display: block;
     }
 
     .car-info h1 {
       font-size: 42px;
-      margin: 0 0 8px;
-    }
-
-    .car-subtitle {
-      color: #aaa;
-      margin-bottom: 20px;
+      margin: 0 0 10px;
     }
 
     .car-price {
-      font-size: 34px;
+      font-size: 30px;
       font-weight: 700;
-      color: #d4af37;
-      margin: 20px 0 30px;
+      margin: 15px 0 25px;
+    }
+
+    .car-status {
+      display: inline-block;
+      padding: 7px 14px;
+      border-radius: 20px;
+      background: #1d7a46;
+      color: white;
+      font-size: 14px;
+      margin-bottom: 25px;
     }
 
     .spec-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      margin-bottom: 30px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 25px 0;
     }
 
     .spec {
       background: #15181d;
-      border: 1px solid #242830;
+      padding: 16px;
       border-radius: 10px;
-      padding: 18px;
     }
 
     .spec span {
@@ -88,162 +91,133 @@
       font-size: 16px;
     }
 
+    .description {
+      margin-top: 30px;
+      color: #bbb;
+      line-height: 1.7;
+    }
+
     .reservation-box {
+      margin-top: 40px;
       background: #15181d;
-      border: 1px solid #2a2e35;
-      border-radius: 15px;
-      padding: 25px;
-      margin-top: 25px;
+      border-radius: 16px;
+      padding: 30px;
     }
 
     .reservation-box h2 {
       margin-top: 0;
-      margin-bottom: 8px;
     }
 
-    .reservation-note {
-      color: #999;
-      font-size: 14px;
+    .reservation-box p {
+      color: #aaa;
       line-height: 1.6;
-      margin-bottom: 20px;
     }
 
-    .reservation-form {
-      display: grid;
-      gap: 14px;
+    .form-group {
+      margin-bottom: 16px;
     }
 
-    .reservation-form input,
-    .reservation-form select,
-    .reservation-form textarea {
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
       width: 100%;
       box-sizing: border-box;
-      padding: 14px;
+      padding: 13px;
+      border: 1px solid #333;
+      border-radius: 8px;
       background: #0b0d10;
       color: white;
-      border: 1px solid #30343c;
-      border-radius: 8px;
-      outline: none;
+      font-size: 15px;
     }
 
-    .reservation-form textarea {
+    .form-group textarea {
       min-height: 100px;
       resize: vertical;
     }
 
-    .reservation-form input:focus,
-    .reservation-form select:focus,
-    .reservation-form textarea:focus {
-      border-color: #d4af37;
-    }
-
-    .terms {
+    .checkbox-row {
       display: flex;
       gap: 10px;
       align-items: flex-start;
+      margin: 18px 0;
       color: #aaa;
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.5;
     }
 
-    .terms input {
-      width: auto;
-      margin-top: 3px;
+    .checkbox-row input {
+      margin-top: 4px;
     }
 
     .reserve-btn {
       width: 100%;
-      border: none;
       padding: 15px;
+      border: none;
       border-radius: 8px;
-      background: #d4af37;
-      color: #111;
+      cursor: pointer;
       font-size: 16px;
       font-weight: 700;
-      cursor: pointer;
+      background: #fff;
+      color: #000;
     }
 
     .reserve-btn:hover {
       opacity: 0.9;
     }
 
-    .secondary-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+    .reserve-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .message {
       margin-top: 15px;
-    }
-
-    .secondary-actions a {
-      text-align: center;
-      padding: 13px;
-      border: 1px solid #333842;
+      padding: 12px;
       border-radius: 8px;
-      color: white;
-      text-decoration: none;
-    }
-
-    .secondary-actions a:hover {
-      border-color: #d4af37;
-      color: #d4af37;
-    }
-
-    .description-section {
-      margin-top: 60px;
-      padding: 30px;
-      background: #15181d;
-      border-radius: 15px;
-    }
-
-    .description-section h2 {
-      margin-top: 0;
-    }
-
-    .description-section p {
-      color: #aaa;
-      line-height: 1.8;
-    }
-
-    .notice {
       display: none;
-      padding: 14px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      background: #17251b;
-      border: 1px solid #315b3b;
-      color: #b9e8c1;
-      font-size: 14px;
+      line-height: 1.5;
     }
 
-    @media (max-width: 900px) {
+    .message.success {
+      display: block;
+      background: #143d28;
+      color: #8ff0b5;
+    }
+
+    .message.error {
+      display: block;
+      background: #421c1c;
+      color: #ffaaaa;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 100px 20px;
+      color: #aaa;
+    }
+
+    @media (max-width: 800px) {
       .car-layout {
         grid-template-columns: 1fr;
       }
 
-      .car-main-image {
-        height: 380px;
+      .car-image-box img {
+        height: 320px;
       }
 
       .car-info h1 {
-        font-size: 34px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .car-page {
-        padding-top: 100px;
+        font-size: 32px;
       }
 
-      .car-main-image {
-        height: 270px;
-      }
-
-      .spec-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .secondary-actions {
-        grid-template-columns: 1fr;
+      .car-price {
+        font-size: 25px;
       }
     }
   </style>
@@ -251,238 +225,454 @@
 
 <body>
 
-<header>
-  <div class="logo">
-    <strong>SAUD BAHWAN</strong>
-    <span>AUTOMOTIVES</span>
-  </div>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">SaudBahwanAutomotives</a>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="inventory.html">Inventory</a>
-    <a href="index.html#about">About Us</a>
-    <a href="index.html#services">Services</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="inventory.html">Inventory</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
 
+  <main class="car-page">
 
-<main class="car-page">
+    <a href="inventory.html" class="back-link">← Back to Inventory</a>
 
-  <div class="breadcrumb">
-    <a href="inventory.html">Inventory</a>
-    &nbsp; / &nbsp;
-    Vehicle Details
-  </div>
-
-
-  <div class="car-layout">
-
-    <!-- VEHICLE IMAGE -->
-    <div class="car-image-box">
-      <img
-        class="car-main-image"
-        src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=1400&q=85"
-        alt="Toyota Land Cruiser">
+    <div id="loading" class="loading">
+      Loading vehicle...
     </div>
 
+    <div id="vehicleContent" style="display:none;">
 
-    <!-- VEHICLE INFORMATION -->
-    <div class="car-info">
+      <div class="car-layout">
 
-      <h1>Toyota Land Cruiser</h1>
+        <div>
 
-      <div class="car-subtitle">
-        2023 • Premium SUV • Automatic
+          <div class="car-image-box">
+            <img id="carImage" src="" alt="Vehicle">
+          </div>
+
+          <div class="description">
+            <h2>Vehicle Description</h2>
+            <p id="carDescription"></p>
+          </div>
+
+        </div>
+
+        <div class="car-info">
+
+          <span id="carStatus" class="car-status"></span>
+
+          <h1 id="carTitle"></h1>
+
+          <div id="carPrice" class="car-price"></div>
+
+          <div class="spec-grid">
+
+            <div class="spec">
+              <span>Year</span>
+              <strong id="carYear"></strong>
+            </div>
+
+            <div class="spec">
+              <span>Mileage</span>
+              <strong id="carMileage"></strong>
+            </div>
+
+            <div class="spec">
+              <span>Transmission</span>
+              <strong id="carTransmission"></strong>
+            </div>
+
+            <div class="spec">
+              <span>Fuel Type</span>
+              <strong id="carFuel"></strong>
+            </div>
+
+            <div class="spec">
+              <span>Condition</span>
+              <strong id="carCondition"></strong>
+            </div>
+
+          </div>
+
+          <div class="reservation-box">
+
+            <h2>Reserve This Vehicle</h2>
+
+            <p>
+              Interested in this vehicle? Submit your details and our
+              team will contact you to confirm availability and discuss
+              the next steps.
+            </p>
+
+            <form id="reservationForm">
+
+              <div class="form-group">
+                <label for="customerName">Full Name</label>
+                <input
+                  type="text"
+                  id="customerName"
+                  required
+                  placeholder="Your full name"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="customerEmail">Email Address</label>
+                <input
+                  type="email"
+                  id="customerEmail"
+                  required
+                  placeholder="you@example.com"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="customerPhone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="customerPhone"
+                  required
+                  placeholder="Your phone number"
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="contactMethod">Preferred Contact Method</label>
+
+                <select id="contactMethod">
+                  <option value="Phone">Phone</option>
+                  <option value="Email">Email</option>
+                  <option value="WhatsApp">WhatsApp</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="customerMessage">Message</label>
+
+                <textarea
+                  id="customerMessage"
+                  placeholder="Any questions or information you would like to provide?"
+                ></textarea>
+              </div>
+
+              <label class="checkbox-row">
+                <input type="checkbox" id="terms" required>
+
+                <span>
+                  I understand that submitting this form is a reservation
+                  request and does not guarantee the vehicle until confirmed
+                  by the dealership.
+                </span>
+              </label>
+
+              <button
+                type="submit"
+                class="reserve-btn"
+                id="reserveButton"
+              >
+                Submit Reservation Request
+              </button>
+
+              <div id="formMessage" class="message"></div>
+
+            </form>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="car-price">
-        $82,900
-      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 SaudBahwanAutomotives. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Supabase configuration -->
+  <script src="app.js"></script>
+
+  <script>
+
+    const loading = document.getElementById("loading");
+    const vehicleContent = document.getElementById("vehicleContent");
+
+    const carImage = document.getElementById("carImage");
+    const carTitle = document.getElementById("carTitle");
+    const carPrice = document.getElementById("carPrice");
+    const carYear = document.getElementById("carYear");
+    const carMileage = document.getElementById("carMileage");
+    const carTransmission = document.getElementById("carTransmission");
+    const carFuel = document.getElementById("carFuel");
+    const carCondition = document.getElementById("carCondition");
+    const carStatus = document.getElementById("carStatus");
+    const carDescription = document.getElementById("carDescription");
+
+    const reservationForm =
+      document.getElementById("reservationForm");
+
+    const formMessage =
+      document.getElementById("formMessage");
+
+    const reserveButton =
+      document.getElementById("reserveButton");
 
 
-      <div class="spec-grid">
+    // Get vehicle ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
 
-        <div class="spec">
-          <span>Year</span>
-          <strong>2023</strong>
-        </div>
-
-        <div class="spec">
-          <span>Mileage</span>
-          <strong>32,000 km</strong>
-        </div>
-
-        <div class="spec">
-          <span>Transmission</span>
-          <strong>Automatic</strong>
-        </div>
-
-        <div class="spec">
-          <span>Fuel Type</span>
-          <strong>Diesel</strong>
-        </div>
-
-        <div class="spec">
-          <span>Condition</span>
-          <strong>Used</strong>
-        </div>
-
-        <div class="spec">
-          <span>Availability</span>
-          <strong>Available</strong>
-        </div>
-
-      </div>
+    const vehicleId = urlParams.get("id");
 
 
-      <!-- RESERVATION -->
-      <div class="reservation-box">
+    function showError(message) {
 
-        <h2>Reserve This Car</h2>
-
-        <p class="reservation-note">
-          Submit your reservation request and our sales team will contact
-          you to confirm availability, reservation terms and payment details.
-        </p>
-
-        <div id="successMessage" class="notice">
-          Your reservation request has been submitted successfully.
-          Our team will contact you shortly.
-        </div>
-
-        <form class="reservation-form" id="reservationForm">
-
-          <input
-            type="text"
-            id="customerName"
-            placeholder="Full Name"
-            required>
-
-          <input
-            type="email"
-            id="customerEmail"
-            placeholder="Email Address"
-            required>
-
-          <input
-            type="tel"
-            id="customerPhone"
-            placeholder="Phone / WhatsApp"
-            required>
-
-          <select id="contactMethod" required>
-            <option value="">Preferred Contact Method</option>
-            <option value="WhatsApp">WhatsApp</option>
-            <option value="Phone">Phone</option>
-            <option value="Email">Email</option>
-          </select>
-
-          <textarea
-            id="customerMessage"
-            placeholder="Message or questions about this vehicle"></textarea>
-
-          <label class="terms">
-            <input type="checkbox" id="terms" required>
-            <span>
-              I understand that submitting this form is a reservation request
-              and that availability and reservation/payment terms must be
-              confirmed by the dealership.
-            </span>
-          </label>
-
-          <button type="submit" class="reserve-btn">
-            Continue to Reservation
-          </button>
-
-        </form>
-
-
-        <div class="secondary-actions">
-
-          <a href="contact.html">
-            Enquire Now
-          </a>
-
+      loading.innerHTML = `
+        <h2>Vehicle Not Found</h2>
+        <p>${message}</p>
+        <p>
           <a href="inventory.html">
-            View More Cars
+            Return to Inventory
           </a>
+        </p>
+      `;
 
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
+    }
 
 
-  <!-- DESCRIPTION -->
+    function formatPrice(price) {
 
-  <section class="description-section">
+      const number = Number(price);
 
-    <h2>About This Vehicle</h2>
+      if (isNaN(number)) {
+        return price;
+      }
 
-    <p>
-      This Toyota Land Cruiser combines premium comfort, strong performance
-      and dependable capability. The vehicle is presented as part of the
-      current inventory and is subject to availability and verification.
-    </p>
+      return "$" + number.toLocaleString("en-US", {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2
+      });
 
-    <p>
-      Contact our sales team for additional vehicle information, inspection
-      arrangements, financing options and reservation terms.
-    </p>
-
-  </section>
-
-</main>
+    }
 
 
-<footer>
+    function formatMileage(mileage) {
 
-  <div class="footer-content">
+      if (mileage === null || mileage === undefined) {
+        return "N/A";
+      }
 
-    <div>
-      <strong>SAUD BAHWAN</strong>
-      <p>Premium Automotive Experience</p>
-    </div>
+      return Number(mileage).toLocaleString("en-US") + " km";
 
-    <div>
-      <p>Email: info@example.com</p>
-      <p>Phone: +000 000 000</p>
-    </div>
-
-  </div>
-
-  <p class="copyright">
-    © 2026 SaudBahwanAutomotives. All rights reserved.
-  </p>
-
-</footer>
+    }
 
 
-<script>
+    async function loadVehicle() {
 
-const reservationForm = document.getElementById("reservationForm");
-const successMessage = document.getElementById("successMessage");
+      if (!vehicleId) {
 
-reservationForm.addEventListener("submit", function(event) {
+        showError(
+          "No vehicle was selected. Please return to the inventory."
+        );
 
-  event.preventDefault();
+        return;
+      }
 
-  successMessage.style.display = "block";
 
-  reservationForm.reset();
+      const { data: vehicle, error } = await supabaseClient
+        .from("vehicles")
+        .select("*")
+        .eq("id", vehicleId)
+        .single();
 
-  successMessage.scrollIntoView({
-    behavior: "smooth",
-    block: "center"
-  });
 
-});
+      if (error) {
 
-</script>
+        console.error("Vehicle loading error:", error);
+
+        showError(
+          "We could not load this vehicle. Please try again."
+        );
+
+        return;
+      }
+
+
+      if (!vehicle) {
+
+        showError(
+          "This vehicle could not be found."
+        );
+
+        return;
+      }
+
+
+      // Page title
+      document.title =
+        `${vehicle.year} ${vehicle.make} ${vehicle.model} | SaudBahwanAutomotives`;
+
+
+      // Vehicle image
+      carImage.src =
+        vehicle.image_url ||
+        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80";
+
+      carImage.alt =
+        `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
+
+
+      // Main information
+      carTitle.textContent =
+        `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
+
+      carPrice.textContent =
+        formatPrice(vehicle.price);
+
+      carYear.textContent =
+        vehicle.year || "N/A";
+
+      carMileage.textContent =
+        formatMileage(vehicle.mileage);
+
+      carTransmission.textContent =
+        vehicle.transmission || "N/A";
+
+      carFuel.textContent =
+        vehicle.fuel_type || "N/A";
+
+      carCondition.textContent =
+        vehicle.condition || "Used";
+
+      carStatus.textContent =
+        vehicle.status || "Available";
+
+      carDescription.textContent =
+        vehicle.description ||
+        "Please contact us for more information about this vehicle.";
+
+
+      loading.style.display = "none";
+
+      vehicleContent.style.display = "block";
+
+    }
+
+
+    // Reservation form
+    reservationForm.addEventListener("submit", async function(event) {
+
+      event.preventDefault();
+
+
+      formMessage.className = "message";
+      formMessage.textContent = "";
+
+
+      if (!vehicleId) {
+
+        formMessage.className = "message error";
+
+        formMessage.textContent =
+          "Vehicle information is missing.";
+
+        return;
+      }
+
+
+      reserveButton.disabled = true;
+
+      reserveButton.textContent =
+        "Submitting...";
+
+
+      const customerName =
+        document.getElementById("customerName").value.trim();
+
+      const customerEmail =
+        document.getElementById("customerEmail").value.trim();
+
+      const customerPhone =
+        document.getElementById("customerPhone").value.trim();
+
+      const contactMethod =
+        document.getElementById("contactMethod").value;
+
+      const message =
+        document.getElementById("customerMessage").value.trim();
+
+
+      const { error } = await supabaseClient
+        .from("reservations")
+        .insert([
+          {
+            vehicle_id: vehicleId,
+            customer_name: customerName,
+            customer_email: customerEmail,
+            customer_phone: customerPhone,
+            contact_method: contactMethod,
+            message: message,
+            status: "Pending",
+            payment_status: "Not Paid"
+          }
+        ]);
+
+
+      if (error) {
+
+        console.error(
+          "Reservation error:",
+          error
+        );
+
+        formMessage.className =
+          "message error";
+
+        formMessage.textContent =
+          "We could not submit your reservation. Please try again.";
+
+        reserveButton.disabled = false;
+
+        reserveButton.textContent =
+          "Submit Reservation Request";
+
+        return;
+      }
+
+
+      formMessage.className =
+        "message success";
+
+      formMessage.textContent =
+        "Reservation request submitted successfully. Our team will contact you to confirm availability and the next steps.";
+
+      reservationForm.reset();
+
+      reserveButton.disabled = false;
+
+      reserveButton.textContent =
+        "Submit Reservation Request";
+
+    });
+
+
+    // Start
+    loadVehicle();
+
+  </script>
 
 </body>
-    </html>
+  </html>
