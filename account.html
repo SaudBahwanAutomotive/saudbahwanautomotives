@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>My Account | SaudBahwanAutomotives</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+  <style>
+
+    .account-page {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 20px;
+    }
+
+    .account-header {
+      margin-bottom: 30px;
+    }
+
+    .account-header h1 {
+      margin-bottom: 8px;
+    }
+
+    .account-card {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .account-card h2 {
+      margin-bottom: 20px;
+    }
+
+    .account-info p {
+      margin: 10px 0;
+    }
+
+    .reservation-card {
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .reservation-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .status-pending {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .status-confirmed {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .status-cancelled {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .payment-paid {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .payment-unpaid {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .logout-button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 20px;
+      background: #111;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .logout-button:hover {
+      opacity: 0.85;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .empty {
+      padding: 20px;
+      background: #f7f7f7;
+      border-radius: 8px;
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="container">
+
+      <h2>SaudBahwanAutomotives</h2>
+
+      <nav>
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="inventory.html">
+          Inventory
+        </a>
+
+        <a href="contact.html">
+          Contact
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- ACCOUNT -->
+
+  <main class="account-page">
+
+    <div class="account-header">
+
+      <h1>My Account</h1>
+
+      <p>
+        Manage your account and view your vehicle reservations.
+      </p>
+
+    </div>
+
+
+
+    <!-- ACCOUNT INFORMATION -->
+
+    <div class="account-card">
+
+      <h2>Account Information</h2>
+
+      <div
+        class="account-info"
+        id="accountInfo"
+      >
+
+        <div class="loading">
+          Loading account...
+        </div>
+
+      </div>
+
+      <button
+        class="logout-button"
+        id="logoutButton"
+      >
+        Logout
+      </button>
+
+    </div>
+
+
+
+    <!-- RESERVATIONS -->
+
+    <div class="account-card">
+
+      <h2>My Reservations</h2>
+
+      <div id="reservations">
+
+        <div class="loading">
+          Loading reservations...
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+
+  <!-- SUPABASE -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+
+    /* =====================================================
+       SUPABASE
+    ===================================================== */
+
+    const SUPABASE_URL =
+      "https://xretkpptkpbjxbbuqrey.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_XrFWvnnoqoUM5sL5UcbQLg_Z7QhtfKT";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+
+    /* =====================================================
+       LOAD ACCOUNT
+    ===================================================== */
+
+    async function loadAccount() {
+
+      const {
+        data: {
+          user
+        },
+        error
+      } =
+        await supabaseClient.auth.getUser();
+
+
+      if (error || !user) {
+
+        window.location.href =
+          "login.html";
+
+        return;
+
+      }
+
+
+      /* ---------------------------------------------------
+         ACCOUNT INFORMATION
+      --------------------------------------------------- */
+
+      const accountInfo =
+        document.getElementById(
+          "accountInfo"
+        );
+
+
+      const {
+        data: profile
+      } =
+        await supabaseClient
+          .from("profiles")
+          .select("full_name, role, created_at")
+          .eq("id", user.id)
+          .single();
+
+
+      const name =
+        profile?.full_name ||
+        user.user_metadata?.full_name ||
+        "Customer";
+
+
+      const role =
+        profile?.role ||
+        "customer";
+
+
+      const created =
+        profile?.created_at
+          ? new Date(
+              profile.created_at
+            ).toLocaleDateString()
+          : "—";
+
+
+      accountInfo.innerHTML = `
+
+        <p>
+          <strong>Name:</strong>
+          ${escapeHtml(name)}
+        </p>
+
+        <p>
+          <strong>Email:</strong>
+          ${escapeHtml(user.email || "")}
+        </p>
+
+        <p>
+          <strong>Account Type:</strong>
+          ${escapeHtml(role)}
+        </p>
+
+        <p>
+          <strong>Member Since:</strong>
+          ${created}
+        </p>
+
+      `;
+
+
+
+      /* ---------------------------------------------------
+         LOAD RESERVATIONS
+      --------------------------------------------------- */
+
+      await loadReservations(
+        user.email
+      );
+
+    }
+
+
+
+    /* =====================================================
+       LOAD RESERVATIONS
+    ===================================================== */
+
+    async function loadReservations(
+      email
+    ) {
+
+      const container =
+        document.getElementById(
+          "reservations"
+        );
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("reservations")
+          .select(`
+            id,
+            customer_name,
+            customer_email,
+            customer_phone,
+            contact_method,
+            message,
+            status,
+            payment_status,
+            created_at,
+            vehicle_id,
+            vehicles (
+              make,
+              model,
+              year,
+              price,
+              image_url
+            )
+          `)
+          .eq(
+            "customer_email",
+            email
+          )
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
+
+
+      if (error) {
+
+        console.error(
+          "Reservation error:",
+          error.message
+        );
+
+        container.innerHTML = `
+
+          <div class="empty">
+
+            Unable to load reservations.
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      if (
+        !data ||
+        data.length === 0
+      ) {
+
+        container.innerHTML = `
+
+          <div class="empty">
+
+            You have no reservations yet.
+
+            <br><br>
+
+            <a href="inventory.html">
+              Browse Available Vehicles
+            </a>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      container.innerHTML = "";
+
+
+      data.forEach(
+        reservation => {
+
+          const vehicle =
+            reservation.vehicles;
+
+
+          const vehicleName =
+            vehicle
+              ? `${vehicle.make} ${vehicle.model}`
+              : "Vehicle";
+
+
+          const status =
+            reservation.status ||
+            "Pending";
+
+
+          const payment =
+            reservation.payment_status ||
+            "Not Paid";
+
+
+          let statusClass =
+            "status-pending";
+
+
+          if (
+            status.toLowerCase() ===
+            "confirmed"
+          ) {
+
+            statusClass =
+              "status-confirmed";
+
+          }
+
+
+          if (
+            status.toLowerCase() ===
+            "cancelled"
+          ) {
+
+            statusClass =
+              "status-cancelled";
+
+          }
+
+
+          const paymentClass =
+            payment.toLowerCase() ===
+            "paid"
+              ? "payment-paid"
+              : "payment-unpaid";
+
+
+          const reservationDate =
+            new Date(
+              reservation.created_at
+            ).toLocaleString();
+
+
+          const image =
+            vehicle?.image_url ||
+            "";
+
+
+          container.innerHTML += `
+
+            <div class="reservation-card">
+
+              ${
+                image
+                  ? `
+                    <img
+                      src="${escapeHtml(image)}"
+                      alt="${escapeHtml(vehicleName)}"
+                      style="
+                        width:100%;
+                        max-height:220px;
+                        object-fit:cover;
+                        border-radius:8px;
+                        margin-bottom:15px;
+                      "
+                    >
+                  `
+                  : ""
+              }
+
+              <h3>
+                ${escapeHtml(vehicleName)}
+              </h3>
+
+              ${
+                vehicle
+                  ? `
+                    <p>
+                      <strong>Year:</strong>
+                      ${vehicle.year}
+                    </p>
+
+                    <p>
+                      <strong>Price:</strong>
+                      $${Number(
+                        vehicle.price
+                      ).toLocaleString()}
+                    </p>
+                  `
+                  : ""
+              }
+
+              <p>
+                <strong>Reservation Date:</strong>
+                ${reservationDate}
+              </p>
+
+              <p>
+
+                <span
+                  class="status ${statusClass}"
+                >
+                  ${escapeHtml(status)}
+                </span>
+
+                <span
+                  class="status ${paymentClass}"
+                >
+                  ${escapeHtml(payment)}
+                </span>
+
+              </p>
+
+              ${
+                reservation.message
+                  ? `
+                    <p>
+                      <strong>Message:</strong>
+                      ${escapeHtml(
+                        reservation.message
+                      )}
+                    </p>
+                  `
+                  : ""
+              }
+
+            </div>
+
+          `;
+
+        }
+      );
+
+    }
+
+
+
+    /* =====================================================
+       ESCAPE HTML
+    ===================================================== */
+
+    function escapeHtml(
+      value
+    ) {
+
+      return String(
+        value ?? ""
+      )
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+    }
+
+
+
+    /* =====================================================
+       LOGOUT
+    ===================================================== */
+
+    document
+      .getElementById(
+        "logoutButton"
+      )
+      .addEventListener(
+        "click",
+        async function() {
+
+          this.disabled = true;
+
+          this.textContent =
+            "Logging out...";
+
+
+          const {
+            error
+          } =
+            await supabaseClient
+              .auth
+              .signOut();
+
+
+          if (error) {
+
+            alert(
+              "Unable to log out. Please try again."
+            );
+
+            this.disabled = false;
+
+            this.textContent =
+              "Logout";
+
+            return;
+
+          }
+
+
+          window.location.href =
+            "index.html";
+
+        }
+      );
+
+
+
+    /* =====================================================
+       START
+    ===================================================== */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function() {
+
+        loadAccount();
+
+      }
+    );
+
+  </script>
+
+
+</body>
+
+</html>
