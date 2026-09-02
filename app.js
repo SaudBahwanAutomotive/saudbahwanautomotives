@@ -25,101 +25,62 @@ async function updateAuthNavigation() {
   try {
 
     const {
-      data: { user },
-      error
+      data: { user }
     } = await supabaseClient.auth.getUser();
 
 
-    if (error) {
-      console.error(
-        "Auth check error:",
-        error.message
-      );
-    }
-
-
     /* -----------------------------------------------------
-       FIND LOGIN AND REGISTER LINKS
+       FIND AUTH NAVIGATION
     ----------------------------------------------------- */
 
-    const loginLinks =
-      document.querySelectorAll(
-        'a[href="login.html"]'
-      );
+    const loginLink =
+      document.getElementById("loginNavLink");
 
-    const registerLinks =
-      document.querySelectorAll(
-        'a[href="register.html"]'
-      );
+    const registerLink =
+      document.getElementById("registerNavLink");
 
 
     /* =====================================================
-       USER IS LOGGED IN
+       LOGGED IN
     ===================================================== */
 
     if (user) {
 
-      /* Hide Login links */
-      loginLinks.forEach(link => {
-        link.style.display = "none";
-      });
+      if (loginLink) {
+        loginLink.style.display = "none";
+      }
 
-
-      /* Hide Create Account links */
-      registerLinks.forEach(link => {
-        link.style.display = "none";
-      });
+      if (registerLink) {
+        registerLink.style.display = "none";
+      }
 
 
       /* ---------------------------------------------------
-         CHECK USER PROFILE
+         GET USER PROFILE
       --------------------------------------------------- */
 
       let profile = null;
 
-
       const {
         data,
-        error: profileError
+        error
       } = await supabaseClient
         .from("profiles")
         .select("role, full_name")
         .eq("id", user.id)
         .single();
 
-
-      if (!profileError) {
+      if (!error) {
         profile = data;
       }
 
 
       /* ---------------------------------------------------
-         FIND NAVIGATION
+         FIND NAV
       --------------------------------------------------- */
 
-      let nav = null;
-
-
-      if (loginLinks.length > 0) {
-
-        nav =
-          loginLinks[0].parentElement;
-
-      } else if (registerLinks.length > 0) {
-
-        nav =
-          registerLinks[0].parentElement;
-
-      } else {
-
-        /*
-          Try common navigation selectors
-        */
-
-        nav =
-          document.querySelector("nav");
-
-      }
+      const nav =
+        document.querySelector("nav");
 
 
       if (!nav) {
@@ -128,7 +89,7 @@ async function updateAuthNavigation() {
 
 
       /* ---------------------------------------------------
-         CREATE ACCOUNT LINK
+         MY ACCOUNT
       --------------------------------------------------- */
 
       if (
@@ -150,19 +111,18 @@ async function updateAuthNavigation() {
           "My Account";
 
         nav.appendChild(accountLink);
-
       }
 
 
       /* ---------------------------------------------------
-         ADMIN DASHBOARD LINK
+         ADMIN DASHBOARD
       --------------------------------------------------- */
 
       if (
         profile &&
         profile.role === "admin" &&
-        !document.querySelector(
-          'a[href="admin.html"]'
+        !document.getElementById(
+          "authAdminLink"
         )
       ) {
 
@@ -172,19 +132,18 @@ async function updateAuthNavigation() {
         adminLink.href =
           "admin.html";
 
-        adminLink.textContent =
-          "Admin Dashboard";
-
         adminLink.id =
           "authAdminLink";
 
-        nav.appendChild(adminLink);
+        adminLink.textContent =
+          "Admin Dashboard";
 
+        nav.appendChild(adminLink);
       }
 
 
       /* ---------------------------------------------------
-         LOGOUT LINK
+         LOGOUT
       --------------------------------------------------- */
 
       if (
@@ -211,14 +170,8 @@ async function updateAuthNavigation() {
 
             event.preventDefault();
 
-
             logoutLink.textContent =
               "Logging out...";
-
-
-            logoutLink.style.pointerEvents =
-              "none";
-
 
             const {
               error
@@ -228,20 +181,12 @@ async function updateAuthNavigation() {
 
             if (error) {
 
-              console.error(
-                "Logout error:",
-                error.message
-              );
-
               alert(
                 "Unable to log out. Please try again."
               );
 
               logoutLink.textContent =
                 "Logout";
-
-              logoutLink.style.pointerEvents =
-                "auto";
 
               return;
             }
@@ -255,32 +200,28 @@ async function updateAuthNavigation() {
 
 
         nav.appendChild(logoutLink);
-
       }
-
 
     }
 
 
     /* =====================================================
-       USER IS LOGGED OUT
+       LOGGED OUT
     ===================================================== */
 
     else {
 
-      /* Show Login links */
-      loginLinks.forEach(link => {
-        link.style.display = "";
-      });
+      if (loginLink) {
+        loginLink.style.display = "";
+      }
+
+      if (registerLink) {
+        registerLink.style.display = "";
+      }
 
 
-      /* Show Create Account links */
-      registerLinks.forEach(link => {
-        link.style.display = "";
-      });
+      /* Remove account */
 
-
-      /* Remove My Account */
       const accountLink =
         document.getElementById(
           "authAccountLink"
@@ -291,7 +232,8 @@ async function updateAuthNavigation() {
       }
 
 
-      /* Remove Admin Dashboard */
+      /* Remove admin */
+
       const adminLink =
         document.getElementById(
           "authAdminLink"
@@ -302,7 +244,8 @@ async function updateAuthNavigation() {
       }
 
 
-      /* Remove Logout */
+      /* Remove logout */
+
       const logoutLink =
         document.getElementById(
           "authLogoutLink"
@@ -331,17 +274,10 @@ async function updateAuthNavigation() {
 ========================================================= */
 
 supabaseClient.auth.onAuthStateChange(
-  function(event, session) {
-
-    /*
-      Small delay prevents conflicts with
-      Supabase session updates.
-    */
+  function() {
 
     setTimeout(
-      function() {
-        updateAuthNavigation();
-      },
+      updateAuthNavigation,
       100
     );
 
@@ -350,7 +286,7 @@ supabaseClient.auth.onAuthStateChange(
 
 
 /* =========================================================
-   INITIAL AUTH CHECK
+   INITIAL CHECK
 ========================================================= */
 
 document.addEventListener(
