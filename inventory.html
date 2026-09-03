@@ -2,851 +2,824 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Vehicle Inventory | SaudBahwanAutomotives</title>
+  <title>Inventory | SaudBahwanAutomotives</title>
 
-    <meta name="description"
-        content="Explore available vehicles at SaudBahwanAutomotives.">
+  <link rel="stylesheet" href="style.css">
 
-    <link rel="stylesheet" href="style.css">
+  <style>
+    .inventory-page {
+      padding: 50px 20px 80px;
+      max-width: 1200px;
+      margin: auto;
+    }
 
-    <style>
+    .inventory-header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
 
-        .inventory-page {
-            padding: 130px 20px 80px;
-        }
+    .inventory-header h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
 
-        .inventory-header {
-            text-align: center;
-            max-width: 750px;
-            margin: 0 auto 45px;
-        }
+    .inventory-header p {
+      color: #aaa;
+      font-size: 16px;
+    }
 
-        .inventory-header h1 {
-            font-size: 48px;
-            margin: 10px 0 15px;
-        }
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 35px;
+      padding: 20px;
+      border-radius: 14px;
+      background: #111;
+      border: 1px solid #252525;
+    }
 
-        .inventory-header p {
-            color: #999;
-            line-height: 1.7;
-        }
+    .filters input,
+    .filters select {
+      width: 100%;
+      padding: 13px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      background: #181818;
+      color: white;
+      outline: none;
+    }
 
-        .filters {
-            max-width: 1200px;
-            margin: 0 auto 40px;
-            padding: 20px;
-            background: #15181d;
-            border: 1px solid #272b32;
-            border-radius: 12px;
+    .filters input:focus,
+    .filters select:focus {
+      border-color: #777;
+    }
 
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
+    .vehicles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
 
-        .filters select,
-        .filters input {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 13px;
-            background: #0b0d10;
-            color: white;
-            border: 1px solid #30343c;
-            border-radius: 7px;
-            outline: none;
-        }
+    .vehicle-card {
+      background: #111;
+      border: 1px solid #252525;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: 0.25s ease;
+    }
 
-        .filters select:focus,
-        .filters input:focus {
-            border-color: #d4af37;
-        }
+    .vehicle-card:hover {
+      transform: translateY(-5px);
+      border-color: #444;
+    }
 
-        .inventory-count {
-            max-width: 1200px;
-            margin: 0 auto 20px;
-            color: #888;
-            font-size: 14px;
-        }
+    .vehicle-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
 
-        .inventory-grid {
-            max-width: 1200px;
-            margin: auto;
+    .vehicle-info {
+      padding: 20px;
+    }
 
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
+    .vehicle-info h3 {
+      margin: 0 0 7px;
+      font-size: 21px;
+    }
 
-        .inventory-card {
-            background: #15181d;
-            border: 1px solid #252a31;
-            border-radius: 14px;
-            overflow: hidden;
-            transition: transform .2s, border-color .2s;
-        }
+    .vehicle-year {
+      color: #aaa;
+      margin-bottom: 12px;
+    }
 
-        .inventory-card:hover {
-            transform: translateY(-4px);
-            border-color: #d4af37;
-        }
+    .vehicle-price {
+      font-size: 23px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
 
-        .inventory-image {
-            position: relative;
-            height: 240px;
-            overflow: hidden;
-        }
+    .vehicle-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      color: #bbb;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
 
-        .inventory-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+    .vehicle-details div {
+      padding: 7px 0;
+    }
 
-        .status {
-            position: absolute;
-            top: 15px;
-            left: 15px;
+    .view-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+      border-radius: 8px;
+      background: white;
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-            background: #d4af37;
-            color: #111;
+    .view-btn:hover {
+      opacity: 0.85;
+    }
 
-            padding: 6px 10px;
-            border-radius: 5px;
+    .loading,
+    .empty,
+    .error {
+      text-align: center;
+      padding: 50px 20px;
+      color: #aaa;
+      grid-column: 1 / -1;
+    }
 
-            font-size: 12px;
-            font-weight: 700;
-        }
+    .error {
+      color: #ff7777;
+    }
 
-        .inventory-info {
-            padding: 22px;
-        }
+    @media (max-width: 900px) {
+      .vehicles-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
-        .inventory-year {
-            color: #888;
-            font-size: 13px;
-            margin-bottom: 5px;
-        }
+      .filters {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
 
-        .inventory-info h2 {
-            margin: 0 0 10px;
-            font-size: 23px;
-        }
+    @media (max-width: 600px) {
+      .vehicles-grid {
+        grid-template-columns: 1fr;
+      }
 
-        .inventory-specs {
-            color: #999;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
+      .filters {
+        grid-template-columns: 1fr;
+      }
 
-        .inventory-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .inventory-price {
-            color: #d4af37;
-            font-size: 21px;
-            font-weight: 700;
-        }
-
-        .details-btn {
-            color: white;
-            text-decoration: none;
-            border: 1px solid #383d46;
-            padding: 9px 12px;
-            border-radius: 6px;
-            font-size: 13px;
-        }
-
-        .details-btn:hover {
-            color: #d4af37;
-            border-color: #d4af37;
-        }
-
-        .loading {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 60px 20px;
-            color: #888;
-        }
-
-        .empty {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 60px 20px;
-            color: #888;
-        }
-
-        @media (max-width: 950px) {
-
-            .inventory-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .filters {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-        }
-
-        @media (max-width: 600px) {
-
-            .inventory-page {
-                padding-top: 105px;
-            }
-
-            .inventory-header h1 {
-                font-size: 36px;
-            }
-
-            .inventory-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .filters {
-                grid-template-columns: 1fr;
-            }
-
-            .inventory-image {
-                height: 220px;
-            }
-
-        }
-
-    </style>
-
+      .inventory-header h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
+  <!-- HEADER -->
+  <header>
+    <nav>
 
-<!-- ================= HEADER ================= -->
+      <a href="index.html" class="logo">
+        SaudBahwanAutomotives
+      </a>
 
-<header class="header">
+      <div class="nav-links">
 
-    <div class="container nav">
-
-        <a href="index.html" class="logo">
-
-            <span>SAUD</span>BAHWAN
-
-            <small>
-                AUTOMOTIVES
-            </small>
-
+        <a href="index.html">
+          Home
         </a>
 
-
-        <nav class="nav-links">
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="inventory.html">
-                Inventory
-            </a>
-
-            <a href="index.html#about">
-                About Us
-            </a>
-
-            <a href="index.html#services">
-                Services
-            </a>
-
-            <a href="contact.html">
-                Contact
-            </a>
-
-        </nav>
-
-
-        <a href="inventory.html" class="nav-button">
-            Browse Cars
+        <a href="inventory.html">
+          Inventory
         </a>
 
-    </div>
+        <a href="contact.html">
+          Contact
+        </a>
 
-</header>
+        <a href="login.html" id="loginNavLink">
+          Login
+        </a>
+
+        <a href="register.html" id="registerNavLink">
+          Create Account
+        </a>
+
+        <span id="accountNavArea"></span>
+
+      </div>
+
+    </nav>
+  </header>
 
 
-<!-- ================= INVENTORY ================= -->
-
-<main class="inventory-page">
-
+  <!-- INVENTORY -->
+  <main class="inventory-page">
 
     <div class="inventory-header">
 
-        <p class="section-label">
-            OUR COLLECTION
-        </p>
+      <h1>Our Inventory</h1>
 
-        <h1>
-            Vehicle Inventory
-        </h1>
-
-        <p>
-            Explore our available vehicles and find the right
-            combination of performance, comfort and value.
-        </p>
+      <p>
+        Explore our selection of quality vehicles.
+      </p>
 
     </div>
 
 
-    <!-- ================= FILTERS ================= -->
-
+    <!-- FILTERS -->
     <div class="filters">
 
-        <select id="makeFilter">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search make or model..."
+      >
 
-            <option value="">
-                All Makes
-            </option>
+      <select id="makeFilter">
 
-        </select>
+        <option value="">
+          All Makes
+        </option>
 
-
-        <select id="priceFilter">
-
-            <option value="">
-                Any Price
-            </option>
-
-            <option value="under20">
-                Under $20,000
-            </option>
-
-            <option value="20to40">
-                $20,000 - $40,000
-            </option>
-
-            <option value="40to60">
-                $40,000 - $60,000
-            </option>
-
-            <option value="over60">
-                $60,000+
-            </option>
-
-        </select>
+      </select>
 
 
-        <select id="yearFilter">
+      <select id="yearFilter">
 
-            <option value="">
-                Any Year
-            </option>
+        <option value="">
+          All Years
+        </option>
 
-        </select>
+      </select>
 
 
-        <input
-            type="search"
-            id="searchInput"
-            placeholder="Search vehicles...">
+      <input
+        type="number"
+        id="maxPrice"
+        placeholder="Maximum price (OMR)"
+        min="0"
+      >
 
     </div>
 
 
-    <div class="inventory-count" id="inventoryCount">
+    <!-- VEHICLES -->
+    <div
+      id="vehiclesGrid"
+      class="vehicles-grid"
+    >
+
+      <div class="loading">
         Loading vehicles...
-    </div>
-
-
-    <!-- ================= VEHICLES ================= -->
-
-    <div class="inventory-grid" id="inventoryGrid">
-
-        <div class="loading">
-            Loading available vehicles...
-        </div>
+      </div>
 
     </div>
 
+  </main>
 
-</main>
 
+  <!-- FOOTER -->
+  <footer>
 
-<!-- ================= FOOTER ================= -->
+    <p>
+      © 2026 SaudBahwanAutomotives.
+      All rights reserved.
+    </p>
 
-<footer>
+  </footer>
 
-    <div class="container footer-grid">
 
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-        <div>
+  <script src="app.js"></script>
 
-            <div class="logo footer-logo">
 
-                <span>SAUD</span>BAHWAN
+  <script>
 
-                <small>
-                    AUTOMOTIVES
-                </small>
+    let allVehicles = [];
 
-            </div>
 
-            <p>
-                Your destination for quality vehicles
-                and a better automotive buying experience.
-            </p>
+    /*
+      OMR PRICE FORMAT
+    */
+    function formatOMR(value) {
 
-        </div>
-
-
-        <div>
-
-            <h4>
-                Quick Links
-            </h4>
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <a href="inventory.html">
-                Inventory
-            </a>
-
-            <a href="index.html#about">
-                About Us
-            </a>
-
-            <a href="contact.html">
-                Contact
-            </a>
-
-        </div>
-
-
-        <div>
-
-            <h4>
-                Services
-            </h4>
-
-            <a href="inventory.html">
-                Vehicle Sales
-            </a>
-
-            <a href="contact.html">
-                Test Drives
-            </a>
-
-            <a href="inventory.html">
-                Reservations
-            </a>
-
-        </div>
-
-
-        <div>
-
-            <h4>
-                Contact
-            </h4>
-
-            <p>
-                Email: info@example.com
-            </p>
-
-            <p>
-                Phone: +000 000 000
-            </p>
-
-        </div>
-
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-        <p>
-            © 2026 SaudBahwanAutomotives. All rights reserved.
-        </p>
-
-    </div>
-
-</footer>
-
-
-<!-- ================= SUPABASE ================= -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script src="app.js"></script>
-
-
-<!-- ================= INVENTORY SCRIPT ================= -->
-
-<script>
-
-const inventoryGrid = document.getElementById("inventoryGrid");
-const inventoryCount = document.getElementById("inventoryCount");
-
-const makeFilter = document.getElementById("makeFilter");
-const priceFilter = document.getElementById("priceFilter");
-const yearFilter = document.getElementById("yearFilter");
-const searchInput = document.getElementById("searchInput");
-
-let vehicles = [];
-
-
-async function loadVehicles() {
-
-    inventoryGrid.innerHTML = `
-        <div class="loading">
-            Loading available vehicles...
-        </div>
-    `;
-
-    try {
-
-        const { data, error } = await supabaseClient
-            .from("vehicles")
-            .select("*")
-            .order("created_at", {
-                ascending: false
-            });
-
-
-        if (error) {
-            throw error;
-        }
-
-
-        vehicles = data || [];
-
-
-        populateFilters();
-
-        displayVehicles(vehicles);
-
-    } catch (error) {
-
-        console.error("Vehicle loading error:", error);
-
-        inventoryGrid.innerHTML = `
-            <div class="empty">
-                Unable to load vehicles right now.
-            </div>
-        `;
-
-        inventoryCount.textContent =
-            "Unable to load inventory.";
+      return "ر.ع. " +
+        Number(value || 0).toLocaleString(
+          "en-US",
+          {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 3
+          }
+        );
 
     }
 
-}
 
+    /*
+      ESCAPE HTML
+    */
+    function escapeHtml(value) {
 
-function populateFilters() {
+      if (value === null || value === undefined) {
+        return "";
+      }
 
-    const makes = [
-        ...new Set(
-            vehicles
-                .map(vehicle => vehicle.make)
-                .filter(Boolean)
-        )
-    ].sort();
-
-
-    const years = [
-        ...new Set(
-            vehicles
-                .map(vehicle => vehicle.year)
-                .filter(Boolean)
-        )
-    ].sort((a, b) => b - a);
-
-
-    makeFilter.innerHTML = `
-        <option value="">
-            All Makes
-        </option>
-    `;
-
-
-    makes.forEach(make => {
-
-        makeFilter.innerHTML += `
-            <option value="${escapeHtml(make)}">
-                ${escapeHtml(make)}
-            </option>
-        `;
-
-    });
-
-
-    yearFilter.innerHTML = `
-        <option value="">
-            Any Year
-        </option>
-    `;
-
-
-    years.forEach(year => {
-
-        yearFilter.innerHTML += `
-            <option value="${year}">
-                ${year}
-            </option>
-        `;
-
-    });
-
-}
-
-
-function displayVehicles(list) {
-
-    inventoryCount.textContent =
-        `Showing ${list.length} vehicle${list.length === 1 ? "" : "s"}`;
-
-
-    if (!list.length) {
-
-        inventoryGrid.innerHTML = `
-            <div class="empty">
-                No vehicles match your search.
-            </div>
-        `;
-
-        return;
-    }
-
-
-    inventoryGrid.innerHTML = list.map(vehicle => {
-
-        const image =
-            vehicle.image_url ||
-            "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80";
-
-
-        const price = Number(vehicle.price || 0);
-
-
-        return `
-
-            <article class="inventory-card">
-
-                <div class="inventory-image">
-
-                    <img
-                        src="${escapeHtml(image)}"
-                        alt="${escapeHtml(vehicle.make)} ${escapeHtml(vehicle.model)}">
-
-                    <span class="status">
-                        ${escapeHtml(vehicle.status || "Available")}
-                    </span>
-
-                </div>
-
-
-                <div class="inventory-info">
-
-                    <p class="inventory-year">
-                        ${escapeHtml(vehicle.year)}
-                    </p>
-
-                    <h2>
-                        ${escapeHtml(vehicle.make)}
-                        ${escapeHtml(vehicle.model)}
-                    </h2>
-
-                    <p class="inventory-specs">
-
-                        ${escapeHtml(vehicle.transmission || "Automatic")}
-                        •
-                        ${escapeHtml(vehicle.fuel_type || "Petrol")}
-                        •
-                        ${Number(vehicle.mileage || 0).toLocaleString()} km
-
-                    </p>
-
-
-                    <div class="inventory-bottom">
-
-                        <div class="inventory-price">
-                            $${price.toLocaleString()}
-                        </div>
-
-                        <a
-                            href="car.html?id=${encodeURIComponent(vehicle.id)}"
-                            class="details-btn">
-
-                            View Details →
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-        `;
-
-    }).join("");
-
-}
-
-
-function filterVehicles() {
-
-    const make =
-        makeFilter.value.toLowerCase();
-
-    const price =
-        priceFilter.value;
-
-    const year =
-        yearFilter.value;
-
-    const search =
-        searchInput.value.toLowerCase().trim();
-
-
-    const filtered =
-        vehicles.filter(vehicle => {
-
-
-            const vehicleMake =
-                String(vehicle.make || "").toLowerCase();
-
-
-            const vehicleName =
-                `${vehicle.make || ""} ${vehicle.model || ""}`.toLowerCase();
-
-
-            const vehiclePrice =
-                Number(vehicle.price || 0);
-
-
-            const vehicleYear =
-                String(vehicle.year || "");
-
-
-            if (
-                make &&
-                vehicleMake !== make
-            ) {
-                return false;
-            }
-
-
-            if (
-                year &&
-                vehicleYear !== year
-            ) {
-                return false;
-            }
-
-
-            if (
-                search &&
-                !vehicleName.includes(search)
-            ) {
-                return false;
-            }
-
-
-            if (
-                price === "under20" &&
-                vehiclePrice >= 20000
-            ) {
-                return false;
-            }
-
-
-            if (
-                price === "20to40" &&
-                (
-                    vehiclePrice < 20000 ||
-                    vehiclePrice > 40000
-                )
-            ) {
-                return false;
-            }
-
-
-            if (
-                price === "40to60" &&
-                (
-                    vehiclePrice < 40000 ||
-                    vehiclePrice > 60000
-                )
-            ) {
-                return false;
-            }
-
-
-            if (
-                price === "over60" &&
-                vehiclePrice < 60000
-            ) {
-                return false;
-            }
-
-
-            return true;
-
-        });
-
-
-    displayVehicles(filtered);
-
-}
-
-
-function escapeHtml(value) {
-
-    return String(value ?? "")
+      return String(value)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
 
-}
+    }
 
 
-makeFilter.addEventListener(
-    "change",
-    filterVehicles
-);
+    /*
+      LOAD VEHICLES
+    */
+    async function loadVehicles() {
 
-priceFilter.addEventListener(
-    "change",
-    filterVehicles
-);
+      const grid =
+        document.getElementById("vehiclesGrid");
 
-yearFilter.addEventListener(
-    "change",
-    filterVehicles
-);
-
-searchInput.addEventListener(
-    "input",
-    filterVehicles
-);
+      grid.innerHTML =
+        '<div class="loading">Loading vehicles...</div>';
 
 
-// Start loading inventory
-loadVehicles();
+      const { data, error } =
+        await supabaseClient
+          .from("vehicles")
+          .select("*")
+          .order("created_at", {
+            ascending: false
+          });
 
-</script>
 
+      if (error) {
+
+        console.error(error);
+
+        grid.innerHTML =
+          '<div class="error">Unable to load vehicles. Please try again.</div>';
+
+        return;
+
+      }
+
+
+      allVehicles = data || [];
+
+
+      populateFilters();
+
+      displayVehicles(allVehicles);
+
+    }
+
+
+    /*
+      POPULATE FILTERS
+    */
+    function populateFilters() {
+
+      const makeFilter =
+        document.getElementById("makeFilter");
+
+      const yearFilter =
+        document.getElementById("yearFilter");
+
+
+      const makes =
+        [...new Set(
+          allVehicles
+            .map(vehicle => vehicle.make)
+            .filter(Boolean)
+        )]
+        .sort();
+
+
+      const years =
+        [...new Set(
+          allVehicles
+            .map(vehicle => vehicle.year)
+            .filter(Boolean)
+        )]
+        .sort((a, b) => b - a);
+
+
+      makeFilter.innerHTML =
+        '<option value="">All Makes</option>';
+
+
+      makes.forEach(make => {
+
+        const option =
+          document.createElement("option");
+
+        option.value = make;
+
+        option.textContent = make;
+
+        makeFilter.appendChild(option);
+
+      });
+
+
+      yearFilter.innerHTML =
+        '<option value="">All Years</option>';
+
+
+      years.forEach(year => {
+
+        const option =
+          document.createElement("option");
+
+        option.value = year;
+
+        option.textContent = year;
+
+        yearFilter.appendChild(option);
+
+      });
+
+    }
+
+
+    /*
+      DISPLAY VEHICLES
+    */
+    function displayVehicles(vehicles) {
+
+      const grid =
+        document.getElementById("vehiclesGrid");
+
+
+      if (!vehicles.length) {
+
+        grid.innerHTML =
+          '<div class="empty">No vehicles match your search.</div>';
+
+        return;
+
+      }
+
+
+      grid.innerHTML =
+        vehicles.map(vehicle => {
+
+          const image =
+            vehicle.image_url ||
+            "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=900&q=80";
+
+
+          return `
+
+            <article class="vehicle-card">
+
+              <img
+                src="${escapeHtml(image)}"
+                alt="${escapeHtml(vehicle.make)} ${escapeHtml(vehicle.model)}"
+                loading="lazy"
+              >
+
+              <div class="vehicle-info">
+
+                <h3>
+                  ${escapeHtml(vehicle.make)}
+                  ${escapeHtml(vehicle.model)}
+                </h3>
+
+                <div class="vehicle-year">
+                  ${escapeHtml(vehicle.year)}
+                </div>
+
+                <div class="vehicle-price">
+                  ${formatOMR(vehicle.price)}
+                </div>
+
+                <div class="vehicle-details">
+
+                  <div>
+                    <strong>Mileage:</strong>
+                    ${Number(vehicle.mileage || 0).toLocaleString()} km
+                  </div>
+
+                  <div>
+                    <strong>Transmission:</strong>
+                    ${escapeHtml(vehicle.transmission || "N/A")}
+                  </div>
+
+                  <div>
+                    <strong>Fuel:</strong>
+                    ${escapeHtml(vehicle.fuel_type || "N/A")}
+                  </div>
+
+                  <div>
+                    <strong>Condition:</strong>
+                    ${escapeHtml(vehicle.condition || "Used")}
+                  </div>
+
+                </div>
+
+                <a
+                  class="view-btn"
+                  href="car.html?id=${encodeURIComponent(vehicle.id)}"
+                >
+                  View Vehicle
+                </a>
+
+              </div>
+
+            </article>
+
+          `;
+
+        })
+        .join("");
+
+    }
+
+
+    /*
+      FILTER VEHICLES
+    */
+    function filterVehicles() {
+
+      const search =
+        document
+          .getElementById("searchInput")
+          .value
+          .toLowerCase()
+          .trim();
+
+
+      const make =
+        document
+          .getElementById("makeFilter")
+          .value;
+
+
+      const year =
+        document
+          .getElementById("yearFilter")
+          .value;
+
+
+      const maxPrice =
+        document
+          .getElementById("maxPrice")
+          .value;
+
+
+      const filtered =
+        allVehicles.filter(vehicle => {
+
+          const makeModel =
+            `${vehicle.make || ""} ${vehicle.model || ""}`
+              .toLowerCase();
+
+
+          const matchesSearch =
+            !search ||
+            makeModel.includes(search);
+
+
+          const matchesMake =
+            !make ||
+            vehicle.make === make;
+
+
+          const matchesYear =
+            !year ||
+            String(vehicle.year) === String(year);
+
+
+          const matchesPrice =
+            !maxPrice ||
+            Number(vehicle.price || 0) <= Number(maxPrice);
+
+
+          return (
+            matchesSearch &&
+            matchesMake &&
+            matchesYear &&
+            matchesPrice
+          );
+
+        });
+
+
+      displayVehicles(filtered);
+
+    }
+
+
+    /*
+      FILTER EVENTS
+    */
+    document
+      .getElementById("searchInput")
+      .addEventListener(
+        "input",
+        filterVehicles
+      );
+
+
+    document
+      .getElementById("makeFilter")
+      .addEventListener(
+        "change",
+        filterVehicles
+      );
+
+
+    document
+      .getElementById("yearFilter")
+      .addEventListener(
+        "change",
+        filterVehicles
+      );
+
+
+    document
+      .getElementById("maxPrice")
+      .addEventListener(
+        "input",
+        filterVehicles
+      );
+
+
+    /*
+      AUTH NAVIGATION
+    */
+    document.addEventListener(
+      "DOMContentLoaded",
+      async function () {
+
+        try {
+
+          const {
+            data: { user }
+          } =
+            await supabaseClient.auth.getUser();
+
+
+          const loginLink =
+            document.getElementById(
+              "loginNavLink"
+            );
+
+
+          const registerLink =
+            document.getElementById(
+              "registerNavLink"
+            );
+
+
+          const accountArea =
+            document.getElementById(
+              "accountNavArea"
+            );
+
+
+          if (!user) {
+            return;
+          }
+
+
+          if (loginLink) {
+            loginLink.style.display =
+              "none";
+          }
+
+
+          if (registerLink) {
+            registerLink.style.display =
+              "none";
+          }
+
+
+          const accountLink =
+            document.createElement("a");
+
+          accountLink.href =
+            "account.html";
+
+          accountLink.textContent =
+            "My Account";
+
+          accountArea.appendChild(
+            accountLink
+          );
+
+
+          const {
+            data: profile
+          } =
+            await supabaseClient
+              .from("profiles")
+              .select("role")
+              .eq("id", user.id)
+              .single();
+
+
+          if (
+            profile &&
+            profile.role === "admin"
+          ) {
+
+            const adminLink =
+              document.createElement("a");
+
+            adminLink.href =
+              "admin.html";
+
+            adminLink.textContent =
+              "Admin Dashboard";
+
+            accountArea.appendChild(
+              adminLink
+            );
+
+          }
+
+
+          const logoutLink =
+            document.createElement("a");
+
+          logoutLink.href = "#";
+
+          logoutLink.textContent =
+            "Logout";
+
+
+          logoutLink.addEventListener(
+            "click",
+            async function (event) {
+
+              event.preventDefault();
+
+              logoutLink.textContent =
+                "Logging out...";
+
+
+              const { error } =
+                await supabaseClient.auth.signOut();
+
+
+              if (error) {
+
+                console.error(
+                  "Logout error:",
+                  error.message
+                );
+
+                logoutLink.textContent =
+                  "Logout";
+
+                alert(
+                  "Unable to log out. Please try again."
+                );
+
+                return;
+
+              }
+
+
+              window.location.href =
+                "index.html";
+
+            }
+          );
+
+
+          accountArea.appendChild(
+            logoutLink
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Navigation error:",
+            error
+          );
+
+        }
+
+      }
+    );
+
+
+    /*
+      START
+    */
+    loadVehicles();
+
+  </script>
 
 </body>
 
-                </html>
+    </html>
