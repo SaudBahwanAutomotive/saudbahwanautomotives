@@ -14,6 +14,7 @@
       line-height: 1.6;
     }
 
+    /* NAVIGATION */
     nav {
       background: #0b1624;
       min-height: 72px;
@@ -39,7 +40,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 22px;
+      gap: 20px;
       flex-wrap: wrap;
     }
 
@@ -49,20 +50,24 @@
       font-size: 14px;
       font-weight: 600;
       padding: 8px 0;
-      transition: 0.2s;
+      cursor: pointer;
     }
 
     .nav-links a:hover {
       color: #d6a84f;
     }
 
+    /* HERO */
     .hero {
       min-height: 620px;
       display: flex;
       align-items: center;
       padding: 80px 6%;
       background:
-        linear-gradient(rgba(5, 15, 27, 0.72), rgba(5, 15, 27, 0.72)),
+        linear-gradient(
+          rgba(5, 15, 27, 0.72),
+          rgba(5, 15, 27, 0.72)
+        ),
         url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=85")
         center/cover no-repeat;
       color: white;
@@ -119,6 +124,7 @@
       color: #0b1624;
     }
 
+    /* SECTIONS */
     section {
       padding: 75px 6%;
     }
@@ -137,6 +143,7 @@
       color: #6b7280;
     }
 
+    /* VEHICLES */
     .vehicles {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -161,6 +168,7 @@
       width: 100%;
       height: 230px;
       object-fit: cover;
+      display: block;
     }
 
     .vehicle-info {
@@ -192,18 +200,20 @@
       padding-bottom: 3px;
     }
 
+    /* RESERVATION */
     .reservation {
       background: #0b1624;
       color: white;
       text-align: center;
     }
 
-    .reservation p {
+    .reservation .section-title p {
       color: #cbd5e1;
       max-width: 700px;
       margin: 0 auto 30px;
     }
 
+    /* FEATURES */
     .features {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -228,11 +238,13 @@
       color: #6b7280;
     }
 
+    /* ACCOUNT */
     .account-section {
       background: #eef2f6;
       text-align: center;
     }
 
+    /* FOOTER */
     footer {
       background: #070f18;
       color: #cbd5e1;
@@ -255,7 +267,9 @@
       margin: 0 8px;
     }
 
+    /* MOBILE */
     @media (max-width: 900px) {
+
       nav {
         padding: 18px 5%;
         flex-direction: column;
@@ -263,7 +277,7 @@
 
       .nav-links {
         justify-content: center;
-        gap: 15px;
+        gap: 14px;
       }
 
       .vehicles,
@@ -273,6 +287,7 @@
     }
 
     @media (max-width: 600px) {
+
       .hero {
         min-height: 550px;
         padding: 60px 5%;
@@ -296,7 +311,7 @@
       }
 
       .nav-links {
-        gap: 12px;
+        gap: 10px;
       }
 
       .nav-links a {
@@ -309,7 +324,9 @@
 
 <div class="nav-links">
 
-  <a href="index.html">Home</a>
+  <a href="index.html">
+    Home
+  </a>
 
   <a href="inventory.html">
     Inventory
@@ -319,20 +336,24 @@
     Contact
   </a>
 
-  <a href="login.html">
+  <a href="login.html" id="loginLink">
     Login
   </a>
 
-  <a href="register.html">
+  <a href="register.html" id="registerLink">
     Create Account
   </a>
 
-  <a href="account.html">
+  <a href="account.html" id="accountLink" style="display:none;">
     My Account
   </a>
 
-  <a href="admin.html">
+  <a href="admin.html" id="adminLink" style="display:none;">
     Admin Dashboard
+  </a>
+
+  <a href="#" id="logoutLink" style="display:none;">
+    Logout
   </a>
 
 </div>
@@ -377,7 +398,7 @@
 
 <div class="vehicles">
 
-  <!-- VEHICLE 1 -->
+  <!-- TOYOTA -->
   <div class="vehicle-card">
 
     <img
@@ -407,7 +428,7 @@
   </div>
 
 
-  <!-- VEHICLE 2 -->
+  <!-- BMW -->
   <div class="vehicle-card">
 
     <img
@@ -437,7 +458,7 @@
   </div>
 
 
-  <!-- VEHICLE 3 -->
+  <!-- MERCEDES -->
   <div class="vehicle-card">
 
     <img
@@ -601,7 +622,7 @@
 
 </div>
 
-  </section>  <!-- ACCOUNT CTA -->  <section class="account-section"><div class="section-title">
+  </section>  <!-- CUSTOMER ACCOUNT -->  <section class="account-section"><div class="section-title">
 
   <h2>
     Manage Your Reservations
@@ -611,14 +632,23 @@
     Create an account or sign in to access your customer dashboard.
   </p>
 
-  <div class="buttons" style="justify-content:center;">
+  <div
+    class="buttons"
+    style="justify-content:center;"
+  >
 
-    <a href="register.html" class="btn btn-primary">
+    <a
+      href="register.html"
+      class="btn btn-primary"
+    >
       Create Account
     </a>
 
-    <a href="login.html" class="btn btn-outline"
-       style="border-color:#0b1624;color:#0b1624;">
+    <a
+      href="login.html"
+      class="btn"
+      style="background:#0b1624;color:white;"
+    >
       Login
     </a>
 
@@ -658,4 +688,172 @@
 
 </div>
 
-  </footer>  <!-- SUPABASE -->  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <!-- YOUR ORIGINAL APP.JS -->  <script src="app.js"></script></body></html>
+  </footer>  <!-- SUPABASE -->  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <!-- DO NOT CHANGE app.js -->  <script src="app.js"></script>  <!-- AUTHENTICATION NAVIGATION -->  <script>
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      async function () {
+
+        const loginLink =
+          document.getElementById("loginLink");
+
+        const registerLink =
+          document.getElementById("registerLink");
+
+        const accountLink =
+          document.getElementById("accountLink");
+
+        const adminLink =
+          document.getElementById("adminLink");
+
+        const logoutLink =
+          document.getElementById("logoutLink");
+
+
+        try {
+
+          const {
+            data: { user },
+            error: userError
+          } = await supabaseClient.auth.getUser();
+
+
+          if (userError) {
+            console.error(
+              "User error:",
+              userError.message
+            );
+            return;
+          }
+
+
+          /* USER IS NOT LOGGED IN */
+
+          if (!user) {
+
+            loginLink.style.display =
+              "inline-block";
+
+            registerLink.style.display =
+              "inline-block";
+
+            accountLink.style.display =
+              "none";
+
+            adminLink.style.display =
+              "none";
+
+            logoutLink.style.display =
+              "none";
+
+            return;
+          }
+
+
+          /* USER IS LOGGED IN */
+
+          loginLink.style.display =
+            "none";
+
+          registerLink.style.display =
+            "none";
+
+          accountLink.style.display =
+            "inline-block";
+
+          logoutLink.style.display =
+            "inline-block";
+
+
+          /* CHECK ADMIN ROLE */
+
+          const {
+            data: profile,
+            error: profileError
+          } = await supabaseClient
+            .from("profiles")
+            .select("role")
+            .eq("id", user.id)
+            .maybeSingle();
+
+
+          if (profileError) {
+
+            console.error(
+              "Profile error:",
+              profileError.message
+            );
+
+          }
+
+
+          if (
+            profile &&
+            profile.role === "admin"
+          ) {
+
+            adminLink.style.display =
+              "inline-block";
+
+          } else {
+
+            adminLink.style.display =
+              "none";
+
+          }
+
+
+          /* LOGOUT */
+
+          logoutLink.addEventListener(
+            "click",
+            async function (event) {
+
+              event.preventDefault();
+
+              logoutLink.textContent =
+                "Logging out...";
+
+
+              const {
+                error
+              } = await supabaseClient.auth.signOut();
+
+
+              if (error) {
+
+                console.error(
+                  "Logout error:",
+                  error.message
+                );
+
+                logoutLink.textContent =
+                  "Logout";
+
+                alert(
+                  "Unable to log out. Please try again."
+                );
+
+                return;
+              }
+
+
+              window.location.href =
+                "index.html";
+
+            }
+          );
+
+        } catch (error) {
+
+          console.error(
+            "Navigation error:",
+            error
+          );
+
+        }
+
+      }
+    );
+
+  </script></body></html>
