@@ -228,7 +228,9 @@
   <header>
     <div class="container">
       <nav>
-        <a href="index.html" class="logo">SaudBahwanAutomotives</a>
+        <a href="index.html" class="logo">
+          SaudBahwanAutomotives
+        </a>
 
         <div class="nav-links">
           <a href="index.html">Home</a>
@@ -241,7 +243,9 @@
 
   <main class="car-page">
 
-    <a href="inventory.html" class="back-link">← Back to Inventory</a>
+    <a href="inventory.html" class="back-link">
+      ← Back to Inventory
+    </a>
 
     <div id="loading" class="loading">
       Loading vehicle...
@@ -315,6 +319,7 @@
 
               <div class="form-group">
                 <label for="customerName">Full Name</label>
+
                 <input
                   type="text"
                   id="customerName"
@@ -325,6 +330,7 @@
 
               <div class="form-group">
                 <label for="customerEmail">Email Address</label>
+
                 <input
                   type="email"
                   id="customerEmail"
@@ -335,6 +341,7 @@
 
               <div class="form-group">
                 <label for="customerPhone">Phone Number</label>
+
                 <input
                   type="tel"
                   id="customerPhone"
@@ -344,32 +351,46 @@
               </div>
 
               <div class="form-group">
-                <label for="contactMethod">Preferred Contact Method</label>
+
+                <label for="contactMethod">
+                  Preferred Contact Method
+                </label>
 
                 <select id="contactMethod">
                   <option value="Phone">Phone</option>
                   <option value="Email">Email</option>
                   <option value="WhatsApp">WhatsApp</option>
                 </select>
+
               </div>
 
               <div class="form-group">
-                <label for="customerMessage">Message</label>
+
+                <label for="customerMessage">
+                  Message
+                </label>
 
                 <textarea
                   id="customerMessage"
                   placeholder="Any questions or information you would like to provide?"
                 ></textarea>
+
               </div>
 
               <label class="checkbox-row">
-                <input type="checkbox" id="terms" required>
+
+                <input
+                  type="checkbox"
+                  id="terms"
+                  required
+                >
 
                 <span>
                   I understand that submitting this form is a reservation
                   request and does not guarantee the vehicle until confirmed
                   by the dealership.
                 </span>
+
               </label>
 
               <button
@@ -380,7 +401,10 @@
                 Submit Reservation Request
               </button>
 
-              <div id="formMessage" class="message"></div>
+              <div
+                id="formMessage"
+                class="message"
+              ></div>
 
             </form>
 
@@ -396,7 +420,10 @@
 
   <footer>
     <div class="container">
-      <p>© 2026 SaudBahwanAutomotives. All rights reserved.</p>
+      <p>
+        © 2026 SaudBahwanAutomotives.
+        All rights reserved.
+      </p>
     </div>
   </footer>
 
@@ -408,19 +435,41 @@
 
   <script>
 
-    const loading = document.getElementById("loading");
-    const vehicleContent = document.getElementById("vehicleContent");
+    const loading =
+      document.getElementById("loading");
 
-    const carImage = document.getElementById("carImage");
-    const carTitle = document.getElementById("carTitle");
-    const carPrice = document.getElementById("carPrice");
-    const carYear = document.getElementById("carYear");
-    const carMileage = document.getElementById("carMileage");
-    const carTransmission = document.getElementById("carTransmission");
-    const carFuel = document.getElementById("carFuel");
-    const carCondition = document.getElementById("carCondition");
-    const carStatus = document.getElementById("carStatus");
-    const carDescription = document.getElementById("carDescription");
+    const vehicleContent =
+      document.getElementById("vehicleContent");
+
+    const carImage =
+      document.getElementById("carImage");
+
+    const carTitle =
+      document.getElementById("carTitle");
+
+    const carPrice =
+      document.getElementById("carPrice");
+
+    const carYear =
+      document.getElementById("carYear");
+
+    const carMileage =
+      document.getElementById("carMileage");
+
+    const carTransmission =
+      document.getElementById("carTransmission");
+
+    const carFuel =
+      document.getElementById("carFuel");
+
+    const carCondition =
+      document.getElementById("carCondition");
+
+    const carStatus =
+      document.getElementById("carStatus");
+
+    const carDescription =
+      document.getElementById("carDescription");
 
     const reservationForm =
       document.getElementById("reservationForm");
@@ -433,16 +482,22 @@
 
 
     // Get vehicle ID from URL
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams =
+      new URLSearchParams(
+        window.location.search
+      );
 
-    const vehicleId = urlParams.get("id");
+    const vehicleId =
+      urlParams.get("id");
 
 
     function showError(message) {
 
       loading.innerHTML = `
         <h2>Vehicle Not Found</h2>
+
         <p>${message}</p>
+
         <p>
           <a href="inventory.html">
             Return to Inventory
@@ -453,29 +508,38 @@
     }
 
 
+    /*
+      OMR PRICE FORMAT
+    */
     function formatPrice(price) {
 
       const number = Number(price);
 
       if (isNaN(number)) {
-        return price;
+        return "Price unavailable";
       }
 
-      return "$" + number.toLocaleString("en-US", {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 2
-      });
+      return "ر.ع. " +
+        number.toLocaleString("en-US", {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 3
+        });
 
     }
 
 
     function formatMileage(mileage) {
 
-      if (mileage === null || mileage === undefined) {
+      if (
+        mileage === null ||
+        mileage === undefined
+      ) {
         return "N/A";
       }
 
-      return Number(mileage).toLocaleString("en-US") + " km";
+      return Number(mileage)
+        .toLocaleString("en-US") +
+        " km";
 
     }
 
@@ -492,7 +556,10 @@
       }
 
 
-      const { data: vehicle, error } = await supabaseClient
+      const {
+        data: vehicle,
+        error
+      } = await supabaseClient
         .from("vehicles")
         .select("*")
         .eq("id", vehicleId)
@@ -501,7 +568,10 @@
 
       if (error) {
 
-        console.error("Vehicle loading error:", error);
+        console.error(
+          "Vehicle loading error:",
+          error
+        );
 
         showError(
           "We could not load this vehicle. Please try again."
@@ -531,6 +601,7 @@
         vehicle.image_url ||
         "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80";
 
+
       carImage.alt =
         `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
 
@@ -539,134 +610,185 @@
       carTitle.textContent =
         `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
 
+
+      // OMR price
       carPrice.textContent =
         formatPrice(vehicle.price);
+
 
       carYear.textContent =
         vehicle.year || "N/A";
 
+
       carMileage.textContent =
         formatMileage(vehicle.mileage);
+
 
       carTransmission.textContent =
         vehicle.transmission || "N/A";
 
+
       carFuel.textContent =
         vehicle.fuel_type || "N/A";
+
 
       carCondition.textContent =
         vehicle.condition || "Used";
 
+
       carStatus.textContent =
         vehicle.status || "Available";
+
 
       carDescription.textContent =
         vehicle.description ||
         "Please contact us for more information about this vehicle.";
 
 
-      loading.style.display = "none";
+      loading.style.display =
+        "none";
 
-      vehicleContent.style.display = "block";
+      vehicleContent.style.display =
+        "block";
 
     }
 
 
     // Reservation form
-    reservationForm.addEventListener("submit", async function(event) {
+    reservationForm.addEventListener(
+      "submit",
+      async function(event) {
 
-      event.preventDefault();
+        event.preventDefault();
 
-
-      formMessage.className = "message";
-      formMessage.textContent = "";
-
-
-      if (!vehicleId) {
-
-        formMessage.className = "message error";
-
-        formMessage.textContent =
-          "Vehicle information is missing.";
-
-        return;
-      }
-
-
-      reserveButton.disabled = true;
-
-      reserveButton.textContent =
-        "Submitting...";
-
-
-      const customerName =
-        document.getElementById("customerName").value.trim();
-
-      const customerEmail =
-        document.getElementById("customerEmail").value.trim();
-
-      const customerPhone =
-        document.getElementById("customerPhone").value.trim();
-
-      const contactMethod =
-        document.getElementById("contactMethod").value;
-
-      const message =
-        document.getElementById("customerMessage").value.trim();
-
-
-      const { error } = await supabaseClient
-        .from("reservations")
-        .insert([
-          {
-            vehicle_id: vehicleId,
-            customer_name: customerName,
-            customer_email: customerEmail,
-            customer_phone: customerPhone,
-            contact_method: contactMethod,
-            message: message,
-            status: "Pending",
-            payment_status: "Not Paid"
-          }
-        ]);
-
-
-      if (error) {
-
-        console.error(
-          "Reservation error:",
-          error
-        );
 
         formMessage.className =
-          "message error";
+          "message";
 
         formMessage.textContent =
-          "We could not submit your reservation. Please try again.";
+          "";
 
-        reserveButton.disabled = false;
+
+        if (!vehicleId) {
+
+          formMessage.className =
+            "message error";
+
+          formMessage.textContent =
+            "Vehicle information is missing.";
+
+          return;
+
+        }
+
+
+        reserveButton.disabled =
+          true;
+
+        reserveButton.textContent =
+          "Submitting...";
+
+
+        const customerName =
+          document
+            .getElementById("customerName")
+            .value
+            .trim();
+
+
+        const customerEmail =
+          document
+            .getElementById("customerEmail")
+            .value
+            .trim();
+
+
+        const customerPhone =
+          document
+            .getElementById("customerPhone")
+            .value
+            .trim();
+
+
+        const contactMethod =
+          document
+            .getElementById("contactMethod")
+            .value;
+
+
+        const message =
+          document
+            .getElementById("customerMessage")
+            .value
+            .trim();
+
+
+        const { error } =
+          await supabaseClient
+            .from("reservations")
+            .insert([
+              {
+                vehicle_id: vehicleId,
+                customer_name: customerName,
+                customer_email: customerEmail,
+                customer_phone: customerPhone,
+                contact_method: contactMethod,
+                message: message,
+                status: "Pending",
+                payment_status: "Not Paid"
+              }
+            ]);
+
+
+        if (error) {
+
+          console.error(
+            "Reservation error:",
+            error
+          );
+
+
+          formMessage.className =
+            "message error";
+
+
+          formMessage.textContent =
+            "We could not submit your reservation. Please try again.";
+
+
+          reserveButton.disabled =
+            false;
+
+
+          reserveButton.textContent =
+            "Submit Reservation Request";
+
+
+          return;
+
+        }
+
+
+        formMessage.className =
+          "message success";
+
+
+        formMessage.textContent =
+          "Reservation request submitted successfully. Our team will contact you to confirm availability and the next steps.";
+
+
+        reservationForm.reset();
+
+
+        reserveButton.disabled =
+          false;
+
 
         reserveButton.textContent =
           "Submit Reservation Request";
 
-        return;
       }
-
-
-      formMessage.className =
-        "message success";
-
-      formMessage.textContent =
-        "Reservation request submitted successfully. Our team will contact you to confirm availability and the next steps.";
-
-      reservationForm.reset();
-
-      reserveButton.disabled = false;
-
-      reserveButton.textContent =
-        "Submit Reservation Request";
-
-    });
+    );
 
 
     // Start
@@ -675,4 +797,4 @@
   </script>
 
 </body>
-  </html>
+              </html>
