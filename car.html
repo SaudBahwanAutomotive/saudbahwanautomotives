@@ -3,7 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Vehicle Details | SaudBahwanAutomotives</title>
 
@@ -13,86 +17,77 @@
     .car-page {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 50px 20px 80px;
+      padding: 40px 20px;
     }
 
     .back-link {
       display: inline-block;
       margin-bottom: 25px;
-      color: #aaa;
       text-decoration: none;
+      font-weight: 600;
     }
 
-    .back-link:hover {
-      color: #fff;
+    #loading {
+      text-align: center;
+      padding: 80px 20px;
+      font-size: 20px;
     }
 
-    .car-layout {
+    #vehicleContent {
+      display: none;
+    }
+
+    .vehicle-layout {
       display: grid;
-      grid-template-columns: 1.5fr 1fr;
+      grid-template-columns: 1.2fr 1fr;
       gap: 40px;
       align-items: start;
     }
 
-    /* =========================
-       IMAGE GALLERY
-    ========================= */
-
-    .gallery {
-      width: 100%;
-    }
-
-    .car-image-box {
+    .main-image-wrapper {
       position: relative;
-      background: #15181d;
-      border-radius: 16px;
+      background: #f5f5f5;
+      border-radius: 12px;
       overflow: hidden;
     }
 
-    .car-image-box img {
+    #carImage {
       width: 100%;
-      height: 520px;
+      height: 500px;
       object-fit: cover;
       display: block;
     }
 
-    .gallery-arrow {
+    .gallery-button {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border: none;
       border-radius: 50%;
       background: rgba(0, 0, 0, 0.65);
       color: white;
-      font-size: 25px;
+      font-size: 24px;
       cursor: pointer;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      z-index: 5;
     }
 
-    .gallery-arrow:hover {
-      background: rgba(0, 0, 0, 0.85);
-    }
-
-    .gallery-prev {
+    #prevImage {
       left: 15px;
     }
 
-    .gallery-next {
+    #nextImage {
       right: 15px;
     }
 
     .image-counter {
       position: absolute;
-      right: 15px;
       bottom: 15px;
-      background: rgba(0, 0, 0, 0.7);
+      right: 15px;
+      background: rgba(0, 0, 0, 0.65);
       color: white;
-      padding: 7px 12px;
+      padding: 6px 12px;
       border-radius: 20px;
       font-size: 13px;
     }
@@ -100,116 +95,83 @@
     .thumbnail-container {
       display: flex;
       gap: 10px;
-      margin-top: 12px;
       overflow-x: auto;
-      padding-bottom: 5px;
+      padding-top: 12px;
     }
 
     .thumbnail {
-      width: 90px;
-      height: 65px;
-      flex: 0 0 auto;
+      width: 80px;
+      height: 60px;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
       border: 2px solid transparent;
-      opacity: 0.65;
-      transition: 0.2s ease;
-    }
-
-    .thumbnail:hover {
-      opacity: 1;
+      flex-shrink: 0;
     }
 
     .thumbnail.active {
-      border-color: white;
-      opacity: 1;
+      border-color: #111;
     }
 
-    /* =========================
-       VEHICLE INFO
-    ========================= */
-
-    .car-info h1 {
-      font-size: 42px;
-      margin: 0 0 10px;
+    .vehicle-info h1 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 34px;
     }
 
     .car-price {
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 700;
-      margin: 15px 0 25px;
-    }
-
-    .car-status {
-      display: inline-block;
-      padding: 7px 14px;
-      border-radius: 20px;
-      background: #1d7a46;
-      color: white;
-      font-size: 14px;
       margin-bottom: 25px;
     }
 
-    .spec-grid {
+    .vehicle-specs {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 25px 0;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
     }
 
-    .spec {
-      background: #15181d;
-      padding: 16px;
-      border-radius: 10px;
+    .spec-box {
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
     }
 
-    .spec span {
+    .spec-label {
       display: block;
-      color: #888;
       font-size: 13px;
+      color: #777;
       margin-bottom: 5px;
     }
 
-    .spec strong {
-      font-size: 16px;
+    .spec-value {
+      font-weight: 600;
     }
 
     .description {
-      margin-top: 30px;
-      color: #bbb;
       line-height: 1.7;
+      margin-bottom: 30px;
     }
 
-    /* =========================
-       RESERVATION
-    ========================= */
-
     .reservation-box {
-      margin-top: 40px;
-      background: #15181d;
-      border-radius: 16px;
-      padding: 30px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 25px;
     }
 
     .reservation-box h2 {
       margin-top: 0;
     }
 
-    .reservation-box p {
-      color: #aaa;
-      line-height: 1.6;
-    }
-
     .form-group {
-      margin-bottom: 16px;
+      margin-bottom: 15px;
     }
 
     .form-group label {
       display: block;
-      margin-bottom: 7px;
-      font-size: 14px;
-      color: #ccc;
+      margin-bottom: 6px;
+      font-weight: 600;
     }
 
     .form-group input,
@@ -217,11 +179,9 @@
     .form-group textarea {
       width: 100%;
       box-sizing: border-box;
-      padding: 13px;
-      border: 1px solid #333;
-      border-radius: 8px;
-      background: #0b0d10;
-      color: white;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
       font-size: 15px;
     }
 
@@ -230,98 +190,50 @@
       resize: vertical;
     }
 
-    .checkbox-row {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      margin: 18px 0;
-      color: #aaa;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .checkbox-row input {
-      margin-top: 4px;
-    }
-
-    .reserve-btn {
+    #reserveButton {
       width: 100%;
-      padding: 15px;
+      padding: 14px;
       border: none;
-      border-radius: 8px;
-      cursor: pointer;
+      border-radius: 6px;
+      background: #111;
+      color: white;
       font-size: 16px;
-      font-weight: 700;
-      background: #fff;
-      color: #000;
+      font-weight: 600;
+      cursor: pointer;
     }
 
-    .reserve-btn:hover {
-      opacity: 0.9;
-    }
-
-    .reserve-btn:disabled {
-      opacity: 0.5;
+    #reserveButton:disabled {
+      opacity: 0.6;
       cursor: not-allowed;
     }
 
-    .message {
+    #formMessage {
       margin-top: 15px;
-      padding: 12px;
-      border-radius: 8px;
-      display: none;
-      line-height: 1.5;
+      padding: 10px;
+      border-radius: 6px;
     }
 
-    .message.success {
-      display: block;
-      background: #143d28;
-      color: #8ff0b5;
+    .error-message {
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 25px;
+      background: #fff0f0;
+      border: 1px solid #e0a0a0;
+      border-radius: 10px;
+      color: #900;
     }
-
-    .message.error {
-      display: block;
-      background: #421c1c;
-      color: #ffaaaa;
-    }
-
-    .loading {
-      text-align: center;
-      padding: 100px 20px;
-      color: #aaa;
-    }
-
-    /* =========================
-       MOBILE
-    ========================= */
 
     @media (max-width: 800px) {
-
-      .car-layout {
+      .vehicle-layout {
         grid-template-columns: 1fr;
       }
 
-      .car-image-box img {
-        height: 320px;
+      #carImage {
+        height: 350px;
       }
 
-      .car-info h1 {
-        font-size: 32px;
-      }
-
-      .car-price {
-        font-size: 25px;
-      }
-
-      .thumbnail {
-        width: 80px;
-        height: 58px;
-      }
-
-      .gallery-arrow {
-        width: 38px;
-        height: 38px;
-        font-size: 20px;
+      .vehicle-info h1 {
+        font-size: 28px;
       }
     }
   </style>
@@ -329,248 +241,177 @@
 
 <body>
 
-  <!-- =========================
-       HEADER
-  ========================= -->
-
-  <header>
-
-    <div class="container">
-
-      <nav>
-
-        <a href="index.html" class="logo">
-          SaudBahwanAutomotives
-        </a>
-
-        <div class="nav-links">
-
-          <a href="index.html">
-            Home
-          </a>
-
-          <a href="inventory.html">
-            Inventory
-          </a>
-
-          <a href="contact.html">
-            Contact
-          </a>
-
-        </div>
-
-      </nav>
-
-    </div>
-
-  </header>
-
-
-  <!-- =========================
-       MAIN
-  ========================= -->
-
-  <main class="car-page">
+  <div class="car-page">
 
     <a href="inventory.html" class="back-link">
       ← Back to Inventory
     </a>
 
-
-    <!-- Loading -->
-
-    <div id="loading" class="loading">
+    <div id="loading">
       Loading vehicle...
     </div>
 
+    <div id="vehicleContent">
 
-    <!-- Vehicle -->
+      <div class="vehicle-layout">
 
-    <div
-      id="vehicleContent"
-      style="display:none;"
-    >
-
-      <div class="car-layout">
-
-
-        <!-- =========================
-             LEFT
-        ========================= -->
-
+        <!-- VEHICLE IMAGES -->
         <div>
 
-          <!-- Gallery -->
+          <div class="main-image-wrapper">
 
-          <div class="gallery">
+            <img
+              id="carImage"
+              src=""
+              alt="Vehicle"
+            >
 
-            <div class="car-image-box">
+            <button
+              type="button"
+              id="prevImage"
+              class="gallery-button"
+            >
+              ‹
+            </button>
 
-              <img
-                id="carImage"
-                src=""
-                alt="Vehicle"
-              >
-
-
-              <button
-                type="button"
-                class="gallery-arrow gallery-prev"
-                id="prevImage"
-                aria-label="Previous image"
-              >
-                ‹
-              </button>
-
-
-              <button
-                type="button"
-                class="gallery-arrow gallery-next"
-                id="nextImage"
-                aria-label="Next image"
-              >
-                ›
-              </button>
-
-
-              <div
-                id="imageCounter"
-                class="image-counter"
-              >
-                1 / 1
-              </div>
-
-            </div>
-
+            <button
+              type="button"
+              id="nextImage"
+              class="gallery-button"
+            >
+              ›
+            </button>
 
             <div
-              id="thumbnailContainer"
-              class="thumbnail-container"
+              id="imageCounter"
+              class="image-counter"
             >
+              1 / 1
             </div>
 
           </div>
 
-
-          <!-- Description -->
-
-          <div class="description">
-
-            <h2>
-              Vehicle Description
-            </h2>
-
-            <p id="carDescription"></p>
-
-          </div>
+          <div
+            id="thumbnailContainer"
+            class="thumbnail-container"
+          ></div>
 
         </div>
 
+        <!-- VEHICLE INFORMATION -->
+        <div class="vehicle-info">
 
-        <!-- =========================
-             RIGHT
-        ========================= -->
-
-        <div class="car-info">
-
-          <span
-            id="carStatus"
-            class="car-status"
-          ></span>
-
-
-          <h1 id="carTitle"></h1>
-
+          <h1 id="carTitle">
+            Vehicle
+          </h1>
 
           <div
             id="carPrice"
             class="car-price"
-          ></div>
+          >
+            —
+          </div>
 
+          <div class="vehicle-specs">
 
-          <!-- Specifications -->
-
-          <div class="spec-grid">
-
-
-            <div class="spec">
-
-              <span>
+            <div class="spec-box">
+              <span class="spec-label">
                 Year
               </span>
 
-              <strong id="carYear"></strong>
-
+              <span
+                id="carYear"
+                class="spec-value"
+              >
+                —
+              </span>
             </div>
 
-
-            <div class="spec">
-
-              <span>
+            <div class="spec-box">
+              <span class="spec-label">
                 Mileage
               </span>
 
-              <strong id="carMileage"></strong>
-
+              <span
+                id="carMileage"
+                class="spec-value"
+              >
+                —
+              </span>
             </div>
 
-
-            <div class="spec">
-
-              <span>
+            <div class="spec-box">
+              <span class="spec-label">
                 Transmission
               </span>
 
-              <strong id="carTransmission"></strong>
-
+              <span
+                id="carTransmission"
+                class="spec-value"
+              >
+                —
+              </span>
             </div>
 
-
-            <div class="spec">
-
-              <span>
-                Fuel Type
+            <div class="spec-box">
+              <span class="spec-label">
+                Fuel
               </span>
 
-              <strong id="carFuel"></strong>
-
+              <span
+                id="carFuel"
+                class="spec-value"
+              >
+                —
+              </span>
             </div>
 
-
-            <div class="spec">
-
-              <span>
+            <div class="spec-box">
+              <span class="spec-label">
                 Condition
               </span>
 
-              <strong id="carCondition"></strong>
-
+              <span
+                id="carCondition"
+                class="spec-value"
+              >
+                —
+              </span>
             </div>
 
+            <div class="spec-box">
+              <span class="spec-label">
+                Status
+              </span>
+
+              <span
+                id="carStatus"
+                class="spec-value"
+              >
+                —
+              </span>
+            </div>
 
           </div>
 
+          <div class="description">
 
-          <!-- =========================
-               RESERVATION
-          ========================= -->
+            <h2>Description</h2>
 
+            <p id="carDescription">
+              —
+            </p>
+
+          </div>
+
+          <!-- RESERVATION -->
           <div class="reservation-box">
 
             <h2>
               Reserve This Vehicle
             </h2>
 
-
-            <p>
-              Interested in this vehicle? Submit your details and our
-              team will contact you to confirm availability and discuss
-              the next steps.
-            </p>
-
-
             <form id="reservationForm">
-
 
               <div class="form-group">
 
@@ -582,43 +423,37 @@
                   type="text"
                   id="customerName"
                   required
-                  placeholder="Your full name"
                 >
 
               </div>
 
-
               <div class="form-group">
 
                 <label for="customerEmail">
-                  Email Address
+                  Email
                 </label>
 
                 <input
                   type="email"
                   id="customerEmail"
                   required
-                  placeholder="you@example.com"
                 >
 
               </div>
 
-
               <div class="form-group">
 
                 <label for="customerPhone">
-                  Phone Number
+                  Phone
                 </label>
 
                 <input
                   type="tel"
                   id="customerPhone"
                   required
-                  placeholder="Your phone number"
                 >
 
               </div>
-
 
               <div class="form-group">
 
@@ -626,70 +461,50 @@
                   Preferred Contact Method
                 </label>
 
-                <select id="contactMethod">
-
-                  <option value="Phone">
-                    Phone
-                  </option>
-
-                  <option value="Email">
-                    Email
+                <select
+                  id="contactMethod"
+                  required
+                >
+                  <option value="">
+                    Select one
                   </option>
 
                   <option value="WhatsApp">
                     WhatsApp
                   </option>
 
+                  <option value="Email">
+                    Email
+                  </option>
+
+                  <option value="Phone">
+                    Phone
+                  </option>
                 </select>
 
               </div>
 
-
               <div class="form-group">
 
-                <label for="customerMessage">
+                <label for="message">
                   Message
                 </label>
 
                 <textarea
-                  id="customerMessage"
-                  placeholder="Any questions or information you would like to provide?"
+                  id="message"
+                  placeholder="Any questions or additional information?"
                 ></textarea>
 
               </div>
 
-
-              <label class="checkbox-row">
-
-                <input
-                  type="checkbox"
-                  id="terms"
-                  required
-                >
-
-                <span>
-                  I understand that submitting this form is a reservation
-                  request and does not guarantee the vehicle until confirmed
-                  by the dealership.
-                </span>
-
-              </label>
-
-
               <button
                 type="submit"
-                class="reserve-btn"
                 id="reserveButton"
               >
-                Submit Reservation Request
+                Reserve Vehicle
               </button>
 
-
-              <div
-                id="formMessage"
-                class="message"
-              ></div>
-
+              <div id="formMessage"></div>
 
             </form>
 
@@ -701,41 +516,32 @@
 
     </div>
 
-  </main>
+  </div>
 
 
-  <!-- =========================
-       FOOTER
-  ========================= -->
-
-  <footer>
-
-    <div class="container">
-
-      <p>
-        © 2026 SaudBahwanAutomotives.
-        All rights reserved.
-      </p>
-
-    </div>
-
-  </footer>
-
-
-  <!-- =========================
-       SUPABASE
-  ========================= -->
-
+  <!-- SUPABASE -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+  <!-- YOUR SUPABASE CONFIG -->
   <script src="app.js"></script>
 
 
   <script>
 
-    /* =========================
-       ELEMENTS
-    ========================= */
+    // --------------------------------------------------
+    // GET VEHICLE ID FROM URL
+    // --------------------------------------------------
+
+    const urlParams =
+      new URLSearchParams(window.location.search);
+
+    const vehicleId =
+      urlParams.get("id");
+
+
+    // --------------------------------------------------
+    // ELEMENTS
+    // --------------------------------------------------
 
     const loading =
       document.getElementById("loading");
@@ -783,258 +589,152 @@
       document.getElementById("reserveButton");
 
     const thumbnailContainer =
-      document.getElementById(
-        "thumbnailContainer"
-      );
+      document.getElementById("thumbnailContainer");
 
-    const prevImageButton =
+    const prevImage =
       document.getElementById("prevImage");
 
-    const nextImageButton =
+    const nextImage =
       document.getElementById("nextImage");
 
     const imageCounter =
       document.getElementById("imageCounter");
 
 
-    /* =========================
-       VEHICLE ID
-    ========================= */
-
-    const urlParams =
-      new URLSearchParams(
-        window.location.search
-      );
-
-    const vehicleId =
-      urlParams.get("id");
-
-
-    /* =========================
-       IMAGE VARIABLES
-    ========================= */
+    // --------------------------------------------------
+    // GALLERY VARIABLES
+    // --------------------------------------------------
 
     let vehicleImages = [];
 
     let currentImageIndex = 0;
 
 
-    /* =========================
-       ERROR DISPLAY
-    ========================= */
+    // --------------------------------------------------
+    // FALLBACK IMAGE
+    // --------------------------------------------------
 
-    function showError(message) {
-
-      loading.style.display =
-        "block";
-
-      loading.innerHTML = `
-
-        <h2>
-          Vehicle Not Found
-        </h2>
-
-        <p>
-          ${message}
-        </p>
-
-        <p>
-          <a href="inventory.html">
-            Return to Inventory
-          </a>
-        </p>
-
-      `;
-
-      vehicleContent.style.display =
-        "none";
-
-    }
+    const fallbackImage =
+      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80";
 
 
-    /* =========================
-       PRICE
-    ========================= */
+    // --------------------------------------------------
+    // FORMAT PRICE
+    // --------------------------------------------------
 
     function formatPrice(price) {
+
+      if (
+        price === null ||
+        price === undefined ||
+        price === ""
+      ) {
+        return "Price on Request";
+      }
 
       const number =
         Number(price);
 
       if (isNaN(number)) {
-
-        return "Price unavailable";
-
+        return price;
       }
 
-      return "ر.ع. " +
+      return (
+        "ر.ع. " +
         number.toLocaleString(
           "en-US",
           {
             minimumFractionDigits: 0,
-            maximumFractionDigits: 3
+            maximumFractionDigits: 2
           }
-        );
-
+        )
+      );
     }
 
 
-    /* =========================
-       MILEAGE
-    ========================= */
+    // --------------------------------------------------
+    // CREATE GALLERY
+    // --------------------------------------------------
 
-    function formatMileage(mileage) {
+    function createGallery() {
+
+      thumbnailContainer.innerHTML = "";
+
+      if (!vehicleImages.length) {
+
+        vehicleImages = [
+          fallbackImage
+        ];
+
+      }
 
       if (
-        mileage === null ||
-        mileage === undefined ||
-        mileage === ""
-      ) {
-
-        return "N/A";
-
-      }
-
-      const number =
-        Number(mileage);
-
-      if (isNaN(number)) {
-
-        return mileage;
-
-      }
-
-      return number.toLocaleString(
-        "en-US"
-      ) + " km";
-
-    }
-
-
-    /* =========================
-       DISPLAY IMAGE
-    ========================= */
-
-    function displayImage(index) {
-
-      if (
-        !vehicleImages ||
-        !vehicleImages.length
-      ) {
-
-        return;
-
-      }
-
-
-      if (index < 0) {
-
-        index =
-          vehicleImages.length - 1;
-
-      }
-
-
-      if (
-        index >=
+        currentImageIndex >=
         vehicleImages.length
       ) {
 
-        index = 0;
+        currentImageIndex = 0;
 
       }
 
-
-      currentImageIndex =
-        index;
-
-
       carImage.src =
-        vehicleImages[index];
-
+        vehicleImages[currentImageIndex];
 
       carImage.onerror =
-        function() {
+        function () {
 
-          console.error(
-            "Image failed to load:",
-            vehicleImages[index]
-          );
+          this.onerror = null;
+
+          this.src = fallbackImage;
 
         };
 
 
       imageCounter.textContent =
-        `${index + 1} / ${vehicleImages.length}`;
-
-
-      const thumbnails =
-        document.querySelectorAll(
-          ".thumbnail"
-        );
-
-
-      thumbnails.forEach(
-        function(
-          thumbnail,
-          thumbnailIndex
-        ) {
-
-          thumbnail.classList.toggle(
-            "active",
-            thumbnailIndex === index
-          );
-
-        }
-      );
-
-    }
-
-
-    /* =========================
-       CREATE GALLERY
-    ========================= */
-
-    function createGallery() {
-
-      thumbnailContainer.innerHTML =
-        "";
+        (currentImageIndex + 1) +
+        " / " +
+        vehicleImages.length;
 
 
       vehicleImages.forEach(
-        function(image, index) {
+        function (image, index) {
 
           const thumbnail =
-            document.createElement(
-              "img"
-            );
+            document.createElement("img");
 
-
-          thumbnail.src =
-            image;
-
-
-          thumbnail.alt =
-            `Vehicle image ${index + 1}`;
-
+          thumbnail.src = image;
 
           thumbnail.className =
-            "thumbnail";
+            "thumbnail" +
+            (
+              index === currentImageIndex
+                ? " active"
+                : ""
+            );
 
+          thumbnail.alt =
+            "Vehicle photo " +
+            (index + 1);
 
-          thumbnail.loading =
-            "lazy";
+          thumbnail.onerror =
+            function () {
 
+              this.onerror = null;
+
+              this.src = fallbackImage;
+
+            };
 
           thumbnail.addEventListener(
             "click",
-            function() {
+            function () {
 
-              displayImage(index);
+              currentImageIndex = index;
+
+              createGallery();
 
             }
           );
-
 
           thumbnailContainer.appendChild(
             thumbnail
@@ -1044,49 +744,44 @@
       );
 
 
-      displayImage(0);
+      if (
+        vehicleImages.length <= 1
+      ) {
 
+        prevImage.style.display = "none";
 
-      const showControls =
-        vehicleImages.length > 1;
+        nextImage.style.display = "none";
 
+        imageCounter.style.display = "none";
 
-      prevImageButton.style.display =
-        showControls
-          ? "flex"
-          : "none";
+      } else {
 
+        prevImage.style.display = "block";
 
-      nextImageButton.style.display =
-        showControls
-          ? "flex"
-          : "none";
+        nextImage.style.display = "block";
 
+        imageCounter.style.display = "block";
 
-      imageCounter.style.display =
-        showControls
-          ? "block"
-          : "none";
+      }
 
     }
 
 
-    /* =========================
-       LOAD VEHICLE IMAGES
-    ========================= */
+    // --------------------------------------------------
+    // LOAD VEHICLE IMAGES
+    // --------------------------------------------------
 
-    async function loadVehicleImages(
-      vehicle
-    ) {
+    async function loadVehicleImages(vehicle) {
 
       vehicleImages = [];
 
+      currentImageIndex = 0;
 
-      /* Main vehicle image */
 
+      // Main vehicle image
       if (
-        vehicle.image_url &&
-        typeof vehicle.image_url === "string"
+        vehicle &&
+        vehicle.image_url
       ) {
 
         vehicleImages.push(
@@ -1096,13 +791,12 @@
       }
 
 
-      /* Additional gallery images */
-
+      // Additional gallery images
       try {
 
         const {
           data: additionalImages,
-          error
+          error: imageError
         } = await supabaseClient
           .from("vehicle_images")
           .select("image_url")
@@ -1118,34 +812,30 @@
           );
 
 
-        if (error) {
+        if (imageError) {
 
           console.warn(
-            "Could not load additional images:",
-            error.message
+            "Gallery loading failed:",
+            imageError
           );
 
-        }
-
-
-        if (
+        } else if (
           additionalImages &&
           additionalImages.length
         ) {
 
           additionalImages.forEach(
-            function(image) {
+            function (item) {
 
               if (
-                image &&
-                image.image_url &&
+                item.image_url &&
                 !vehicleImages.includes(
-                  image.image_url
+                  item.image_url
                 )
               ) {
 
                 vehicleImages.push(
-                  image.image_url
+                  item.image_url
                 );
 
               }
@@ -1158,24 +848,17 @@
       } catch (imageError) {
 
         console.warn(
-          "Gallery          console.warn(
-            "Gallery loading failed:",
-            imageError
-          );
-
-        }
+          "Gallery loading failed:",
+          imageError
+        );
 
       }
 
 
-      /* =========================
-         FALLBACK IMAGE
-      ========================= */
-
       if (!vehicleImages.length) {
 
         vehicleImages.push(
-          "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"
+          fallbackImage
         );
 
       }
@@ -1186,41 +869,86 @@
     }
 
 
-    /* =========================
-       LOAD VEHICLE
-    ========================= */
+    // --------------------------------------------------
+    // SHOW ERROR
+    // --------------------------------------------------
+
+    function showError(message) {
+
+      loading.style.display = "none";
+
+      vehicleContent.style.display = "block";
+
+      vehicleContent.innerHTML = `
+        <div class="error-message">
+          <h2>Unable to load vehicle</h2>
+          <p>${message}</p>
+          <p>
+            Please return to the inventory and try again.
+          </p>
+          <a href="inventory.html">
+            ← Back to Inventory
+          </a>
+        </div>
+      `;
+
+    }
+
+
+    // --------------------------------------------------
+    // LOAD VEHICLE
+    // --------------------------------------------------
 
     async function loadVehicle() {
 
+      console.log(
+        "Starting vehicle loading..."
+      );
+
+      console.log(
+        "Vehicle ID:",
+        vehicleId
+      );
+
+      console.log(
+        "Supabase client:",
+        supabaseClient
+      );
+
+
+      // Check vehicle ID
+      if (!vehicleId) {
+
+        showError(
+          "No vehicle ID was provided in the page URL."
+        );
+
+        return;
+
+      }
+
+
+      // Check Supabase
+      if (
+        typeof supabaseClient ===
+        "undefined"
+      ) {
+
+        showError(
+          "Supabase client is not available. Check app.js."
+        );
+
+        return;
+
+      }
+
+
       try {
 
-        if (!vehicleId) {
+        console.log(
+          "Querying vehicles table..."
+        );
 
-          showError(
-            "No vehicle was selected. Please return to the inventory."
-          );
-
-          return;
-
-        }
-
-
-        /* Make sure Supabase exists */
-
-        if (
-          typeof supabaseClient === "undefined"
-        ) {
-
-          throw new Error(
-            "Supabase client is not available. Please check app.js."
-          );
-
-        }
-
-
-        /* =========================
-           GET VEHICLE
-        ========================= */
 
         const {
           data: vehicle,
@@ -1232,112 +960,125 @@
           .maybeSingle();
 
 
+        console.log(
+          "Vehicle data:",
+          vehicle
+        );
+
+        console.log(
+          "Vehicle error:",
+          error
+        );
+
+
         if (error) {
 
-          console.error(
-            "Vehicle loading error:",
-            error
-          );
-
-          showError(
-            "We could not load this vehicle. Database error: " +
+          throw new Error(
+            "Vehicle database error: " +
             error.message
           );
-
-          return;
 
         }
 
 
         if (!vehicle) {
 
-          showError(
-            "This vehicle could not be found. The vehicle may have been removed or the link may be invalid."
+          throw new Error(
+            "Vehicle not found. Vehicle ID: " +
+            vehicleId
           );
-
-          return;
 
         }
 
 
-        console.log(
-          "Vehicle loaded successfully:",
-          vehicle
-        );
+        // --------------------------------------------------
+        // DISPLAY VEHICLE
+        // --------------------------------------------------
 
+        const make =
+          vehicle.make || "";
 
-        /* =========================
-           DISPLAY VEHICLE
-        ========================= */
+        const model =
+          vehicle.model || "";
 
         carTitle.textContent =
-          `${vehicle.make || ""} ${vehicle.model || ""}`.trim();
+          make + " " + model;
 
 
         carPrice.textContent =
-          formatPrice(vehicle.price);
+          formatPrice(
+            vehicle.price
+          );
 
 
         carYear.textContent =
-          vehicle.year || "N/A";
+          vehicle.year ||
+          "—";
 
 
         carMileage.textContent =
-          formatMileage(vehicle.mileage);
+          vehicle.mileage !== null &&
+          vehicle.mileage !== undefined
+            ? Number(
+                vehicle.mileage
+              ).toLocaleString() +
+              " km"
+            : "—";
 
 
         carTransmission.textContent =
-          vehicle.transmission || "N/A";
+          vehicle.transmission ||
+          "—";
 
 
         carFuel.textContent =
-          vehicle.fuel_type || "N/A";
+          vehicle.fuel ||
+          "—";
 
 
         carCondition.textContent =
-          vehicle.condition || "N/A";
+          vehicle.condition ||
+          "—";
 
 
         carStatus.textContent =
-          vehicle.status || "Available";
+          vehicle.status ||
+          "Available";
 
 
         carDescription.textContent =
           vehicle.description ||
-          "Please contact our dealership for more information about this vehicle.";
+          "Contact us for more information about this vehicle.";
 
 
-        /* =========================
-           LOAD VEHICLE PHOTOS
-        ========================= */
+        // --------------------------------------------------
+        // LOAD GALLERY
+        // --------------------------------------------------
 
-        await loadVehicleImages(
+                await loadVehicleImages(
           vehicle
         );
 
 
-        /* =========================
-           SHOW VEHICLE
-        ========================= */
+        loading.style.display = "none";
 
-        loading.style.display =
-          "none";
+        vehicleContent.style.display = "block";
 
-        vehicleContent.style.display =
-          "block";
 
+        console.log(
+          "Vehicle loaded successfully."
+        );
 
       } catch (error) {
 
         console.error(
-          "Unexpected vehicle loading error:",
+          "LOAD VEHICLE ERROR:",
           error
         );
 
-
         showError(
-          "We could not load this vehicle. " +
-          (error.message || "Please try again.")
+          error.message ||
+          "An unknown error occurred."
         );
 
       }
@@ -1345,222 +1086,172 @@
     }
 
 
-    /* =========================
-       PREVIOUS IMAGE
-    ========================= */
+    // --------------------------------------------------
+    // PREVIOUS IMAGE
+    // --------------------------------------------------
 
-    prevImageButton.addEventListener(
+    prevImage.addEventListener(
       "click",
-      function() {
+      function () {
 
-        displayImage(
-          currentImageIndex - 1
-        );
+        if (vehicleImages.length <= 1) {
+          return;
+        }
+
+        currentImageIndex--;
+
+        if (currentImageIndex < 0) {
+          currentImageIndex =
+            vehicleImages.length - 1;
+        }
+
+        createGallery();
 
       }
     );
 
 
-    /* =========================
-       NEXT IMAGE
-    ========================= */
+    // --------------------------------------------------
+    // NEXT IMAGE
+    // --------------------------------------------------
 
-    nextImageButton.addEventListener(
+    nextImage.addEventListener(
       "click",
-      function() {
+      function () {
 
-        displayImage(
-          currentImageIndex + 1
-        );
+        if (vehicleImages.length <= 1) {
+          return;
+        }
+
+        currentImageIndex++;
+
+        if (
+          currentImageIndex >=
+          vehicleImages.length
+        ) {
+          currentImageIndex = 0;
+        }
+
+        createGallery();
 
       }
     );
 
 
-    /* =========================
-       KEYBOARD NAVIGATION
-    ========================= */
+    // --------------------------------------------------
+    // KEYBOARD CONTROLS
+    // --------------------------------------------------
 
     document.addEventListener(
       "keydown",
-      function(event) {
+      function (event) {
 
-        if (
-          vehicleImages.length <= 1
-        ) {
-
-          return;
-
+        if (event.key === "ArrowLeft") {
+          prevImage.click();
         }
 
-
-        if (
-          event.key === "ArrowLeft"
-        ) {
-
-          displayImage(
-            currentImageIndex - 1
-          );
-
-        }
-
-
-        if (
-          event.key === "ArrowRight"
-        ) {
-
-          displayImage(
-            currentImageIndex + 1
-          );
-
+        if (event.key === "ArrowRight") {
+          nextImage.click();
         }
 
       }
     );
 
 
-    /* =========================
-       RESERVATION FORM
-    ========================= */
+    // --------------------------------------------------
+    // RESERVATION FORM
+    // --------------------------------------------------
 
     reservationForm.addEventListener(
       "submit",
-      async function(event) {
+      async function (event) {
 
         event.preventDefault();
 
+        formMessage.textContent = "";
 
-        formMessage.className =
-          "message";
-
-
-        formMessage.textContent =
-          "";
-
-
-        reserveButton.disabled =
-          true;
-
-
-        reserveButton.textContent =
-          "Submitting...";
-
-
-        const customerName =
-          document
-            .getElementById("customerName")
-            .value
-            .trim();
-
-
-        const customerEmail =
-          document
-            .getElementById("customerEmail")
-            .value
-            .trim();
-
-
-        const customerPhone =
-          document
-            .getElementById("customerPhone")
-            .value
-            .trim();
-
-
-        const contactMethod =
-          document
-            .getElementById("contactMethod")
-            .value;
-
-
-        const message =
-          document
-            .getElementById("customerMessage")
-            .value
-            .trim();
-
+        reserveButton.disabled = true;
+        reserveButton.textContent = "Submitting...";
 
         try {
 
-          const {
-            error
-          } = await supabaseClient
-            .from("reservations")
-            .insert([{
+          const customerName =
+            document
+              .getElementById("customerName")
+              .value
+              .trim();
 
-              vehicle_id:
-                vehicleId,
+          const customerEmail =
+            document
+              .getElementById("customerEmail")
+              .value
+              .trim();
 
-              customer_name:
-                customerName,
+          const customerPhone =
+            document
+              .getElementById("customerPhone")
+              .value
+              .trim();
 
-              customer_email:
-                customerEmail,
+          const contactMethod =
+            document
+              .getElementById("contactMethod")
+              .value;
 
-              customer_phone:
-                customerPhone,
+          const message =
+            document
+              .getElementById("message")
+              .value
+              .trim();
 
-              contact_method:
-                contactMethod,
 
-              message:
-                message,
-
-              status:
-                "Pending",
-
-              payment_status:
-                "Not Paid"
-
-            }]);
+          const { error } =
+            await supabaseClient
+              .from("reservations")
+              .insert([
+                {
+                  vehicle_id: vehicleId,
+                  customer_name: customerName,
+                  customer_email: customerEmail,
+                  customer_phone: customerPhone,
+                  contact_method: contactMethod,
+                  message: message,
+                  status: "Pending",
+                  payment_status: "Not Paid"
+                }
+              ]);
 
 
           if (error) {
-
-            console.error(
-              "Reservation error:",
-              error
-            );
-
             throw error;
-
           }
 
 
-          formMessage.className =
-            "message success";
-
-
           formMessage.textContent =
-            "Reservation request submitted successfully. Our team will contact you to confirm availability and the next steps.";
+            "Reservation submitted successfully. Our team will contact you shortly.";
 
+          formMessage.style.color = "green";
 
           reservationForm.reset();
-
 
         } catch (error) {
 
           console.error(
-            "Reservation submission error:",
+            "Reservation error:",
             error
           );
 
-
-          formMessage.className =
-            "message error";
-
-
           formMessage.textContent =
-            "We could not submit your reservation request. Please try again.";
+            "Unable to submit reservation: " +
+            error.message;
+
+          formMessage.style.color = "red";
 
         } finally {
 
-          reserveButton.disabled =
-            false;
-
-
+          reserveButton.disabled = false;
           reserveButton.textContent =
-            "Submit Reservation Request";
+            "Reserve Vehicle";
 
         }
 
@@ -1568,9 +1259,9 @@
     );
 
 
-    /* =========================
-       START VEHICLE PAGE
-    ========================= */
+    // --------------------------------------------------
+    // START
+    // --------------------------------------------------
 
     loadVehicle();
 
