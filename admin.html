@@ -22,8 +22,6 @@
       line-height: 1.5;
     }
 
-    /* ================= HEADER ================= */
-
     header {
       background: #0b1624;
       color: white;
@@ -54,15 +52,11 @@
       background: #8f1820;
     }
 
-    /* ================= CONTAINER ================= */
-
     .container {
       width: 95%;
       max-width: 1400px;
       margin: 25px auto;
     }
-
-    /* ================= CARDS ================= */
 
     .welcome,
     .section {
@@ -77,18 +71,19 @@
       border-left: 5px solid #d6a84f;
     }
 
+    .welcome h2,
+    .section h2 {
+      color: #0b1624;
+    }
+
     .welcome h2 {
       margin-bottom: 8px;
-      color: #0b1624;
     }
 
     .section h2 {
       margin-bottom: 20px;
       font-size: 21px;
-      color: #0b1624;
     }
-
-    /* ================= FORM ================= */
 
     .form-grid {
       display: grid;
@@ -140,8 +135,6 @@
       color: #777;
       font-size: 13px;
     }
-
-    /* ================= BUTTONS ================= */
 
     .buttons {
       display: flex;
@@ -199,8 +192,6 @@
       background: #a51f1f;
     }
 
-    /* ================= MESSAGES ================= */
-
     .message {
       margin-top: 15px;
       padding: 12px;
@@ -219,8 +210,6 @@
       background: #fdeaea;
       color: #a40000;
     }
-
-    /* ================= TABLE ================= */
 
     .table-wrapper {
       overflow-x: auto;
@@ -268,8 +257,6 @@
       font-size: 13px;
     }
 
-    /* ================= STATUS ================= */
-
     .status {
       display: inline-block;
       padding: 5px 9px;
@@ -314,8 +301,6 @@
       color: #555;
     }
 
-    /* ================= EDIT ================= */
-
     .editing-title {
       background: #fff7d6;
       border-left: 4px solid #d6a84f;
@@ -324,8 +309,6 @@
       margin-bottom: 15px;
       display: none;
     }
-
-    /* ================= LOADING ================= */
 
     .loading {
       text-align: center;
@@ -339,12 +322,100 @@
       color: #777;
     }
 
-    /* ================= OMR PRICE ================= */
-
     .omr-price {
       font-weight: bold;
       color: #0b1624;
       white-space: nowrap;
+    }
+
+    /* ================= PHOTO MANAGER ================= */
+
+    .photo-manager {
+      display: none;
+    }
+
+    .photo-upload-box {
+      border: 2px dashed #d6a84f;
+      background: #fffdf6;
+      padding: 25px;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .photo-upload-box p {
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .file-input {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .selected-vehicle {
+      background: #0b1624;
+      color: white;
+      padding: 14px;
+      border-radius: 7px;
+      margin-bottom: 15px;
+    }
+
+    .selected-vehicle strong {
+      color: #d6a84f;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .photo-card {
+      background: #f7f7f7;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-card-info {
+      padding: 10px;
+    }
+
+    .photo-card-info small {
+      display: block;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .photo-card .danger {
+      width: 100%;
+    }
+
+    .main-photo-label {
+      display: inline-block;
+      background: #d6a84f;
+      color: #0b1624;
+      padding: 3px 7px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .upload-progress {
+      margin-top: 15px;
+      display: none;
+      color: #555;
+      font-weight: bold;
     }
 
     /* ================= MOBILE ================= */
@@ -381,1834 +452,2249 @@
         height: 55px;
       }
 
+      .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
     }
 
   </style>
 
 </head>
 
-
 <body>
 
-  <!-- ================= HEADER ================= -->
+<header>
 
-  <header>
+  <h1>
+    SaudBahwanAutomotives — Admin
+  </h1>
 
-    <h1>
-      SaudBahwanAutomotives — Admin
-    </h1>
+  <button
+    class="logout-btn"
+    onclick="logout()">
+    Logout
+  </button>
 
-    <button
-      class="logout-btn"
-      onclick="logout()">
-      Logout
-    </button>
-
-  </header>
+</header>
 
 
-  <main class="container">
+<main class="container">
 
 
-    <!-- ================= WELCOME ================= -->
+  <!-- ================= WELCOME ================= -->
 
-    <div class="welcome">
+  <div class="welcome">
 
-      <h2>
-        Admin Dashboard
-      </h2>
+    <h2>
+      Admin Dashboard
+    </h2>
 
-      <p>
-        Manage vehicles and customer reservation requests.
-      </p>
+    <p>
+      Manage vehicles, vehicle photos and customer reservation requests.
+    </p>
+
+  </div>
+
+
+  <!-- ================= VEHICLE FORM ================= -->
+
+  <section class="section">
+
+    <h2 id="vehicleFormTitle">
+      Add Vehicle
+    </h2>
+
+    <div
+      id="editingTitle"
+      class="editing-title">
+
+      You are currently editing a vehicle.
 
     </div>
 
 
-    <!-- ================= VEHICLE FORM ================= -->
+    <form id="vehicleForm">
 
-    <section class="section">
+      <div class="form-grid">
 
-      <h2 id="vehicleFormTitle">
-        Add Vehicle
-      </h2>
+        <div class="form-group">
 
-      <div
-        id="editingTitle"
-        class="editing-title">
+          <label for="make">
+            Make
+          </label>
 
-        You are currently editing a vehicle.
-
-      </div>
-
-
-      <form id="vehicleForm">
-
-        <div class="form-grid">
-
-
-          <div class="form-group">
-
-            <label for="make">
-              Make
-            </label>
-
-            <input
-              type="text"
-              id="make"
-              placeholder="Toyota"
-              required>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="model">
-              Model
-            </label>
-
-            <input
-              type="text"
-              id="model"
-              placeholder="Land Cruiser"
-              required>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="year">
-              Year
-            </label>
-
-            <input
-              type="number"
-              id="year"
-              min="1900"
-              max="2100"
-              placeholder="2025"
-              required>
-
-          </div>
-
-
-          <!-- OMR PRICE -->
-
-          <div class="form-group">
-
-            <label for="price">
-              Price (OMR)
-            </label>
-
-            <input
-              type="number"
-              id="price"
-              min="0"
-              step="0.001"
-              placeholder="e.g. 18500"
-              required>
-
-            <small class="price-hint">
-              Enter the vehicle price in Omani Rial (OMR).
-            </small>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="mileage">
-              Mileage (km)
-            </label>
-
-            <input
-              type="number"
-              id="mileage"
-              min="0"
-              value="0">
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="transmission">
-              Transmission
-            </label>
-
-            <select id="transmission">
-
-              <option value="">
-                Select
-              </option>
-
-              <option value="Automatic">
-                Automatic
-              </option>
-
-              <option value="Manual">
-                Manual
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="fuel_type">
-              Fuel Type
-            </label>
-
-            <select id="fuel_type">
-
-              <option value="">
-                Select
-              </option>
-
-              <option value="Petrol">
-                Petrol
-              </option>
-
-              <option value="Diesel">
-                Diesel
-              </option>
-
-              <option value="Hybrid">
-                Hybrid
-              </option>
-
-              <option value="Electric">
-                Electric
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="condition">
-              Condition
-            </label>
-
-            <select id="condition">
-
-              <option value="Used">
-                Used
-              </option>
-
-              <option value="New">
-                New
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="status">
-              Vehicle Status
-            </label>
-
-            <select id="status">
-
-              <option value="Available">
-                Available
-              </option>
-
-              <option value="Sold">
-                Sold
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="form-group">
-
-            <label for="image_url">
-              Image URL
-            </label>
-
-            <input
-              type="url"
-              id="image_url"
-              placeholder="https://example.com/car.jpg">
-
-          </div>
-
-
-          <div class="form-group full">
-
-            <label for="description">
-              Description
-            </label>
-
-            <textarea
-              id="description"
-              placeholder="Enter vehicle description"></textarea>
-
-          </div>
-
+          <input
+            type="text"
+            id="make"
+            placeholder="Toyota"
+            required>
 
         </div>
 
 
-        <div class="buttons">
+        <div class="form-group">
+
+          <label for="model">
+            Model
+          </label>
+
+          <input
+            type="text"
+            id="model"
+            placeholder="Land Cruiser"
+            required>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="year">
+            Year
+          </label>
+
+          <input
+            type="number"
+            id="year"
+            min="1900"
+            max="2100"
+            placeholder="2025"
+            required>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="price">
+            Price (OMR)
+          </label>
+
+          <input
+            type="number"
+            id="price"
+            min="0"
+            step="0.001"
+            placeholder="e.g. 18500"
+            required>
+
+          <small class="price-hint">
+            Enter the vehicle price in Omani Rial (OMR).
+          </small>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="mileage">
+            Mileage (km)
+          </label>
+
+          <input
+            type="number"
+            id="mileage"
+            min="0"
+            value="0">
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="transmission">
+            Transmission
+          </label>
+
+          <select id="transmission">
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="Automatic">
+              Automatic
+            </option>
+
+            <option value="Manual">
+              Manual
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="fuel_type">
+            Fuel Type
+          </label>
+
+          <select id="fuel_type">
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="Petrol">
+              Petrol
+            </option>
+
+            <option value="Diesel">
+              Diesel
+            </option>
+
+            <option value="Hybrid">
+              Hybrid
+            </option>
+
+            <option value="Electric">
+              Electric
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="condition">
+            Condition
+          </label>
+
+          <select id="condition">
+
+            <option value="Used">
+              Used
+            </option>
+
+            <option value="New">
+              New
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="status">
+            Vehicle Status
+          </label>
+
+          <select id="status">
+
+            <option value="Available">
+              Available
+            </option>
+
+            <option value="Sold">
+              Sold
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="image_url">
+            Main Image URL
+          </label>
+
+          <input
+            type="url"
+            id="image_url"
+            placeholder="https://example.com/car.jpg">
+
+          <small class="price-hint">
+            This remains the main image. Additional photos can be uploaded below.
+          </small>
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label for="description">
+            Description
+          </label>
+
+          <textarea
+            id="description"
+            placeholder="Enter vehicle description"></textarea>
+
+        </div>
+
+      </div>
+
+
+      <div class="buttons">
+
+        <button
+          type="submit"
+          class="primary"
+          id="saveVehicleBtn">
+
+          Add Vehicle
+
+        </button>
+
+
+        <button
+          type="button"
+          class="secondary"
+          id="cancelEditBtn"
+          onclick="cancelEdit()"
+          style="display:none;">
+
+          Cancel Edit
+
+        </button>
+
+      </div>
+
+
+      <div
+        id="vehicleMessage"
+        class="message">
+      </div>
+
+    </form>
+
+  </section>
+
+
+  <!-- ================= VEHICLE INVENTORY ================= -->
+
+  <section class="section">
+
+    <h2>
+      Vehicle Inventory
+    </h2>
+
+    <div
+      id="vehiclesLoading"
+      class="loading">
+
+      Loading vehicles...
+
+    </div>
+
+
+    <div class="table-wrapper">
+
+      <table
+        id="vehiclesTable"
+        style="display:none;">
+
+        <thead>
+
+          <tr>
+
+            <th>Image</th>
+            <th>Vehicle</th>
+            <th>Year</th>
+            <th>Price (OMR)</th>
+            <th>Mileage</th>
+            <th>Transmission</th>
+            <th>Fuel</th>
+            <th>Status</th>
+            <th>Actions</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="vehiclesBody"></tbody>
+
+      </table>
+
+    </div>
+
+
+    <div
+      id="vehiclesEmpty"
+      class="empty"
+      style="display:none;">
+
+      No vehicles found.
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= PHOTO MANAGER ================= -->
+
+  <section
+    class="section photo-manager"
+    id="photoManager">
+
+    <h2>
+      Vehicle Photo Gallery
+    </h2>
+
+    <div
+      id="selectedVehicle"
+      class="selected-vehicle">
+
+      Select a vehicle from the inventory to manage its photos.
+
+    </div>
+
+
+    <div class="photo-upload-box">
+
+      <p>
+        Upload multiple photos for this vehicle.
+      </p>
+
+      <p>
+        Recommended: clear exterior, interior, dashboard, wheels and rear photos.
+      </p>
+
+      <input
+        type="file"
+        id="photoFiles"
+        class="file-input"
+        accept="image/jpeg,image/png,image/webp,image/jpg"
+        multiple>
+
+      <div class="buttons">
+
+        <button
+          type="button"
+          class="primary"
+          id="uploadPhotosBtn"
+          onclick="uploadPhotos()">
+
+          Upload Photos
+
+        </button>
+
+      </div>
+
+      <div
+        id="uploadProgress"
+        class="upload-progress">
+
+        Uploading photos...
+
+      </div>
+
+      <div
+        id="photoMessage"
+        class="message">
+      </div>
+
+    </div>
+
+
+    <h3 style="margin-top:25px;">
+      Current Photos
+    </h3>
+
+
+    <div
+      id="photoLoading"
+      class="loading">
+
+      Select a vehicle to view photos.
+
+    </div>
+
+
+    <div
+      id="photoGrid"
+      class="photo-grid">
+    </div>
+
+  </section>
+
+
+  <!-- ================= RESERVATIONS ================= -->
+
+  <section class="section">
+
+    <h2>
+      Customer Reservations
+    </h2>
+
+
+    <div
+      id="reservationsLoading"
+      class="loading">
+
+      Loading reservations...
+
+    </div>
+
+
+    <div class="table-wrapper">
+
+      <table
+        id="reservationsTable"
+        style="display:none;">
+
+        <thead>
+
+          <tr>
+
+            <th>Customer</th>
+            <th>Vehicle</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Contact</th>
+            <th>Message</th>
+            <th>Reservation</th>
+            <th>Payment</th>
+            <th>Date</th>
+            <th>Action</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="reservationsBody"></tbody>
+
+      </table>
+
+    </div>
+
+
+    <div
+      id="reservationsEmpty"
+      class="empty"
+      style="display:none;">
+
+      No reservations found.
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="app.js"></script>
+
+
+<script>
+
+let editingVehicleId = null;
+let selectedPhotoVehicleId = null;
+
+
+/* ==========================================
+   HTML ESCAPE
+========================================== */
+
+function escapeHtml(value) {
+
+  if (
+    value === null ||
+    value === undefined
+  ) {
+    return "";
+  }
+
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+/* ==========================================
+   OMR FORMAT
+========================================== */
+
+function formatOMR(value) {
+
+  return "ر.ع. " +
+    Number(value || 0).toLocaleString(
+      "en-US",
+      {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 3
+      }
+    );
+
+}
+
+
+/* ==========================================
+   CHECK ADMIN
+========================================== */
+
+async function checkAdmin() {
+
+  const {
+    data: { user },
+    error: userError
+  } =
+    await supabaseClient.auth.getUser();
+
+
+  if (
+    userError ||
+    !user
+  ) {
+
+    window.location.href = "login.html";
+
+    return false;
+
+  }
+
+
+  const {
+    data: profile,
+    error: profileError
+  } =
+    await supabaseClient
+      .from("profiles")
+      .select("role")
+      .eq("id", user.id)
+      .single();
+
+
+  if (
+    profileError ||
+    !profile ||
+    profile.role !== "admin"
+  ) {
+
+    alert(
+      "Access denied. Admin account required."
+    );
+
+    window.location.href = "index.html";
+
+    return false;
+
+  }
+
+
+  return true;
+
+}
+
+
+/* ==========================================
+   INITIALIZE
+========================================== */
+
+async function initializeAdmin() {
+
+  const isAdmin =
+    await checkAdmin();
+
+
+  if (!isAdmin) {
+    return;
+  }
+
+
+  await loadVehicles();
+
+  await loadReservations();
+
+}
+
+
+/* ==========================================
+   LOAD VEHICLES
+========================================== */
+
+async function loadVehicles() {
+
+  const loading =
+    document.getElementById("vehiclesLoading");
+
+  const table =
+    document.getElementById("vehiclesTable");
+
+  const empty =
+    document.getElementById("vehiclesEmpty");
+
+  const body =
+    document.getElementById("vehiclesBody");
+
+
+  loading.style.display = "block";
+  table.style.display = "none";
+  empty.style.display = "none";
+
+
+  const {
+    data: vehicles,
+    error
+  } =
+    await supabaseClient
+      .from("vehicles")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
+
+
+  loading.style.display = "none";
+
+
+  if (error) {
+
+    console.error(error);
+
+    empty.textContent =
+      "Unable to load vehicles: " +
+      error.message;
+
+    empty.style.display = "block";
+
+    return;
+
+  }
+
+
+  body.innerHTML = "";
+
+
+  if (
+    !vehicles ||
+    vehicles.length === 0
+  ) {
+
+    empty.textContent =
+      "No vehicles found.";
+
+    empty.style.display = "block";
+
+    return;
+
+  }
+
+
+  vehicles.forEach(vehicle => {
+
+    const image =
+      vehicle.image_url ||
+      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=500&q=80";
+
+
+    const statusClass =
+      String(vehicle.status || "")
+        .toLowerCase()
+        .replace(/\s+/g, "-");
+
+
+    const row =
+      document.createElement("tr");
+
+
+    row.innerHTML = `
+
+      <td>
+
+        <img
+          class="vehicle-image"
+          src="${escapeHtml(image)}"
+          alt="${escapeHtml(vehicle.make)} ${escapeHtml(vehicle.model)}"
+          onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=500&q=80'">
+
+      </td>
+
+
+      <td>
+
+        <strong>
+          ${escapeHtml(vehicle.make)}
+          ${escapeHtml(vehicle.model)}
+        </strong>
+
+      </td>
+
+
+      <td>
+        ${escapeHtml(vehicle.year)}
+      </td>
+
+
+      <td class="omr-price">
+        ${formatOMR(vehicle.price)}
+      </td>
+
+
+      <td>
+        ${Number(vehicle.mileage || 0).toLocaleString()} km
+      </td>
+
+
+      <td>
+        ${escapeHtml(vehicle.transmission || "-")}
+      </td>
+
+
+      <td>
+        ${escapeHtml(vehicle.fuel_type || "-")}
+      </td>
+
+
+      <td>       <span
+          class="status ${escapeHtml(statusClass)}">
+
+          ${escapeHtml(
+            vehicle.status || "-"
+          )}
+
+        </span>
+
+      </td>
+
+
+      <td>
+
+        <div class="action-buttons">
 
           <button
-            type="submit"
-            class="primary"
-            id="saveVehicleBtn">
+            class="primary small-btn"
+            onclick="editVehicle('${vehicle.id}')">
 
-            Add Vehicle
+            Edit
 
           </button>
+
+
+          <button
+            class="success small-btn"
+            onclick="managePhotos(
+              '${vehicle.id}',
+              '${escapeHtml(vehicle.make)}',
+              '${escapeHtml(vehicle.model)}'
+            )">
+
+            Photos
+
+          </button>
+
+
+          <button
+            class="danger small-btn"
+            onclick="deleteVehicle('${vehicle.id}')">
+
+            Delete
+
+          </button>
+
+        </div>
+
+      </td>
+
+    `;
+
+
+    body.appendChild(row);
+
+  });
+
+
+  table.style.display =
+    "table";
+
+}
+
+
+/* ==========================================
+   ADD / UPDATE VEHICLE
+========================================== */
+
+document
+  .getElementById("vehicleForm")
+  .addEventListener(
+    "submit",
+    async function(event) {
+
+      event.preventDefault();
+
+
+      const button =
+        document.getElementById(
+          "saveVehicleBtn"
+        );
+
+      const message =
+        document.getElementById(
+          "vehicleMessage"
+        );
+
+
+      button.disabled = true;
+
+
+      message.className =
+        "message";
+
+      message.style.display =
+        "none";
+
+
+      const vehicleData = {
+
+        make:
+          document.getElementById(
+            "make"
+          ).value.trim(),
+
+        model:
+          document.getElementById(
+            "model"
+          ).value.trim(),
+
+        year:
+          Number(
+            document.getElementById(
+              "year"
+            ).value
+          ),
+
+        price:
+          Number(
+            document.getElementById(
+              "price"
+            ).value
+          ),
+
+        mileage:
+          Number(
+            document.getElementById(
+              "mileage"
+            ).value || 0
+          ),
+
+        transmission:
+          document.getElementById(
+            "transmission"
+          ).value || null,
+
+        fuel_type:
+          document.getElementById(
+            "fuel_type"
+          ).value || null,
+
+        condition:
+          document.getElementById(
+            "condition"
+          ).value || "Used",
+
+        status:
+          document.getElementById(
+            "status"
+          ).value || "Available",
+
+        image_url:
+          document.getElementById(
+            "image_url"
+          ).value.trim() || null,
+
+        description:
+          document.getElementById(
+            "description"
+          ).value.trim() || null
+
+      };
+
+
+      let result;
+
+
+      if (editingVehicleId) {
+
+        result =
+          await supabaseClient
+            .from("vehicles")
+            .update(vehicleData)
+            .eq(
+              "id",
+              editingVehicleId
+            );
+
+      } else {
+
+        result =
+          await supabaseClient
+            .from("vehicles")
+            .insert([
+              vehicleData
+            ]);
+
+      }
+
+
+      if (result.error) {
+
+        console.error(
+          result.error
+        );
+
+
+        message.textContent =
+          "Error: " +
+          result.error.message;
+
+
+        message.className =
+          "message error-message";
+
+
+        button.disabled = false;
+
+        return;
+
+      }
+
+
+      message.textContent =
+        editingVehicleId
+          ? "Vehicle updated successfully."
+          : "Vehicle added successfully.";
+
+
+      message.className =
+        "message success-message";
+
+
+      resetVehicleForm();
+
+
+      await loadVehicles();
+
+
+      button.disabled = false;
+
+    }
+  );
+
+
+/* ==========================================
+   EDIT VEHICLE
+========================================== */
+
+async function editVehicle(id) {
+
+  const {
+    data: vehicle,
+    error
+  } =
+    await supabaseClient
+      .from("vehicles")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+
+  if (
+    error ||
+    !vehicle
+  ) {
+
+    alert(
+      "Unable to load vehicle."
+    );
+
+    return;
+
+  }
+
+
+  editingVehicleId =
+    id;
+
+
+  document.getElementById(
+    "make"
+  ).value =
+    vehicle.make || "";
+
+
+  document.getElementById(
+    "model"
+  ).value =
+    vehicle.model || "";
+
+
+  document.getElementById(
+    "year"
+  ).value =
+    vehicle.year || "";
+
+
+  document.getElementById(
+    "price"
+  ).value =
+    vehicle.price || "";
+
+
+  document.getElementById(
+    "mileage"
+  ).value =
+    vehicle.mileage || 0;
+
+
+  document.getElementById(
+    "transmission"
+  ).value =
+    vehicle.transmission || "";
+
+
+  document.getElementById(
+    "fuel_type"
+  ).value =
+    vehicle.fuel_type || "";
+
+
+  document.getElementById(
+    "condition"
+  ).value =
+    vehicle.condition || "Used";
+
+
+  document.getElementById(
+    "status"
+  ).value =
+    vehicle.status || "Available";
+
+
+  document.getElementById(
+    "image_url"
+  ).value =
+    vehicle.image_url || "";
+
+
+  document.getElementById(
+    "description"
+  ).value =
+    vehicle.description || "";
+
+
+  document.getElementById(
+    "vehicleFormTitle"
+  ).textContent =
+    "Edit Vehicle";
+
+
+  document.getElementById(
+    "editingTitle"
+  ).style.display =
+    "block";
+
+
+  document.getElementById(
+    "saveVehicleBtn"
+  ).textContent =
+    "Update Vehicle";
+
+
+  document.getElementById(
+    "cancelEditBtn"
+  ).style.display =
+    "inline-block";
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* ==========================================
+   CANCEL EDIT
+========================================== */
+
+function cancelEdit() {
+
+  resetVehicleForm();
+
+}
+
+
+/* ==========================================
+   RESET VEHICLE FORM
+========================================== */
+
+function resetVehicleForm() {
+
+  editingVehicleId =
+    null;
+
+
+  document.getElementById(
+    "vehicleForm"
+  ).reset();
+
+
+  document.getElementById(
+    "mileage"
+  ).value =
+    0;
+
+
+  document.getElementById(
+    "condition"
+  ).value =
+    "Used";
+
+
+  document.getElementById(
+    "status"
+  ).value =
+    "Available";
+
+
+  document.getElementById(
+    "vehicleFormTitle"
+  ).textContent =
+    "Add Vehicle";
+
+
+  document.getElementById(
+    "editingTitle"
+  ).style.display =
+    "none";
+
+
+  document.getElementById(
+    "saveVehicleBtn"
+  ).textContent =
+    "Add Vehicle";
+
+
+  document.getElementById(
+    "cancelEditBtn"
+  ).style.display =
+    "none";
+
+}
+
+
+/* ==========================================
+   DELETE VEHICLE
+========================================== */
+
+async function deleteVehicle(id) {
+
+  const confirmed =
+    confirm(
+      "Are you sure you want to delete this vehicle?"
+    );
+
+
+  if (!confirmed) {
+    return;
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from("vehicles")
+      .delete()
+      .eq(
+        "id",
+        id
+      );
+
+
+  if (error) {
+
+    alert(
+      "Unable to delete vehicle: " +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  if (
+    selectedPhotoVehicleId === id
+  ) {
+
+    selectedPhotoVehicleId =
+      null;
+
+
+    document.getElementById(
+      "photoManager"
+    ).style.display =
+      "none";
+
+  }
+
+
+  await loadVehicles();
+
+
+  alert(
+    "Vehicle deleted successfully."
+  );
+
+}
+
+
+/* ==========================================
+   MANAGE VEHICLE PHOTOS
+========================================== */
+
+async function managePhotos(
+  vehicleId,
+  make,
+  model
+) {
+
+  selectedPhotoVehicleId =
+    vehicleId;
+
+
+  const manager =
+    document.getElementById(
+      "photoManager"
+    );
+
+
+  manager.style.display =
+    "block";
+
+
+  document.getElementById(
+    "selectedVehicle"
+  ).innerHTML = `
+
+    Managing photos for:
+
+    <strong>
+      ${escapeHtml(make)}
+      ${escapeHtml(model)}
+    </strong>
+
+  `;
+
+
+  document.getElementById(
+    "photoFiles"
+  ).value =
+    "";
+
+
+  document.getElementById(
+    "photoMessage"
+  ).className =
+    "message";
+
+
+  document.getElementById(
+    "photoMessage"
+  ).style.display =
+    "none";
+
+
+  await loadVehiclePhotos();
+
+
+  manager.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+}
+
+
+/* ==========================================
+   LOAD VEHICLE PHOTOS
+========================================== */
+
+async function loadVehiclePhotos() {
+
+  const loading =
+    document.getElementById(
+      "photoLoading"
+    );
+
+  const grid =
+    document.getElementById(
+      "photoGrid"
+    );
+
+
+  loading.style.display =
+    "block";
+
+
+  loading.textContent =
+    "Loading photos...";
+
+
+  grid.innerHTML =
+    "";
+
+
+  if (
+    !selectedPhotoVehicleId
+  ) {
+
+    loading.textContent =
+      "Select a vehicle to view photos.";
+
+    return;
+
+  }
+
+
+  const {
+    data: photos,
+    error
+  } =
+    await supabaseClient
+      .from("vehicle_images")
+      .select("*")
+      .eq(
+        "vehicle_id",
+        selectedPhotoVehicleId
+      )
+      .order(
+        "created_at",
+        {
+          ascending: true
+        }
+      );
+
+
+  loading.style.display =
+    "none";
+
+
+  if (error) {
+
+    console.error(error);
+
+
+    loading.textContent =
+      "Unable to load photos: " +
+      error.message;
+
+
+    loading.style.display =
+      "block";
+
+    return;
+
+  }
+
+
+  if (
+    !photos ||
+    photos.length === 0
+  ) {
+
+    grid.innerHTML = `
+
+      <div class="empty">
+
+        No additional photos uploaded yet.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  photos.forEach(
+    (photo, index) => {
+
+      const card =
+        document.createElement(
+          "div"
+        );
+
+
+      card.className =
+        "photo-card";
+
+
+      card.innerHTML = `
+
+        <img
+          src="${escapeHtml(photo.image_url)}"
+          alt="Vehicle photo ${index + 1}"
+          onerror="this.style.opacity='0.4'">
+
+
+        <div class="photo-card-info">
+
+          ${
+            index === 0
+              ? `
+                <span class="main-photo-label">
+                  Gallery Photo 1
+                </span>
+              `
+              : ""
+          }
+
+
+          <small>
+            Photo ${index + 1}
+          </small>
 
 
           <button
             type="button"
-            class="secondary"
-            id="cancelEditBtn"
-            onclick="cancelEdit()"
-            style="display:none;">
+            class="danger small-btn"
+            onclick="deletePhoto(
+              '${photo.id}',
+              '${escapeHtml(photo.image_url)}'
+            )">
 
-            Cancel Edit
+            Delete Photo
 
           </button>
 
         </div>
 
+      `;
 
-        <div
-          id="vehicleMessage"
-          class="message">
-        </div>
 
-      </form>
-
-    </section>
-
-
-    <!-- ================= VEHICLE INVENTORY ================= -->
-
-    <section class="section">
-
-      <h2>
-        Vehicle Inventory
-      </h2>
-
-      <div
-        id="vehiclesLoading"
-        class="loading">
-
-        Loading vehicles...
-
-      </div>
-
-
-      <div class="table-wrapper">
-
-        <table
-          id="vehiclesTable"
-          style="display:none;">
-
-          <thead>
-
-            <tr>
-
-              <th>
-                Image
-              </th>
-
-              <th>
-                Vehicle
-              </th>
-
-              <th>
-                Year
-              </th>
-
-              <th>
-                Price (OMR)
-              </th>
-
-              <th>
-                Mileage
-              </th>
-
-              <th>
-                Transmission
-              </th>
-
-              <th>
-                Fuel
-              </th>
-
-              <th>
-                Status
-              </th>
-
-              <th>
-                Actions
-              </th>
-
-            </tr>
-
-          </thead>
-
-
-          <tbody id="vehiclesBody">
-          </tbody>
-
-        </table>
-
-      </div>
-
-
-      <div
-        id="vehiclesEmpty"
-        class="empty"
-        style="display:none;">
-
-        No vehicles found.
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= RESERVATIONS ================= -->
-
-    <section class="section">
-
-      <h2>
-        Customer Reservations
-      </h2>
-
-
-      <div
-        id="reservationsLoading"
-        class="loading">
-
-        Loading reservations...
-
-      </div>
-
-
-      <div class="table-wrapper">
-
-        <table
-          id="reservationsTable"
-          style="display:none;">
-
-          <thead>
-
-            <tr>
-
-              <th>
-                Customer
-              </th>
-
-              <th>
-                Vehicle
-              </th>
-
-              <th>
-                Email
-              </th>
-
-              <th>
-                Phone
-              </th>
-
-              <th>
-                Contact
-              </th>
-
-              <th>
-                Message
-              </th>
-
-              <th>
-                Reservation
-              </th>
-
-              <th>
-                Payment
-              </th>
-
-              <th>
-                Date
-              </th>
-
-              <th>
-                Action
-              </th>
-
-            </tr>
-
-          </thead>
-
-
-          <tbody id="reservationsBody">
-          </tbody>
-
-        </table>
-
-      </div>
-
-
-      <div
-        id="reservationsEmpty"
-        class="empty"
-        style="display:none;">
-
-        No reservations found.
-
-      </div>
-
-    </section>
-
-
-  </main>
-
-
-  <!-- ================= SUPABASE ================= -->
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <script src="app.js"></script>
-
-
-  <script>
-
-    let editingVehicleId = null;
-
-
-    /* ==========================================
-       HTML ESCAPE
-       ========================================== */
-
-    function escapeHtml(value) {
-
-      if (
-        value === null ||
-        value === undefined
-      ) {
-        return "";
-      }
-
-      return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+      grid.appendChild(card);
 
     }
+  );
 
+}
 
-    /* ==========================================
-       OMR FORMAT
-       ========================================== */
 
-    function formatOMR(value) {
+/* ==========================================
+   UPLOAD VEHICLE PHOTOS
+========================================== */
 
-      return "ر.ع. " +
-        Number(value || 0).toLocaleString(
-          "en-US",
-          {
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 3
-          }
-        );
+async function uploadPhotos() {
 
-    }
+  if (
+    !selectedPhotoVehicleId
+  ) {
 
-
-    /* ==========================================
-       CHECK ADMIN
-       ========================================== */
-
-    async function checkAdmin() {
-
-      const {
-        data: { user },
-        error: userError
-      } =
-        await supabaseClient.auth.getUser();
-
-
-      if (
-        userError ||
-        !user
-      ) {
-
-        window.location.href =
-          "login.html";
-
-        return false;
-
-      }
-
-
-      const {
-        data: profile,
-        error: profileError
-      } =
-        await supabaseClient
-          .from("profiles")
-          .select("role")
-          .eq("id", user.id)
-          .single();
-
-
-      if (
-        profileError ||
-        !profile ||
-        profile.role !== "admin"
-      ) {
-
-        alert(
-          "Access denied. Admin account required."
-        );
-
-        window.location.href =
-          "index.html";
-
-        return false;
-
-      }
-
-
-      return true;
-
-    }
-
-
-    /* ==========================================
-       INITIALIZE
-       ========================================== */
-
-    async function initializeAdmin() {
-
-      const isAdmin =
-        await checkAdmin();
-
-
-      if (!isAdmin) {
-        return;
-      }
-
-
-      await loadVehicles();
-
-      await loadReservations();
-
-    }
-
-
-    /* ==========================================
-       LOAD VEHICLES
-       ========================================== */
-
-    async function loadVehicles() {
-
-      const loading =
-        document.getElementById(
-          "vehiclesLoading"
-        );
-
-      const table =
-        document.getElementById(
-          "vehiclesTable"
-        );
-
-      const empty =
-        document.getElementById(
-          "vehiclesEmpty"
-        );
-
-      const body =
-        document.getElementById(
-          "vehiclesBody"
-        );
-
-
-      loading.style.display =
-        "block";
-
-      table.style.display =
-        "none";
-
-      empty.style.display =
-        "none";
-
-
-      const {
-        data: vehicles,
-        error
-      } =
-        await supabaseClient
-          .from("vehicles")
-          .select("*")
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          );
-
-
-      loading.style.display =
-        "none";
-
-
-      if (error) {
-
-        console.error(error);
-
-        empty.textContent =
-          "Unable to load vehicles: " +
-          error.message;
-
-        empty.style.display =
-          "block";
-
-        return;
-
-      }
-
-
-      body.innerHTML = "";
-
-
-      if (
-        !vehicles ||
-        vehicles.length === 0
-      ) {
-
-        empty.textContent =
-          "No vehicles found.";
-
-        empty.style.display =
-          "block";
-
-        return;
-
-      }
-
-
-      vehicles.forEach(
-        vehicle => {
-
-          const image =
-            vehicle.image_url ||
-            "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=500&q=80";
-
-
-          const statusClass =
-            String(
-              vehicle.status || ""
-            )
-              .toLowerCase()
-              .replace(
-                /\s+/g,
-                "-"
-              );
-
-
-          const row =
-            document.createElement(
-              "tr"
-            );
-
-
-          row.innerHTML = `
-
-            <td>
-
-              <img
-                class="vehicle-image"
-                src="${escapeHtml(image)}"
-                alt="${escapeHtml(vehicle.make)} ${escapeHtml(vehicle.model)}"
-                onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=500&q=80'">
-
-            </td>
-
-
-            <td>
-
-              <strong>
-                ${escapeHtml(vehicle.make)}
-                ${escapeHtml(vehicle.model)}
-              </strong>
-
-            </td>
-
-
-            <td>
-              ${escapeHtml(vehicle.year)}
-            </td>
-
-
-            <td class="omr-price">
-
-              ${formatOMR(vehicle.price)}
-
-            </td>
-
-
-            <td>
-
-              ${Number(
-                vehicle.mileage || 0
-              ).toLocaleString()} km
-
-            </td>
-
-
-            <td>
-
-              ${escapeHtml(
-                vehicle.transmission || "-"
-              )}
-
-            </td>
-
-
-            <td>
-
-              ${escapeHtml(
-                vehicle.fuel_type || "-"
-              )}
-
-            </td>
-
-
-            <td>
-
-              <span
-                class="status ${escapeHtml(statusClass)}">
-
-                ${escapeHtml(
-                  vehicle.status || "-"
-                )}
-
-              </span>
-
-            </td>
-
-
-            <td>
-
-             <td>
-
-              <div class="action-buttons">
-
-                <button
-                  class="primary small-btn"
-                  onclick="editVehicle('${vehicle.id}')">
-
-                  Edit
-
-                </button>
-
-
-                <button
-                  class="danger small-btn"
-                  onclick="deleteVehicle('${vehicle.id}')">
-
-                  Delete
-
-                </button>
-
-              </div>
-
-            </td>
-
-          `;
-
-
-          body.appendChild(row);
-
-        }
-      );
-
-
-      table.style.display =
-        "table";
-
-    }
-
-
-    /* ==========================================
-       ADD / UPDATE VEHICLE
-       ========================================== */
-
-    document
-      .getElementById("vehicleForm")
-      .addEventListener(
-        "submit",
-        async function(event) {
-
-          event.preventDefault();
-
-
-          const button =
-            document.getElementById(
-              "saveVehicleBtn"
-            );
-
-
-          const message =
-            document.getElementById(
-              "vehicleMessage"
-            );
-
-
-          button.disabled =
-            true;
-
-
-          button.textContent =
-            editingVehicleId
-              ? "Updating..."
-              : "Adding...";
-
-
-          message.className =
-            "message";
-
-          message.textContent =
-            "";
-
-
-          const vehicleData = {
-
-            make:
-              document
-                .getElementById("make")
-                .value
-                .trim(),
-
-            model:
-              document
-                .getElementById("model")
-                .value
-                .trim(),
-
-            year:
-              Number(
-                document
-                  .getElementById("year")
-                  .value
-              ),
-
-            price:
-              Number(
-                document
-                  .getElementById("price")
-                  .value
-              ),
-
-            mileage:
-              Number(
-                document
-                  .getElementById("mileage")
-                  .value ||
-                  0
-              ),
-
-            transmission:
-              document
-                .getElementById(
-                  "transmission"
-                )
-                .value,
-
-            fuel_type:
-              document
-                .getElementById(
-                  "fuel_type"
-                )
-                .value,
-
-            condition:
-              document
-                .getElementById(
-                  "condition"
-                )
-                .value,
-
-            status:
-              document
-                .getElementById(
-                  "status"
-                )
-                .value,
-
-            image_url:
-              document
-                .getElementById(
-                  "image_url"
-                )
-                .value
-                .trim(),
-
-            description:
-              document
-                .getElementById(
-                  "description"
-                )
-                .value
-                .trim()
-
-          };
-
-
-          let result;
-
-
-          if (editingVehicleId) {
-
-            result =
-              await supabaseClient
-                .from("vehicles")
-                .update(vehicleData)
-                .eq(
-                  "id",
-                  editingVehicleId
-                );
-
-          } else {
-
-            result =
-              await supabaseClient
-                .from("vehicles")
-                .insert([
-                  vehicleData
-                ]);
-
-          }
-
-
-          if (result.error) {
-
-            console.error(
-              result.error
-            );
-
-
-            message.className =
-              "message error-message";
-
-
-            message.textContent =
-              "Error: " +
-              result.error.message;
-
-
-            button.disabled =
-              false;
-
-
-            button.textContent =
-              editingVehicleId
-                ? "Update Vehicle"
-                : "Add Vehicle";
-
-
-            return;
-
-          }
-
-
-          message.className =
-            "message success-message";
-
-
-          message.textContent =
-            editingVehicleId
-              ? "Vehicle updated successfully."
-              : "Vehicle added successfully.";
-
-
-          cancelEdit();
-
-
-          await loadVehicles();
-
-
-          button.disabled =
-            false;
-
-
-          button.textContent =
-            "Add Vehicle";
-
-        }
-      );
-
-
-    /* ==========================================
-       EDIT VEHICLE
-       ========================================== */
-
-    async function editVehicle(
-      vehicleId
-    ) {
-
-      const {
-        data: vehicle,
-        error
-      } =
-        await supabaseClient
-          .from("vehicles")
-          .select("*")
-          .eq(
-            "id",
-            vehicleId
-          )
-          .single();
-
-
-      if (
-        error ||
-        !vehicle
-      ) {
-
-        alert(
-          "Unable to load vehicle: " +
-          (
-            error
-              ? error.message
-              : "Vehicle not found"
-          )
-        );
-
-        return;
-
-      }
-
-
-      editingVehicleId =
-        vehicleId;
-
-
-      document.getElementById(
-        "make"
-      ).value =
-        vehicle.make || "";
-
-
-      document.getElementById(
-        "model"
-      ).value =
-        vehicle.model || "";
-
-
-      document.getElementById(
-        "year"
-      ).value =
-        vehicle.year || "";
-
-
-      document.getElementById(
-        "price"
-      ).value =
-        vehicle.price || "";
-
-
-      document.getElementById(
-        "mileage"
-      ).value =
-        vehicle.mileage || 0;
-
-
-      document.getElementById(
-        "transmission"
-      ).value =
-        vehicle.transmission || "";
-
-
-      document.getElementById(
-        "fuel_type"
-      ).value =
-        vehicle.fuel_type || "";
-
-
-      document.getElementById(
-        "condition"
-      ).value =
-        vehicle.condition || "Used";
-
-
-      document.getElementById(
-        "status"
-      ).value =
-        vehicle.status || "Available";
-
-
-      document.getElementById(
-        "image_url"
-      ).value =
-        vehicle.image_url || "";
-
-
-      document.getElementById(
-        "description"
-      ).value =
-        vehicle.description || "";
-
-
-      document.getElementById(
-        "vehicleFormTitle"
-      ).textContent =
-        "Edit Vehicle";
-
-
-      document.getElementById(
-        "editingTitle"
-      ).style.display =
-        "block";
-
-
-      document.getElementById(
-        "saveVehicleBtn"
-      ).textContent =
-        "Update Vehicle";
-
-
-      document.getElementById(
-        "cancelEditBtn"
-      ).style.display =
-        "inline-block";
-
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-    }
-
-
-    /* ==========================================
-       CANCEL EDIT
-       ========================================== */
-
-    function cancelEdit() {
-
-      editingVehicleId =
-        null;
-
-
-      document
-        .getElementById(
-          "vehicleForm"
-        )
-        .reset();
-
-
-      document.getElementById(
-        "condition"
-      ).value =
-        "Used";
-
-
-      document.getElementById(
-        "status"
-      ).value =
-        "Available";
-
-
-      document.getElementById(
-        "mileage"
-      ).value =
-        "0";
-
-
-      document.getElementById(
-        "vehicleFormTitle"
-      ).textContent =
-        "Add Vehicle";
-
-
-      document.getElementById(
-        "editingTitle"
-      ).style.display =
-        "none";
-
-
-      document.getElementById(
-        "cancelEditBtn"
-      ).style.display =
-        "none";
-
-
-      document.getElementById(
-        "saveVehicleBtn"
-      ).textContent =
-        "Add Vehicle";
-
-    }
-
-
-    /* ==========================================
-       DELETE VEHICLE
-       ========================================== */
-
-    async function deleteVehicle(
-      vehicleId
-    ) {
-
-      const confirmed =
-        confirm(
-          "Are you sure you want to delete this vehicle?"
-        );
-
-
-      if (!confirmed) {
-        return;
-      }
-
-
-      const {
-        error
-      } =
-        await supabaseClient
-          .from("vehicles")
-          .delete()
-          .eq(
-            "id",
-            vehicleId
-          );
-
-
-      if (error) {
-
-        console.error(error);
-
-        alert(
-          "Unable to delete vehicle: " +
-          error.message
-        );
-
-        return;
-
-      }
-
-
-      alert(
-        "Vehicle deleted successfully."
-      );
-
-
-      await loadVehicles();
-
-    }
-
-
-    /* ==========================================
-       LOAD RESERVATIONS
-       ========================================== */
-
-    async function loadReservations() {
-
-      const loading =
-        document.getElementById(
-          "reservationsLoading"
-        );
-
-
-      const table =
-        document.getElementById(
-          "reservationsTable"
-        );
-
-
-      const empty =
-        document.getElementById(
-          "reservationsEmpty"
-        );
-
-
-      const body =
-        document.getElementById(
-          "reservationsBody"
-        );
-
-
-      loading.style.display =
-        "block";
-
-      table.style.display =
-        "none";
-
-      empty.style.display =
-        "none";
-
-
-      const {
-        data: reservations,
-        error
-      } =
-        await supabaseClient
-          .from("reservations")
-          .select(`
-            id,
-            customer_name,
-            customer_email,
-            customer_phone,
-            contact_method,
-            message,
-            status,
-            payment_status,
-            created_at,
-            vehicle_id,
-            vehicles (
-              make,
-              model,
-              year,
-              price,
-              image_url
-            )
-          `)
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          );
-
-
-      loading.style.display =
-        "none";
-
-
-      if (error) {
-
-        console.error(error);
-
-        empty.textContent =
-          "Unable to load reservations: " +
-          error.message;
-
-        empty.style.display =
-          "block";
-
-        return;
-
-      }
-
-
-      body.innerHTML =
-        "";
-
-
-      if (
-        !reservations ||
-        reservations.length === 0
-      ) {
-
-        empty.textContent =
-          "No reservations found.";
-
-        empty.style.display =
-          "block";
-
-        return;
-
-      }
-
-
-      reservations.forEach(
-        reservation => {
-
-          const vehicle =
-            reservation.vehicles;
-
-
-          const vehicleName =
-            vehicle
-              ? `${vehicle.make} ${vehicle.model}`
-              : "Vehicle";
-
-
-          const reservationStatus =
-            reservation.status ||
-            "Pending";
-
-
-          const paymentStatus =
-            reservation.payment_status ||
-            "Not Paid";
-
-
-          const statusClass =
-            reservationStatus
-              .toLowerCase()
-              .replace(
-                /\s+/g,
-                "-"
-              );
-
-
-          const paymentClass =
-            paymentStatus === "Paid"
-              ? "paid"
-              : "not-paid";
-
-
-          const date =
-            reservation.created_at
-              ? new Date(
-                  reservation.created_at
-                ).toLocaleDateString(
-                  undefined,
-                  {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric"
-                  }
-                )
-              : "-";
-
-
-          const row =
-            document.createElement(
-              "tr"
-            );
-
-
-          row.innerHTML = `
-
-            <td>
-
-              <strong>
-                ${escapeHtml(
-                  reservation.customer_name
-                )}
-              </strong>
-
-            </td>
-
-
-            <td>
-
-              ${escapeHtml(
-                vehicleName
-              )}
-
-              ${
-                vehicle
-                  ? `
-                    <br>
-                    <small>
-                      ${formatOMR(vehicle.price)}
-                    </small>
-                  `
-                  : ""
-              }
-
-            </td>
-
-
-            <td>
-
-              ${escapeHtml(
-                reservation.customer_email
-              )}
-
-            </td>
-
-
-            <td>
-
-              ${escapeHtml(
-                reservation.customer_phone
-              )}
-
-            </td>
-
-
-            <td>
-
-              ${escapeHtml(
-                reservation.contact_method ||
-                "-"
-              )}
-
-            </td>
-
-
-            <td>
-
-              ${escapeHtml(
-                reservation.message ||
-                "-"
-              )}
-
-            </td>
-
-
-            <td>
-
-              <span
-                class="status ${escapeHtml(statusClass)}">
-
-                ${escapeHtml(
-                  reservationStatus
-                )}
-
-              </span>
-
-            </td>
-
-
-            <td>
-
-              <span
-                class="status ${paymentClass}">
-
-                ${escapeHtml(
-                  paymentStatus
-                )}
-
-              </span>
-
-            </td>
-
-
-            <td>
-
-              ${date}
-
-            </td>
-
-
-            <td>
-
-              <div class="action-buttons">
-
-                ${
-                  reservationStatus !==
-                  "Confirmed"
-                    ? `
-                      <button
-                        class="success small-btn"
-                        onclick="updateReservationStatus(
-                          '${reservation.id}',
-                          'Confirmed'
-                        )">
-
-                        Confirm
-
-                      </button>
-                    `
-                    : ""
-                }
-
-
-                ${
-                  reservationStatus !==
-                  "Cancelled"
-                    ? `
-                      <button
-                        class="danger small-btn"
-                        onclick="updateReservationStatus(
-                          '${reservation.id}',
-                          'Cancelled'
-                        )">
-
-                        Cancel
-
-                      </button>
-                    `
-                    : ""
-                }
-
-
-                ${
-                  paymentStatus !==
-                  "Paid"
-                    ? `
-                      <button
-                        class="primary small-btn"
-                        onclick="markReservationPaid(
-                          '${reservation.id}'
-                        )">
-
-                        Mark Paid
-
-                      </button>
-                    `
-                    : ""
-                }
-
-              </div>
-
-            </td>
-
-          `;
-
-
-          body.appendChild(row);
-
-        }
-      );
-
-
-      table.style.display =
-        "table";
-
-    }
-
-
-    /* ==========================================
-       UPDATE RESERVATION STATUS
-       ========================================== */
-
-    async function updateReservationStatus(
-      reservationId,
-      newStatus
-    ) {
-
-      const {
-        error
-      } =
-        await supabaseClient
-          .from("reservations")
-          .update({
-            status: newStatus
-          })
-          .eq(
-            "id",
-            reservationId
-          );
-
-
-      if (error) {
-
-        console.error(error);
-
-        alert(
-          "Unable to update reservation: " +
-          error.message
-        );
-
-        return;
-
-      }
-
-
-      await loadReservations();
-
-    }
-
-
-    /* ==========================================
-       MARK RESERVATION PAID
-       ========================================== */
-
-    async function markReservationPaid(
-      reservationId
-    ) {
-
-      const {
-        error
-      } =
-        await supabaseClient
-          .from("reservations")
-          .update({
-            payment_status: "Paid"
-          })
-          .eq(
-            "id",
-            reservationId
-          );
-
-
-      if (error) {
-
-        console.error(error);
-
-        alert(
-          "Unable to update payment: " +
-          error.message
-        );
-
-        return;
-
-      }
-
-
-      await loadReservations();
-
-    }
-
-
-    /* ==========================================
-       LOGOUT
-       ========================================== */
-
-    async function logout() {
-
-      const {
-        error
-      } =
-        await supabaseClient.auth.signOut();
-
-
-      if (error) {
-
-        console.error(
-          "Logout error:",
-          error.message
-        );
-
-
-        alert(
-          "Unable to log out. Please try again."
-        );
-
-
-        return;
-
-      }
-
-
-      window.location.href =
-        "index.html";
-
-    }
-
-
-    /* ==========================================
-       START ADMIN
-       ========================================== */
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      function() {
-
-        initializeAdmin();
-
-      }
+    alert(
+      "Please select a vehicle first."
     );
 
-  </script>
+    return;
+
+  }
+
+
+  const input =
+    document.getElementById(
+      "photoFiles"
+    );
+
+
+  const files =
+    Array.from(
+      input.files
+    );
+
+
+  if (
+    files.length === 0
+  ) {
+
+    alert(
+      "Please select at least one image."
+    );
+
+    return;
+
+  }
+
+
+  const button =
+    document.getElementById(
+      "uploadPhotosBtn"
+    );
+
+
+  const progress =
+    document.getElementById(
+      "uploadProgress"
+    );
+
+
+  const message =
+    document.getElementById(
+      "photoMessage"
+    );
+
+
+  button.disabled =
+    true;
+
+
+  progress.style.display =
+    "block";
+
+
+  progress.textContent =
+    `Uploading ${files.length} photo(s)...`;
+
+
+  message.className =
+    "message";
+
+
+  message.style.display =
+    "none";
+
+
+  let uploadedCount =
+    0;
+
+
+  try {
+
+    for (
+      const file of files
+    ) {
+
+      if (
+        !file.type.startsWith(
+          "image/"
+        )
+      ) {
+
+        continue;
+
+      }
+
+
+      const safeName =
+        file.name
+          .replace(
+            /[^a-zA-Z0-9._-]/g,
+            "-"
+          );
+
+
+      const filePath =
+        selectedPhotoVehicleId +
+        "/" +
+        crypto.randomUUID() +
+        "-" +
+        safeName;
+
+
+      const {
+        error: uploadError
+      } =
+        await supabaseClient
+          .storage
+          .from(
+            "vehicle-images"
+          )
+          .upload(
+            filePath,
+            file,
+            {
+              cacheControl: "3600",
+              upsert: false
+            }
+          );
+
+
+      if (uploadError) {
+
+        throw uploadError;
+
+      }
+
+
+      const {
+        data: publicData
+      } =
+        supabaseClient
+          .storage
+          .from(
+            "vehicle-images"
+          )
+          .getPublicUrl(
+            filePath
+          );
+
+
+      const publicUrl =
+        publicData.publicUrl;
+
+
+      const {
+        error: databaseError
+      } =
+        await supabaseClient
+          .from(
+            "vehicle_images"
+          )
+          .insert([
+            {
+              vehicle_id:
+                selectedPhotoVehicleId,
+
+              image_url:
+                publicUrl
+            }
+          ]);
+
+
+      if (databaseError) {
+
+        throw databaseError;
+
+      }
+
+
+      uploadedCount++;
+
+
+      progress.textContent =
+        `Uploaded ${uploadedCount} of ${files.length} photo(s)...`;
+
+    }
+
+
+    message.textContent =
+      `${uploadedCount} photo(s) uploaded successfully.`;
+
+
+    message.className =
+      "message success-message";
+
+
+    input.value =
+      "";
+
+
+    await loadVehiclePhotos();
+
+  }
+
+  catch (error) {
+
+    console.error(error);
+
+
+    message.textContent =
+      "Upload error: " +
+      error.message;
+
+
+    message.className =
+      "message error-message";
+
+  }
+
+
+  progress.style.display =
+    "none";
+
+
+  button.disabled =
+    false;
+
+}
+
+
+/* ==========================================
+   DELETE PHOTO
+========================================== */
+
+async function deletePhoto(
+  photoId,
+  imageUrl
+) {
+
+  const confirmed =
+    confirm(
+      "Are you sure you want to delete this photo?"
+    );
+
+
+  if (!confirmed) {
+    return;
+  }
+
+
+  const {
+    error: databaseError
+  } =
+    await supabaseClient
+      .from(
+        "vehicle_images"
+      )
+      .delete()
+      .eq(
+        "id",
+        photoId
+      );
+
+
+  if (databaseError) {
+
+    alert(
+      "Unable to delete photo: " +
+      databaseError.message
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    const marker =
+      "/vehicle-images/";
+
+
+    const index =
+      imageUrl.indexOf(
+        marker
+      );
+
+
+    if (
+      index !== -1
+    ) {
+
+      const path =
+        imageUrl.substring(
+          index + marker.length
+        );
+
+
+      await supabaseClient
+        .storage
+        .from(
+          "vehicle-images"
+        )
+        .remove([
+          path
+        ]);
+
+    }
+
+  }
+
+  catch (storageError) {
+
+    console.warn(
+      "Storage deletion warning:",
+      storageError
+    );
+
+  }
+
+
+  await loadVehiclePhotos();
+
+}
+
+
+/* ==========================================
+   LOAD RESERVATIONS
+========================================== */
+
+async function loadReservations() {
+
+  const loading =
+    document.getElementById(
+      "reservationsLoading"
+    );
+
+
+  const table =
+    document.getElementById(
+      "reservationsTable"
+    );
+
+
+  const empty =
+    document.getElementById(
+      "reservationsEmpty"
+    );
+
+
+  const body =
+    document.getElementById(
+      "reservationsBody"
+    );
+
+
+  loading.style.display =
+    "block";
+
+
+  table.style.display =
+    "none";
+
+
+  empty.style.display =
+    "none";
+
+
+  const {
+    data: reservations,
+    error
+  } =
+    await supabaseClient
+      .from(
+        "reservations"
+      )
+      .select(`
+        *,
+        vehicles (
+          make,
+          model,
+          year
+        )
+      `)
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
+
+
+  loading.style.display =
+    "none";
+
+
+  if (error) {
+
+    console.error(error);
+
+
+    empty.textContent =
+      "Unable to load reservations: " +
+      error.message;
+
+
+    empty.style.display =
+      "block";
+
+
+    return;
+
+  }
+
+
+  body.innerHTML =
+    "";
+
+
+  if (
+    !reservations ||
+    reservations.length === 0
+  ) {
+
+    empty.style.display =
+      "block";
+
+
+    return;
+
+  }
+
+
+  reservations.forEach(
+    reservation => {
+
+      const reservationStatus =
+        String(
+          reservation.status ||
+          "Pending"
+        );
+
+
+      const paymentStatus =
+        String(
+          reservation.payment_status ||
+          "Not Paid"
+        );
+
+
+      const reservationClass =
+        reservationStatus
+          .toLowerCase()
+          .replace(
+            /\s+/g,
+            "-"
+          );
+
+
+      const paymentClass =
+        paymentStatus
+          .toLowerCase()
+          .replace(
+            /\s+/g,
+            "-"
+          );
+
+
+      const vehicle =
+        reservation.vehicles;
+
+
+      const vehicleName =
+        vehicle
+          ? `${vehicle.make} ${vehicle.model} ${vehicle.year || ""}`
+          : "Vehicle unavailable";
+
+
+      const date =
+        reservation.created_at
+          ? new Date(
+              reservation.created_at
+            ).toLocaleString()
+          : "-";
+
+
+      const row =
+        document.createElement(
+          "tr"
+        );
+
+
+      row.innerHTML = `
+
+        <td>
+
+          <strong>
+            ${escapeHtml(
+              reservation.customer_name ||
+              "-"
+            )}
+          </strong>
+
+        </td>
+
+
+        <td>
+          ${escapeHtml(
+            vehicleName
+          )}
+        </td>
+
+
+        <td>
+          ${escapeHtml(
+            reservation.customer_email ||
+            "-"
+          )}
+        </td>
+
+
+        <td>
+          ${escapeHtml(
+            reservation.customer_phone ||
+            "-"
+          )}
+        </td>
+
+
+        <td>
+          ${escapeHtml(
+            reservation.contact_method ||
+            "-"
+          )}
+        </td>
+
+
+        <td>
+          ${escapeHtml(
+            reservation.message ||
+            "-"
+          )}
+        </td>
+
+
+        <td>
+
+          <span
+            class="status ${escapeHtml(
+              reservationClass
+            )}">
+
+            ${escapeHtml(
+              reservationStatus
+            )}
+
+          </span>
+
+        </td>
+
+
+        <td>
+
+          <span
+            class="status ${escapeHtml(
+              paymentClass
+            )}">
+
+            ${escapeHtml(
+              paymentStatus
+            )}
+
+          </span>
+
+        </td>
+
+
+        <td>
+          ${escapeHtml(date)}
+        </td>
+
+
+        <td>
+
+          <div class="action-buttons">
+
+            <button
+              class="success small-btn"
+              onclick="updateReservation(
+                '${reservation.id}',
+                'Confirmed'
+              )">
+
+              Confirm
+
+            </button>
+
+
+            <button
+              class="danger small-btn"
+              onclick="updateReservation(
+                '${reservation.id}',
+                'Cancelled'
+              )">
+
+              Cancel
+
+            </button>
+
+          </div>
+
+        </td>
+
+      `;
+
+
+      body.appendChild(row);
+
+    }
+  );
+
+
+  table.style.display =
+    "table";
+
+}
+
+
+/* ==========================================
+   UPDATE RESERVATION
+========================================== */
+
+async function updateReservation(
+  id,
+  status
+) {
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from(
+        "reservations"
+      )
+      .update({
+        status: status
+      })
+      .eq(
+        "id",
+        id
+      );
+
+
+  if (error) {
+
+    alert(
+      "Unable to update reservation: " +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  await loadReservations();
+
+}
+
+
+/* ==========================================
+   LOGOUT
+========================================== */
+
+async function logout() {
+
+  await supabaseClient.auth.signOut();
+
+
+  window.location.href =
+    "login.html";
+
+}
+
+
+/* ==========================================
+   START ADMIN
+========================================== */
+
+initializeAdmin();
+
+</script>
 
 </body>
 
 </html>
+
+      
