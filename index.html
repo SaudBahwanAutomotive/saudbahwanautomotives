@@ -1,6 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>SaudBahwanAutomotives | Premium Vehicles</title>  <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -14,7 +15,8 @@
       line-height: 1.6;
     }
 
-    /* NAVIGATION */
+    /* ================= NAVIGATION ================= */
+
     nav {
       background: #0b1624;
       min-height: 72px;
@@ -39,7 +41,6 @@
     .nav-links {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
       gap: 20px;
       flex-wrap: wrap;
     }
@@ -51,18 +52,37 @@
       font-weight: 600;
       padding: 8px 0;
       cursor: pointer;
+      transition: 0.2s;
     }
 
     .nav-links a:hover {
       color: #d6a84f;
     }
 
-    /* HERO */
+    /* LOGOUT BUTTON */
+
+    #logoutLink {
+      margin-left: 10px;
+      padding: 9px 16px;
+      border: 1px solid #d6a84f;
+      border-radius: 6px;
+      color: #d6a84f;
+      font-weight: 700;
+    }
+
+    #logoutLink:hover {
+      background: #d6a84f;
+      color: #0b1624;
+    }
+
+    /* ================= HERO ================= */
+
     .hero {
       min-height: 620px;
       display: flex;
       align-items: center;
       padding: 80px 6%;
+
       background:
         linear-gradient(
           rgba(5, 15, 27, 0.72),
@@ -70,6 +90,7 @@
         ),
         url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1800&q=85")
         center/cover no-repeat;
+
       color: white;
     }
 
@@ -124,7 +145,8 @@
       color: #0b1624;
     }
 
-    /* SECTIONS */
+    /* ================= SECTIONS ================= */
+
     section {
       padding: 75px 6%;
     }
@@ -143,7 +165,8 @@
       color: #6b7280;
     }
 
-    /* VEHICLES */
+    /* ================= VEHICLES ================= */
+
     .vehicles {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -200,20 +223,42 @@
       padding-bottom: 3px;
     }
 
-    /* RESERVATION */
+    /* ================= RESERVATION ================= */
+
     .reservation {
-      background: #0b1624;
+      position: relative;
+      background:
+        linear-gradient(
+          rgba(7, 15, 25, 0.92),
+          rgba(7, 15, 25, 0.92)
+        ),
+        url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=85")
+        center/cover no-repeat;
+
       color: white;
       text-align: center;
+      padding: 95px 6%;
+    }
+
+    .reservation .section-title {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .reservation .section-title h2 {
+      color: white;
+      font-size: 42px;
     }
 
     .reservation .section-title p {
-      color: #cbd5e1;
+      color: #e5e7eb;
+      font-size: 18px;
       max-width: 700px;
-      margin: 0 auto 30px;
+      margin: 0 auto 32px;
     }
 
-    /* FEATURES */
+    /* ================= FEATURES ================= */
+
     .features {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -238,13 +283,15 @@
       color: #6b7280;
     }
 
-    /* ACCOUNT */
+    /* ================= ACCOUNT ================= */
+
     .account-section {
       background: #eef2f6;
       text-align: center;
     }
 
-    /* FOOTER */
+    /* ================= FOOTER ================= */
+
     footer {
       background: #070f18;
       color: #cbd5e1;
@@ -267,7 +314,8 @@
       margin: 0 8px;
     }
 
-    /* MOBILE */
+    /* ================= MOBILE ================= */
+
     @media (max-width: 900px) {
 
       nav {
@@ -287,6 +335,10 @@
     }
 
     @media (max-width: 600px) {
+
+      nav {
+        align-items: center;
+      }
 
       .hero {
         min-height: 550px;
@@ -312,13 +364,27 @@
 
       .nav-links {
         gap: 10px;
+        justify-content: center;
       }
 
       .nav-links a {
         font-size: 13px;
       }
+
+      #logoutLink {
+        margin-left: 5px;
+      }
+
+      .reservation {
+        padding: 75px 5%;
+      }
+
+      .reservation .section-title h2 {
+        font-size: 34px;
+      }
     }
-  </style></head><body>  <!-- NAVIGATION -->  <nav><a href="index.html" class="logo">
+
+  </style></head><body>  <!-- ================= NAVIGATION ================= -->  <nav><a href="index.html" class="logo">
   SaudBahwanAutomotives
 </a>
 
@@ -344,21 +410,27 @@
     Create Account
   </a>
 
-  <a href="account.html" id="accountLink" style="display:none;">
+  <a href="account.html"
+     id="accountLink"
+     style="display:none;">
     My Account
   </a>
 
-  <a href="admin.html" id="adminLink" style="display:none;">
+  <a href="admin.html"
+     id="adminLink"
+     style="display:none;">
     Admin Dashboard
   </a>
 
-  <a href="#" id="logoutLink" style="display:none;">
+  <a href="#"
+     id="logoutLink"
+     style="display:none;">
     Logout
   </a>
 
 </div>
 
-  </nav>  <!-- HERO -->  <section class="hero"><div class="hero-content">
+  </nav>  <!-- ================= HERO ================= -->  <section class="hero"><div class="hero-content">
 
   <h1>
     Find Your Next Vehicle
@@ -371,11 +443,15 @@
 
   <div class="buttons">
 
-    <a href="inventory.html" class="btn btn-primary">
+    <a
+      href="inventory.html"
+      class="btn btn-primary">
       Browse Inventory
     </a>
 
-    <a href="contact.html" class="btn btn-outline">
+    <a
+      href="contact.html"
+      class="btn btn-outline">
       Contact Us
     </a>
 
@@ -383,7 +459,7 @@
 
 </div>
 
-  </section>  <!-- FEATURED VEHICLES -->  <section><div class="section-title">
+  </section>  <!-- ================= FEATURED VEHICLES ================= -->  <section><div class="section-title">
 
   <h2>
     Featured Vehicles
@@ -398,7 +474,9 @@
 
 <div class="vehicles">
 
+
   <!-- TOYOTA -->
+
   <div class="vehicle-card">
 
     <img
@@ -419,7 +497,9 @@
         $82,900
       </div>
 
-      <a href="inventory.html" class="vehicle-link">
+      <a
+        href="inventory.html"
+        class="vehicle-link">
         View Vehicle
       </a>
 
@@ -429,6 +509,7 @@
 
 
   <!-- BMW -->
+
   <div class="vehicle-card">
 
     <img
@@ -449,7 +530,9 @@
         $68,500
       </div>
 
-      <a href="inventory.html" class="vehicle-link">
+      <a
+        href="inventory.html"
+        class="vehicle-link">
         View Vehicle
       </a>
 
@@ -459,6 +542,7 @@
 
 
   <!-- MERCEDES -->
+
   <div class="vehicle-card">
 
     <img
@@ -479,7 +563,9 @@
         $74,900
       </div>
 
-      <a href="inventory.html" class="vehicle-link">
+      <a
+        href="inventory.html"
+        class="vehicle-link">
         View Vehicle
       </a>
 
@@ -489,24 +575,27 @@
 
 </div>
 
-  </section>  <!-- RESERVATION CTA -->  <section class="reservation"><div class="section-title">
+  </section>  <!-- ================= RESERVATION ================= -->  <section class="reservation"><div class="section-title">
 
   <h2>
     Found Your Vehicle?
   </h2>
 
   <p>
-    Reserve a vehicle and our team can follow up with you
-    regarding availability and the next steps.
+    Reserve your preferred vehicle online and our team
+    will follow up with you regarding availability,
+    documentation and the next steps.
   </p>
 
-  <a href="inventory.html" class="btn btn-primary">
+  <a
+    href="inventory.html"
+    class="btn btn-primary">
     Browse & Reserve
   </a>
 
 </div>
 
-  </section>  <!-- WHY CHOOSE US -->  <section><div class="section-title">
+  </section>  <!-- ================= WHY CHOOSE US ================= -->  <section><div class="section-title">
 
   <h2>
     Why Choose Us
@@ -564,7 +653,7 @@
 
 </div>
 
-  </section>  <!-- SERVICES -->  <section class="account-section"><div class="section-title">
+  </section>  <!-- ================= SERVICES ================= -->  <section class="account-section"><div class="section-title">
 
   <h2>
     Our Services
@@ -622,7 +711,7 @@
 
 </div>
 
-  </section>  <!-- CUSTOMER ACCOUNT -->  <section class="account-section"><div class="section-title">
+  </section>  <!-- ================= CUSTOMER ACCOUNT ================= -->  <section class="account-section"><div class="section-title">
 
   <h2>
     Manage Your Reservations
@@ -634,21 +723,18 @@
 
   <div
     class="buttons"
-    style="justify-content:center;"
-  >
+    style="justify-content:center;">
 
     <a
       href="register.html"
-      class="btn btn-primary"
-    >
+      class="btn btn-primary">
       Create Account
     </a>
 
     <a
       href="login.html"
       class="btn"
-      style="background:#0b1624;color:white;"
-    >
+      style="background:#0b1624;color:white;">
       Login
     </a>
 
@@ -656,7 +742,7 @@
 
 </div>
 
-  </section>  <!-- FOOTER -->  <footer><h3>
+  </section>  <!-- ================= FOOTER ================= -->  <footer><h3>
   SaudBahwanAutomotives
 </h3>
 
@@ -688,7 +774,7 @@
 
 </div>
 
-  </footer>  <!-- SUPABASE -->  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <!-- DO NOT CHANGE app.js -->  <script src="app.js"></script>  <!-- AUTHENTICATION NAVIGATION -->  <script>
+  </footer>  <!-- ================= SUPABASE ================= -->  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>  <script src="app.js"></script>  <!-- ================= AUTH NAVIGATION ================= -->  <script>
 
     document.addEventListener(
       "DOMContentLoaded",
@@ -715,19 +801,22 @@
           const {
             data: { user },
             error: userError
-          } = await supabaseClient.auth.getUser();
+          } =
+            await supabaseClient.auth.getUser();
 
 
           if (userError) {
+
             console.error(
               "User error:",
               userError.message
             );
+
             return;
           }
 
 
-          /* USER IS NOT LOGGED IN */
+          /* LOGGED OUT */
 
           if (!user) {
 
@@ -750,7 +839,7 @@
           }
 
 
-          /* USER IS LOGGED IN */
+          /* LOGGED IN */
 
           loginLink.style.display =
             "none";
@@ -765,16 +854,17 @@
             "inline-block";
 
 
-          /* CHECK ADMIN ROLE */
+          /* ADMIN CHECK */
 
           const {
             data: profile,
             error: profileError
-          } = await supabaseClient
-            .from("profiles")
-            .select("role")
-            .eq("id", user.id)
-            .maybeSingle();
+          } =
+            await supabaseClient
+              .from("profiles")
+              .select("role")
+              .eq("id", user.id)
+              .maybeSingle();
 
 
           if (profileError) {
@@ -817,7 +907,8 @@
 
               const {
                 error
-              } = await supabaseClient.auth.signOut();
+              } =
+                await supabaseClient.auth.signOut();
 
 
               if (error) {
