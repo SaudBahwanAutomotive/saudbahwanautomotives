@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -30,12 +31,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 6%;
+      padding: 18px 6%;
       gap: 25px;
       position: sticky;
       top: 0;
       z-index: 1000;
-      border-bottom: 1px solid #1e2a38;
+      border-bottom: 1px solid #243244;
     }
 
     .logo {
@@ -58,23 +59,22 @@
       text-decoration: none;
       font-size: 14px;
       font-weight: 600;
-      padding: 8px 0;
     }
 
     .nav-links a:hover {
       color: #d6a84f;
     }
 
-    /* ================= PAGE HEADER ================= */
+    /* ================= HEADER ================= */
 
     .page-header {
-      padding: 65px 6% 35px;
       max-width: 1200px;
       margin: auto;
+      padding: 60px 6% 30px;
     }
 
     .page-header h1 {
-      font-size: clamp(40px, 6vw, 60px);
+      font-size: clamp(40px, 7vw, 62px);
       line-height: 1.1;
       margin-bottom: 15px;
     }
@@ -85,7 +85,7 @@
       max-width: 700px;
     }
 
-    /* ================= MAIN ================= */
+    /* ================= CONTAINER ================= */
 
     .container {
       max-width: 1200px;
@@ -93,11 +93,11 @@
       padding: 20px 6% 80px;
     }
 
-    /* ================= ACCOUNT CARD ================= */
+    /* ================= CARDS ================= */
 
     .account-card {
       background: #111b29;
-      border: 1px solid #243244;
+      border: 1px solid #26364a;
       border-radius: 18px;
       padding: 35px;
       margin-bottom: 35px;
@@ -105,10 +105,12 @@
     }
 
     .card-title {
-      font-size: 25px;
-      margin-bottom: 25px;
       color: #ffffff;
+      font-size: 27px;
+      margin-bottom: 25px;
     }
+
+    /* ================= ACCOUNT INFO ================= */
 
     .account-grid {
       display: grid;
@@ -118,21 +120,23 @@
 
     .info-box {
       background: #0b1420;
-      border: 1px solid #243244;
+      border: 1px solid #26364a;
       border-radius: 12px;
-      padding: 20px;
+      padding: 22px;
     }
 
     .info-label {
       display: block;
-      color: #8e9aaa;
+      color: #8f9aaa;
       font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.7px;
+      margin-bottom: 8px;
       text-transform: uppercase;
-      letter-spacing: 0.6px;
-      margin-bottom: 7px;
     }
 
     .info-value {
+      display: block;
       color: #ffffff;
       font-size: 17px;
       font-weight: 600;
@@ -142,17 +146,15 @@
     /* ================= LOGOUT ================= */
 
     .logout-button {
-      display: inline-block;
       margin-top: 28px;
+      padding: 13px 25px;
+      border: none;
+      border-radius: 7px;
       background: #d6a84f;
       color: #101820;
-      border: none;
-      padding: 13px 25px;
-      border-radius: 7px;
       font-size: 15px;
       font-weight: 700;
       cursor: pointer;
-      text-decoration: none;
     }
 
     .logout-button:hover {
@@ -167,19 +169,18 @@
     }
 
     .reservation-card {
-      background: #111b29;
-      border: 1px solid #243244;
-      border-radius: 16px;
-      overflow: hidden;
       display: grid;
-      grid-template-columns: 250px 1fr;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+      grid-template-columns: 260px 1fr;
+      overflow: hidden;
+      background: #0b1420;
+      border: 1px solid #26364a;
+      border-radius: 16px;
     }
 
     .reservation-image {
       width: 100%;
       height: 100%;
-      min-height: 210px;
+      min-height: 220px;
       object-fit: cover;
     }
 
@@ -188,14 +189,14 @@
     }
 
     .reservation-details h3 {
-      font-size: 23px;
-      margin-bottom: 8px;
       color: #ffffff;
+      font-size: 24px;
+      margin-bottom: 12px;
     }
 
     .reservation-details p {
       color: #b7c0cc;
-      margin-bottom: 8px;
+      margin-bottom: 7px;
     }
 
     .reservation-details strong {
@@ -212,34 +213,33 @@
     }
 
     .status {
-      display: inline-block;
       padding: 7px 13px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: 700;
     }
 
-    .status-pending {
+    .pending {
       background: #3a2f16;
       color: #f3c969;
     }
 
-    .status-confirmed {
+    .confirmed {
       background: #123225;
       color: #6ee7a5;
     }
 
-    .status-cancelled {
+    .cancelled {
       background: #351b20;
       color: #f28b97;
     }
 
-    .status-paid {
+    .paid {
       background: #123225;
       color: #6ee7a5;
     }
 
-    .status-unpaid {
+    .not-paid {
       background: #30271a;
       color: #f0c86a;
     }
@@ -247,11 +247,11 @@
     /* ================= EMPTY ================= */
 
     .empty-state {
-      background: #111b29;
-      border: 1px solid #243244;
-      border-radius: 16px;
-      padding: 50px 30px;
       text-align: center;
+      background: #0b1420;
+      border: 1px solid #26364a;
+      border-radius: 14px;
+      padding: 45px 25px;
     }
 
     .empty-state h3 {
@@ -262,28 +262,24 @@
 
     .empty-state p {
       color: #aeb8c5;
-      margin-bottom: 25px;
+      margin-bottom: 22px;
     }
 
     .browse-button {
       display: inline-block;
+      padding: 13px 24px;
       background: #d6a84f;
       color: #101820;
-      padding: 13px 24px;
-      border-radius: 7px;
       text-decoration: none;
+      border-radius: 7px;
       font-weight: 700;
-    }
-
-    .browse-button:hover {
-      background: #e7bc65;
     }
 
     /* ================= LOADING ================= */
 
     .loading {
-      color: #b7c0cc;
       text-align: center;
+      color: #b7c0cc;
       padding: 30px;
     }
 
@@ -293,16 +289,16 @@
       color: #ffb4bc;
       padding: 18px;
       border-radius: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     /* ================= FOOTER ================= */
 
     footer {
       background: #050a10;
-      border-top: 1px solid #1e2a38;
-      padding: 40px 6%;
+      border-top: 1px solid #243244;
       text-align: center;
+      padding: 40px 6%;
       color: #8e9aaa;
     }
 
@@ -323,12 +319,12 @@
 
       nav {
         flex-direction: column;
-        padding: 18px 5%;
+        padding: 20px 5%;
       }
 
       .nav-links {
         justify-content: center;
-        gap: 12px;
+        gap: 13px;
       }
 
       .account-grid {
@@ -342,16 +338,13 @@
       .reservation-image {
         height: 220px;
       }
+
     }
 
     @media (max-width: 500px) {
 
       .page-header {
         padding: 45px 5% 25px;
-      }
-
-      .page-header h1 {
-        font-size: 42px;
       }
 
       .container {
@@ -362,20 +355,19 @@
         padding: 22px;
       }
 
-      .reservation-details {
-        padding: 20px;
+      .nav-links a {
+        font-size: 13px;
       }
 
-      .nav-links a {
-        font-size: 12px;
-      }
     }
 
   </style>
 
 </head>
 
+
 <body>
+
 
   <!-- ================= NAVIGATION ================= -->
 
@@ -403,11 +395,16 @@
         My Account
       </a>
 
-      <a href="admin.html" id="adminNav" style="display:none;">
+      <a
+        href="admin.html"
+        id="adminNav"
+        style="display:none;">
         Admin Dashboard
       </a>
 
-      <a href="#" id="navLogout">
+      <a
+        href="#"
+        id="navLogout">
         Logout
       </a>
 
@@ -416,7 +413,7 @@
   </nav>
 
 
-  <!-- ================= HEADER ================= -->
+  <!-- ================= PAGE HEADER ================= -->
 
   <header class="page-header">
 
@@ -431,7 +428,7 @@
   </header>
 
 
-  <!-- ================= CONTENT ================= -->
+  <!-- ================= MAIN ================= -->
 
   <main class="container">
 
@@ -519,7 +516,7 @@
     </section>
 
 
-    <!-- RESERVATIONS -->
+    <!-- ================= RESERVATIONS ================= -->
 
     <section class="account-card">
 
@@ -575,12 +572,31 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <script src="app.js"></script>
-
 
   <!-- ================= ACCOUNT SCRIPT ================= -->
 
   <script>
+
+    /* ==========================================
+       CREATE SUPABASE CLIENT
+       ========================================== */
+
+    const ACCOUNT_SUPABASE_URL =
+      "https://xretkpptkpbjxbbuqrey.supabase.co";
+
+    const ACCOUNT_SUPABASE_KEY =
+      "sb_publishable_XrFWvnnoqoUM5sL5UcbQLg_Z7QhtfKT";
+
+    const accountSupabase =
+      window.supabase.createClient(
+        ACCOUNT_SUPABASE_URL,
+        ACCOUNT_SUPABASE_KEY
+      );
+
+
+    /* ==========================================
+       LOAD ACCOUNT
+       ========================================== */
 
     document.addEventListener(
       "DOMContentLoaded",
@@ -603,6 +619,16 @@
             "reservationsContainer"
           );
 
+        const errorContainer =
+          document.getElementById(
+            "errorContainer"
+          );
+
+        const adminNav =
+          document.getElementById(
+            "adminNav"
+          );
+
         const logoutButton =
           document.getElementById(
             "logoutButton"
@@ -613,29 +639,47 @@
             "navLogout"
           );
 
-        const adminNav =
-          document.getElementById(
-            "adminNav"
-          );
-
-        const errorContainer =
-          document.getElementById(
-            "errorContainer"
-          );
-
-
-        /* ================= USER ================= */
 
         try {
 
+          /* ======================================
+             GET LOGGED-IN USER
+             ====================================== */
+
           const {
-            data: { user },
+            data: userData,
             error: userError
           } =
-            await supabaseClient.auth.getUser();
+            await accountSupabase.auth.getUser();
 
 
-          if (userError || !user) {
+          if (userError) {
+
+            console.error(
+              "User error:",
+              userError
+            );
+
+            errorContainer.innerHTML = `
+              <div class="error-message">
+                Unable to load your account.
+                Please log in again.
+              </div>
+            `;
+
+            return;
+          }
+
+
+          const user =
+            userData.user;
+
+
+          /* ======================================
+             NO USER
+             ====================================== */
+
+          if (!user) {
 
             window.location.href =
               "login.html";
@@ -644,36 +688,57 @@
           }
 
 
-          /* ACCOUNT BASIC DETAILS */
+          /* ======================================
+             EMAIL
+             ====================================== */
 
           email.textContent =
             user.email || "Not available";
 
 
-          const createdDate =
-            user.created_at
-              ? new Date(
-                  user.created_at
-                ).toLocaleDateString()
-              : "Not available";
+          /* ======================================
+             MEMBER SINCE
+             ====================================== */
+
+          if (user.created_at) {
+
+            memberSince.textContent =
+              new Date(
+                user.created_at
+              ).toLocaleDateString(
+                undefined,
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric"
+                }
+              );
+
+          } else {
+
+            memberSince.textContent =
+              "Not available";
+
+          }
 
 
-          memberSince.textContent =
-            createdDate;
-
-
-          /* ================= PROFILE ================= */
+          /* ======================================
+             LOAD PROFILE
+             ====================================== */
 
           const {
             data: profile,
             error: profileError
           } =
-            await supabaseClient
+            await accountSupabase
               .from("profiles")
               .select(
-                "full_name, role, created_at"
+                "full_name, role"
               )
-              .eq("id", user.id)
+              .eq(
+                "id",
+                user.id
+              )
               .maybeSingle();
 
 
@@ -681,7 +746,7 @@
 
             console.error(
               "Profile error:",
-              profileError.message
+              profileError
             );
 
           }
@@ -691,6 +756,7 @@
 
             fullName.textContent =
               profile.full_name ||
+              user.user_metadata?.full_name ||
               "Customer";
 
             role.textContent =
@@ -698,8 +764,6 @@
                 ? "Administrator"
                 : "Customer";
 
-
-            /* SHOW ADMIN LINK */
 
             if (
               profile.role === "admin"
@@ -722,345 +786,377 @@
           }
 
 
-          /* ================= RESERVATIONS ================= */
-
-          const {
-            data: reservations,
-            error: reservationError
-          } =
-            await supabaseClient
-              .from("reservations")
-              .select(`
-                id,
-                customer_name,
-                customer_email,
-                customer_phone,
-                contact_method,
-                message,
-                status,
-                payment_status,
-                created_at,
-                vehicle_id,
-                vehicles (
-                  make,
-                  model,
-                  year,
-                  price,
-                  image_url,
-                  mileage,
-                  transmission,
-                  fuel_type
-                )
-              `)
-              .eq(
-                "customer_email",
-                user.email
-              )
-              .order(
-                "created_at",
-                {
-                  ascending: false
-                }
-              );
+          /* ======================================
+             LOAD RESERV             /* ======================================
+                LOAD RESERVATIONS
+                ====================================== */
+
+             const {
+               data: reservations,
+               error: reservationError
+             } =
+               await accountSupabase
+                 .from("reservations")
+                 .select(`
+                   id,
+                   customer_name,
+                   customer_email,
+                   customer_phone,
+                   contact_method,
+                   message,
+                   status,
+                   payment_status,
+                   created_at,
+                   vehicle_id,
+                   vehicles (
+                     make,
+                     model,
+                     year,
+                     price,
+                     image_url,
+                     mileage,
+                     transmission,
+                     fuel_type
+                   )
+                 `)
+                 .eq(
+                   "customer_email",
+                   user.email
+                 )
+                 .order(
+                   "created_at",
+                   {
+                     ascending: false
+                   }
+                 );
+
+
+             if (reservationError) {
+
+               console.error(
+                 "Reservation error:",
+                 reservationError
+               );
+
+               reservationsContainer.innerHTML = `
+                 <div class="error-message">
+                   Unable to load your reservations.
+                   <br><br>
+                   ${reservationError.message}
+                 </div>
+               `;
+
+               return;
+             }
+
+
+             /* ======================================
+                NO RESERVATIONS
+                ====================================== */
+
+             if (
+               !reservations ||
+               reservations.length === 0
+             ) {
+
+               reservationsContainer.innerHTML = `
+
+                 <div class="empty-state">
+
+                   <h3>
+                     You have no reservations yet.
+                   </h3>
+
+                   <p>
+                     Browse our available vehicles
+                     and reserve your preferred vehicle.
+                   </p>
+
+                   <a
+                     href="inventory.html"
+                     class="browse-button">
+                     Browse Available Vehicles
+                   </a>
 
+                 </div>
+
+               `;
 
-          if (reservationError) {
+               return;
+             }
 
-            console.error(
-              "Reservation error:",
-              reservationError.message
-            );
 
-            reservationsContainer.innerHTML = `
-              <div class="error-message">
-                Unable to load your reservations.
-              </div>
-            `;
+             /* ======================================
+                DISPLAY RESERVATIONS
+                ====================================== */
 
-            return;
-          }
+             reservationsContainer.innerHTML =
+               `<div class="reservation-list"></div>`;
 
 
-          /* NO RESERVATIONS */
+             const reservationList =
+               reservationsContainer.querySelector(
+                 ".reservation-list"
+               );
 
-          if (
-            !reservations ||
-            reservations.length === 0
-          ) {
 
-            reservationsContainer.innerHTML = `
+             reservations.forEach(
+               function (reservation) {
 
-              <div class="empty-state">
+                 const vehicle =
+                   reservation.vehicles;
 
-                <h3>
-                  You have no reservations yet.
-                </h3>
 
-                <p>
-                  Browse our available vehicles
-                  and reserve your preferred vehicle.
-                </p>
+                 const vehicleName =
+                   vehicle
+                     ? `${vehicle.make} ${vehicle.model}`
+                     : "Vehicle";
 
-                <a
-                  href="inventory.html"
-                  class="browse-button">
-                  Browse Available Vehicles
-                </a>
 
-              </div>
+                 const image =
+                   vehicle?.image_url ||
+                   "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80";
 
-            `;
 
-            return;
-          }
+                 const reservationDate =
+                   reservation.created_at
+                     ? new Date(
+                         reservation.created_at
+                       ).toLocaleDateString(
+                         undefined,
+                         {
+                           year: "numeric",
+                           month: "long",
+                           day: "numeric"
+                         }
+                       )
+                     : "Not available";
 
 
-          /* DISPLAY RESERVATIONS */
+                 let statusClass =
+                   "pending";
 
-          reservationsContainer.innerHTML =
-            `<div class="reservation-list"></div>`;
 
+                 if (
+                   reservation.status ===
+                   "Confirmed"
+                 ) {
 
-          const reservationList =
-            reservationsContainer.querySelector(
-              ".reservation-list"
-            );
+                   statusClass =
+                     "confirmed";
 
+                 } else if (
+                   reservation.status ===
+                   "Cancelled"
+                 ) {
 
-          reservations.forEach(
-            function (reservation) {
+                   statusClass =
+                     "cancelled";
 
-              const vehicle =
-                reservation.vehicles;
+                 }
 
 
-              const vehicleName =
-                vehicle
-                  ? `${vehicle.make} ${vehicle.model}`
-                  : "Vehicle";
+                 const paymentClass =
+                   reservation.payment_status ===
+                   "Paid"
+                     ? "paid"
+                     : "not-paid";
 
 
-              const image =
-                vehicle?.image_url ||
-                "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80";
+                 const card =
+                   document.createElement(
+                     "div"
+                   );
 
 
-              const reservationDate =
-                reservation.created_at
-                  ? new Date(
-                      reservation.created_at
-                    ).toLocaleDateString()
-                  : "Not available";
+                 card.className =
+                   "reservation-card";
 
 
-              let statusClass =
-                "status-pending";
+                 card.innerHTML = `
 
+                   <img
+                     src="${image}"
+                     class="reservation-image"
+                     alt="${vehicleName}">
 
-              if (
-                reservation.status ===
-                "Confirmed"
-              ) {
 
-                statusClass =
-                  "status-confirmed";
+                   <div class="reservation-details">
 
-              } else if (
-                reservation.status ===
-                "Cancelled"
-              ) {
+                     <h3>
+                       ${vehicleName}
+                     </h3>
 
-                statusClass =
-                  "status-cancelled";
 
-              }
+                     ${
+                       vehicle
+                         ? `
 
+                           <p>
+                             <strong>Year:</strong>
+                             ${vehicle.year}
+                           </p>
 
-              const paymentClass =
-                reservation.payment_status ===
-                "Paid"
-                  ? "status-paid"
-                  : "status-unpaid";
+                           <p>
+                             <strong>Price:</strong>
+                             $${Number(
+                               vehicle.price
+                             ).toLocaleString()}
+                           </p>
 
+                           <p>
+                             <strong>Mileage:</strong>
+                             ${Number(
+                               vehicle.mileage || 0
+                             ).toLocaleString()} km
+                           </p>
 
-              const card =
-                document.createElement(
-                  "div"
-                );
+                           <p>
+                             <strong>Transmission:</strong>
+                             ${vehicle.transmission || "N/A"}
+                           </p>
 
+                           <p>
+                             <strong>Fuel:</strong>
+                             ${vehicle.fuel_type || "N/A"}
+                           </p>
 
-              card.className =
-                "reservation-card";
+                         `
+                         : ""
+                     }
 
 
-              card.innerHTML = `
+                     <p>
+                       <strong>Reserved:</strong>
+                       ${reservationDate}
+                     </p>
 
-                <img
-                  class="reservation-image"
-                  src="${image}"
-                  alt="${vehicleName}">
 
+                     <div class="status-row">
 
-                <div class="reservation-details">
+                       <span
+                         class="status ${statusClass}">
+                         ${reservation.status || "Pending"}
+                       </span>
 
-                  <h3>
-                    ${vehicleName}
-                  </h3>
+                       <span
+                         class="status ${paymentClass}">
+                         ${reservation.payment_status || "Not Paid"}
+                       </span>
 
+                     </div>
 
-                  ${
-                    vehicle
-                      ? `
-                        <p>
-                          <strong>Year:</strong>
-                          ${vehicle.year}
-                        </p>
+                   </div>
 
-                        <p>
-                          <strong>Price:</strong>
-                          $${Number(
-                            vehicle.price
-                          ).toLocaleString()}
-                        </p>
+                 `;
 
-                        <p>
-                          <strong>Mileage:</strong>
-                          ${Number(
-                            vehicle.mileage || 0
-                          ).toLocaleString()} km
-                        </p>
 
-                        <p>
-                          <strong>Transmission:</strong>
-                          ${vehicle.transmission || "N/A"}
-                        </p>
+                 reservationList.appendChild(
+                   card
+                 );
 
-                        <p>
-                          <strong>Fuel:</strong>
-                          ${vehicle.fuel_type || "N/A"}
-                        </p>
-                      `
-                      : ""
-                  }
+               }
+             );
 
 
-                  <p>
-                    <strong>Reserved:</strong>
-                    ${reservationDate}
-                  </p>
+           } catch (error) {
 
+             console.error(
+               "Account loading error:",
+               error
+             );
 
-                  <div class="status-row">
 
-                    <span class="status ${statusClass}">
-                      ${reservation.status || "Pending"}
-                    </span>
+             errorContainer.innerHTML = `
 
-                    <span class="status ${paymentClass}">
-                      ${reservation.payment_status || "Not Paid"}
-                    </span>
+               <div class="error-message">
 
-                  </div>
+                 Something went wrong while
+                 loading your account.
 
-                </div>
+                 <br><br>
 
-              `;
+                 ${error.message || "Unknown error"}
 
+               </div>
 
-              reservationList.appendChild(
-                card
-              );
+             `;
 
-            }
-          );
+           }
 
 
-        } catch (error) {
+           /* ==========================================
+              LOGOUT FUNCTION
+              ========================================== */
 
-          console.error(
-            "Account error:",
-            error
-          );
+           async function logout() {
 
-          errorContainer.innerHTML = `
+             logoutButton.textContent =
+               "Logging out...";
 
-            <div class="error-message">
-              Something went wrong while
-              loading your account.
-            </div>
+             navLogout.textContent =
+               "Logging out...";
 
-          `;
 
-        }
+             const {
+               error
+             } =
+               await accountSupabase.auth.signOut();
 
 
-        /* ================= LOGOUT ================= */
+             if (error) {
 
-        async function logout() {
+               console.error(
+                 "Logout error:",
+                 error
+               );
 
-          logoutButton.textContent =
-            "Logging out...";
+               logoutButton.textContent =
+                 "Logout";
 
-          navLogout.textContent =
-            "Logging out...";
+               navLogout.textContent =
+                 "Logout";
 
+               alert(
+                 "Unable to log out. Please try again."
+               );
 
-          const {
-            error
-          } =
-            await supabaseClient.auth.signOut();
+               return;
+             }
 
 
-          if (error) {
+             window.location.href =
+               "index.html";
 
-            console.error(
-              "Logout error:",
-              error.message
-            );
+           }
 
-            logoutButton.textContent =
-              "Logout";
 
-            navLogout.textContent =
-              "Logout";
+           /* ==========================================
+              LOGOUT BUTTONS
+              ========================================== */
 
-            alert(
-              "Unable to log out. Please try again."
-            );
+           logoutButton.addEventListener(
+             "click",
+             logout
+           );
 
-            return;
-          }
 
+           navLogout.addEventListener(
+             "click",
+             function (event) {
 
-          window.location.href =
-            "index.html";
+               event.preventDefault();
 
-        }
+               logout();
 
+             }
+           );
 
-        logoutButton.addEventListener(
-          "click",
-          logout
-        );
-
-
-        navLogout.addEventListener(
-          "click",
-          function (event)         navLogout.addEventListener(
-          "click",
-          function (event) {
-
-            event.preventDefault();
-
-            logout();
-
-          }
-        );
-
-      }
-    );
+         }
+       );
 
   </script>
+
 
 </body>
 
