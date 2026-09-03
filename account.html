@@ -23,8 +23,6 @@
       line-height: 1.6;
     }
 
-    /* ================= NAVIGATION ================= */
-
     nav {
       background: #0b1624;
       min-height: 72px;
@@ -65,8 +63,6 @@
       color: #d6a84f;
     }
 
-    /* ================= HEADER ================= */
-
     .page-header {
       max-width: 1200px;
       margin: auto;
@@ -85,15 +81,11 @@
       max-width: 700px;
     }
 
-    /* ================= CONTAINER ================= */
-
     .container {
       max-width: 1200px;
       margin: auto;
       padding: 20px 6% 80px;
     }
-
-    /* ================= CARDS ================= */
 
     .account-card {
       background: #111b29;
@@ -101,7 +93,7 @@
       border-radius: 18px;
       padding: 35px;
       margin-bottom: 35px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 15px 40px rgba(0,0,0,.35);
     }
 
     .card-title {
@@ -109,8 +101,6 @@
       font-size: 27px;
       margin-bottom: 25px;
     }
-
-    /* ================= ACCOUNT INFO ================= */
 
     .account-grid {
       display: grid;
@@ -130,7 +120,7 @@
       color: #8f9aaa;
       font-size: 13px;
       font-weight: 600;
-      letter-spacing: 0.7px;
+      letter-spacing: .7px;
       margin-bottom: 8px;
       text-transform: uppercase;
     }
@@ -142,8 +132,6 @@
       font-weight: 600;
       word-break: break-word;
     }
-
-    /* ================= LOGOUT ================= */
 
     .logout-button {
       margin-top: 28px;
@@ -160,8 +148,6 @@
     .logout-button:hover {
       background: #e7bc65;
     }
-
-    /* ================= RESERVATIONS ================= */
 
     .reservation-list {
       display: grid;
@@ -203,8 +189,6 @@
       color: #ffffff;
     }
 
-    /* ================= STATUS ================= */
-
     .status-row {
       display: flex;
       gap: 10px;
@@ -244,8 +228,6 @@
       color: #f0c86a;
     }
 
-    /* ================= EMPTY ================= */
-
     .empty-state {
       text-align: center;
       background: #0b1420;
@@ -275,8 +257,6 @@
       font-weight: 700;
     }
 
-    /* ================= LOADING ================= */
-
     .loading {
       text-align: center;
       color: #b7c0cc;
@@ -291,8 +271,6 @@
       border-radius: 10px;
       margin-bottom: 25px;
     }
-
-    /* ================= FOOTER ================= */
 
     footer {
       background: #050a10;
@@ -312,8 +290,6 @@
       text-decoration: none;
       margin: 0 8px;
     }
-
-    /* ================= MOBILE ================= */
 
     @media (max-width: 800px) {
 
@@ -365,11 +341,7 @@
 
 </head>
 
-
 <body>
-
-
-  <!-- ================= NAVIGATION ================= -->
 
   <nav>
 
@@ -379,32 +351,19 @@
 
     <div class="nav-links">
 
-      <a href="index.html">
-        Home
-      </a>
+      <a href="index.html">Home</a>
 
-      <a href="inventory.html">
-        Inventory
-      </a>
+      <a href="inventory.html">Inventory</a>
 
-      <a href="contact.html">
-        Contact
-      </a>
+      <a href="contact.html">Contact</a>
 
-      <a href="account.html">
-        My Account
-      </a>
+      <a href="account.html">My Account</a>
 
-      <a
-        href="admin.html"
-        id="adminNav"
-        style="display:none;">
+      <a href="admin.html" id="adminNav" style="display:none;">
         Admin Dashboard
       </a>
 
-      <a
-        href="#"
-        id="navLogout">
+      <a href="#" id="navLogout">
         Logout
       </a>
 
@@ -413,13 +372,9 @@
   </nav>
 
 
-  <!-- ================= PAGE HEADER ================= -->
-
   <header class="page-header">
 
-    <h1>
-      My Account
-    </h1>
+    <h1>My Account</h1>
 
     <p>
       Manage your account and view your vehicle reservations.
@@ -428,14 +383,10 @@
   </header>
 
 
-  <!-- ================= MAIN ================= -->
-
   <main class="container">
 
     <div id="errorContainer"></div>
 
-
-    <!-- ACCOUNT INFORMATION -->
 
     <section class="account-card">
 
@@ -451,9 +402,7 @@
             Full Name
           </span>
 
-          <span
-            class="info-value"
-            id="fullName">
+          <span class="info-value" id="fullName">
             Loading...
           </span>
 
@@ -466,9 +415,7 @@
             Email Address
           </span>
 
-          <span
-            class="info-value"
-            id="email">
+          <span class="info-value" id="email">
             Loading...
           </span>
 
@@ -481,9 +428,7 @@
             Account Type
           </span>
 
-          <span
-            class="info-value"
-            id="role">
+          <span class="info-value" id="role">
             Loading...
           </span>
 
@@ -496,9 +441,7 @@
             Member Since
           </span>
 
-          <span
-            class="info-value"
-            id="memberSince">
+          <span class="info-value" id="memberSince">
             Loading...
           </span>
 
@@ -515,8 +458,6 @@
 
     </section>
 
-
-    <!-- ================= RESERVATIONS ================= -->
 
     <section class="account-card">
 
@@ -537,8 +478,6 @@
   </main>
 
 
-  <!-- ================= FOOTER ================= -->
-
   <footer>
 
     <h3>
@@ -551,35 +490,21 @@
 
     <div>
 
-      <a href="index.html">
-        Home
-      </a>
+      <a href="index.html">Home</a>
 
-      <a href="inventory.html">
-        Inventory
-      </a>
+      <a href="inventory.html">Inventory</a>
 
-      <a href="contact.html">
-        Contact
-      </a>
+      <a href="contact.html">Contact</a>
 
     </div>
 
   </footer>
 
 
-  <!-- ================= SUPABASE ================= -->
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
-  <!-- ================= ACCOUNT SCRIPT ================= -->
-
   <script>
-
-    /* ==========================================
-       CREATE SUPABASE CLIENT
-       ========================================== */
 
     const ACCOUNT_SUPABASE_URL =
       "https://xretkpptkpbjxbbuqrey.supabase.co";
@@ -593,10 +518,6 @@
         ACCOUNT_SUPABASE_KEY
       );
 
-
-    /* ==========================================
-       LOAD ACCOUNT
-       ========================================== */
 
     document.addEventListener(
       "DOMContentLoaded",
@@ -642,10 +563,6 @@
 
         try {
 
-          /* ======================================
-             GET LOGGED-IN USER
-             ====================================== */
-
           const {
             data: userData,
             error: userError
@@ -675,10 +592,6 @@
             userData.user;
 
 
-          /* ======================================
-             NO USER
-             ====================================== */
-
           if (!user) {
 
             window.location.href =
@@ -688,43 +601,24 @@
           }
 
 
-          /* ======================================
-             EMAIL
-             ====================================== */
-
           email.textContent =
             user.email || "Not available";
 
 
-          /* ======================================
-             MEMBER SINCE
-             ====================================== */
+          memberSince.textContent =
+            user.created_at
+              ? new Date(
+                  user.created_at
+                ).toLocaleDateString(
+                  undefined,
+                  {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                  }
+                )
+              : "Not available";
 
-          if (user.created_at) {
-
-            memberSince.textContent =
-              new Date(
-                user.created_at
-              ).toLocaleDateString(
-                undefined,
-                {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric"
-                }
-              );
-
-          } else {
-
-            memberSince.textContent =
-              "Not available";
-
-          }
-
-
-          /* ======================================
-             LOAD PROFILE
-             ====================================== */
 
           const {
             data: profile,
@@ -732,13 +626,8 @@
           } =
             await accountSupabase
               .from("profiles")
-              .select(
-                "full_name, role"
-              )
-              .eq(
-                "id",
-                user.id
-              )
+              .select("full_name, role")
+              .eq("id", user.id)
               .maybeSingle();
 
 
@@ -786,378 +675,350 @@
           }
 
 
-          /* ======================================
-             LOAD RESERV             /* ======================================
-                LOAD RESERVATIONS
-                ====================================== */
-
-             const {
-               data: reservations,
-               error: reservationError
-             } =
-               await accountSupabase
-                 .from("reservations")
-                 .select(`
-                   id,
-                   customer_name,
-                   customer_email,
-                   customer_phone,
-                   contact_method,
-                   message,
-                   status,
-                   payment_status,
-                   created_at,
-                   vehicle_id,
-                   vehicles (
-                     make,
-                     model,
-                     year,
-                     price,
-                     image_url,
-                     mileage,
-                     transmission,
-                     fuel_type
-                   )
-                 `)
-                 .eq(
-                   "customer_email",
-                   user.email
-                 )
-                 .order(
-                   "created_at",
-                   {
-                     ascending: false
-                   }
-                 );
-
-
-             if (reservationError) {
-
-               console.error(
-                 "Reservation error:",
-                 reservationError
-               );
-
-               reservationsContainer.innerHTML = `
-                 <div class="error-message">
-                   Unable to load your reservations.
-                   <br><br>
-                   ${reservationError.message}
-                 </div>
-               `;
-
-               return;
-             }
-
-
-             /* ======================================
-                NO RESERVATIONS
-                ====================================== */
-
-             if (
-               !reservations ||
-               reservations.length === 0
-             ) {
-
-               reservationsContainer.innerHTML = `
-
-                 <div class="empty-state">
-
-                   <h3>
-                     You have no reservations yet.
-                   </h3>
-
-                   <p>
-                     Browse our available vehicles
-                     and reserve your preferred vehicle.
-                   </p>
-
-                   <a
-                     href="inventory.html"
-                     class="browse-button">
-                     Browse Available Vehicles
-                   </a>
+          const {
+            data: reservations,
+            error: reservationError
+          } =
+            await accountSupabase
+              .from("reservations")
+              .select(`
+                id,
+                customer_name,
+                customer_email,
+                customer_phone,
+                contact_method,
+                message,
+                status,
+                payment_status,
+                created_at,
+                vehicle_id,
+                vehicles (
+                  make,
+                  model,
+                  year,
+                  price,
+                  image_url,
+                  mileage,
+                  transmission,
+                  fuel_type
+                )
+              `)
+              .eq(
+                "customer_email",
+                user.email
+              )
+              .order(
+                "created_at",
+                {
+                  ascending: false
+                }
+              );
+
+
+          if (reservationError) {
+
+            console.error(
+              "Reservation error:",
+              reservationError
+            );
+
+            reservationsContainer.innerHTML = `
+              <div class="error-message">
+                Unable to load your reservations.
+                <br><br>
+                ${reservationError.message}
+              </div>
+            `;
+
+            return;
+          }
+
+
+          if (
+            !reservations ||
+            reservations.length === 0
+          ) {
+
+            reservationsContainer.innerHTML = `
+
+              <div class="empty-state">
+
+                <h3>
+                  You have no reservations yet.
+                </h3>
+
+                <p>
+                  Browse our available vehicles
+                  and reserve your preferred vehicle.
+                </p>
+
+                <a
+                  href="inventory.html"
+                  class="browse-button">
+                  Browse Available Vehicles
+                </a>
+
+              </div>
+
+            `;
+
+          } else {
+
+            reservationsContainer.innerHTML =
+              `<div class="reservation-list"></div>`;
+
+
+            const reservationList =
+              reservationsContainer.querySelector(
+                ".reservation-list"
+              );
+
+
+            reservations.forEach(
+              function (reservation) {
 
-                 </div>
-
-               `;
+                const vehicle =
+                  reservation.vehicles;
 
-               return;
-             }
+                const vehicleName =
+                  vehicle
+                    ? `${vehicle.make} ${vehicle.model}`
+                    : "Vehicle";
 
+                const image =
+                  vehicle?.image_url ||
+                  "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80";
 
-             /* ======================================
-                DISPLAY RESERVATIONS
-                ====================================== */
+                const date =
+                  reservation.created_at
+                    ? new Date(
+                        reservation.created_at
+                      ).toLocaleDateString(
+                        undefined,
+                        {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric"
+                        }
+                      )
+                    : "Not available";
 
-             reservationsContainer.innerHTML =
-               `<div class="reservation-list"></div>`;
 
+                let statusClass =
+                  "pending";
 
-             const reservationList =
-               reservationsContainer.querySelector(
-                 ".reservation-list"
-               );
 
+                if (
+                  reservation.status ===
+                  "Confirmed"
+                ) {
 
-             reservations.forEach(
-               function (reservation) {
+                  statusClass =
+                    "confirmed";
 
-                 const vehicle =
-                   reservation.vehicles;
+                } else if (
+                  reservation.status ===
+                  "Cancelled"
+                ) {
 
+                  statusClass =
+                    "cancelled";
 
-                 const vehicleName =
-                   vehicle
-                     ? `${vehicle.make} ${vehicle.model}`
-                     : "Vehicle";
+                }
 
 
-                 const image =
-                   vehicle?.image_url ||
-                   "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80";
+                const paymentClass =
+                  reservation.payment_status ===
+                  "Paid"
+                    ? "paid"
+                    : "not-paid";
 
 
-                 const reservationDate =
-                   reservation.created_at
-                     ? new Date(
-                         reservation.created_at
-                       ).toLocaleDateString(
-                         undefined,
-                         {
-                           year: "numeric",
-                           month: "long",
-                           day: "numeric"
-                         }
-                       )
-                     : "Not available";
+                const card =
+                  document.createElement(
+                    "div"
+                  );
 
 
-                 let statusClass =
-                   "pending";
+                card.className =
+                  "reservation-card";
 
 
-                 if (
-                   reservation.status ===
-                   "Confirmed"
-                 ) {
+                card.innerHTML = `
 
-                   statusClass =
-                     "confirmed";
+                  <img
+                    src="${image}"
+                    class="reservation-image"
+                    alt="${vehicleName}">
 
-                 } else if (
-                   reservation.status ===
-                   "Cancelled"
-                 ) {
 
-                   statusClass =
-                     "cancelled";
+                  <div class="reservation-details">
 
-                 }
+                    <h3>
+                      ${vehicleName}
+                    </h3>
 
+                    ${
+                      vehicle
+                        ? `
 
-                 const paymentClass =
-                   reservation.payment_status ===
-                   "Paid"
-                     ? "paid"
-                     : "not-paid";
+                          <p>
+                            <strong>Year:</strong>
+                            ${vehicle.year}
+                          </p>
 
+                          <p>
+                            <strong>Price:</strong>
+                            $${Number(
+                              vehicle.price
+                            ).toLocaleString()}
+                          </p>
 
-                 const card =
-                   document.createElement(
-                     "div"
-                   );
+                          <p>
+                            <strong>Mileage:</strong>
+                            ${Number(
+                              vehicle.mileage || 0
+                            ).toLocaleString()} km
+                          </p>
 
+                          <p>
+                            <strong>Transmission:</strong>
+                            ${vehicle.transmission || "N/A"}
+                          </p>
 
-                 card.className =
-                   "reservation-card";
+                          <p>
+                            <strong>Fuel:</strong>
+                            ${vehicle.fuel_type || "N/A"}
+                          </p>
 
+                        `
+                        : ""
+                    }
 
-                 card.innerHTML = `
+                    <p>
+                      <strong>Reserved:</strong>
+                      ${date}
+                    </p>
 
-                   <img
-                     src="${image}"
-                     class="reservation-image"
-                     alt="${vehicleName}">
 
+                    <div class="status-row">
 
-                   <div class="reservation-details">
+                      <span
+                        class="status ${statusClass}">
+                        ${reservation.status || "Pending"}
+                      </span>
 
-                     <h3>
-                       ${vehicleName}
-                     </h3>
+                      <span
+                        class="status ${paymentClass}">
+                        ${reservation.payment_status || "Not Paid"}
+                      </span>
 
+                    </div>
 
-                     ${
-                       vehicle
-                         ? `
+                  </div>
 
-                           <p>
-                             <strong>Year:</strong>
-                             ${vehicle.year}
-                           </p>
+                `;
 
-                           <p>
-                             <strong>Price:</strong>
-                             $${Number(
-                               vehicle.price
-                             ).toLocaleString()}
-                           </p>
 
-                           <p>
-                             <strong>Mileage:</strong>
-                             ${Number(
-                               vehicle.mileage || 0
-                             ).toLocaleString()} km
-                           </p>
+                reservationList.appendChild(
+                  card
+                );
 
-                           <p>
-                             <strong>Transmission:</strong>
-                             ${vehicle.transmission || "N/A"}
-                           </p>
+              }
+            );
 
-                           <p>
-                             <strong>Fuel:</strong>
-                             ${vehicle.fuel_type || "N/A"}
-                           </p>
+          }
 
-                         `
-                         : ""
-                     }
 
+        } catch (error) {
 
-                     <p>
-                       <strong>Reserved:</strong>
-                       ${reservationDate}
-                     </p>
+          console.error(
+            "Account loading error:",
+            error
+          );
 
+          errorContainer.innerHTML = `
 
-                     <div class="status-row">
+            <div class="error-message">
 
-                       <span
-                         class="status ${statusClass}">
-                         ${reservation.status || "Pending"}
-                       </span>
+              Something went wrong while
+              loading your account.
 
-                       <span
-                         class="status ${paymentClass}">
-                         ${reservation.payment_status || "Not Paid"}
-                       </span>
+              <br><br>
 
-                     </div>
+              ${error.message || "Unknown error"}
 
-                   </div>
+            </div>
 
-                 `;
+          `;
 
+        }
 
-                 reservationList.appendChild(
-                   card
-                 );
 
-               }
-             );
+        async function logout() {
 
+          logoutButton.textContent =
+            "Logging out...";
 
-           } catch (error) {
+          navLogout.textContent =
+            "Logging out...";
 
-             console.error(
-               "Account loading error:",
-               error
-             );
 
+          const {
+            error
+          } =
+            await accountSupabase.auth.signOut();
 
-             errorContainer.innerHTML = `
 
-               <div class="error-message">
+          if (error) {
 
-                 Something went wrong while
-                 loading your account.
+            console.error(
+              "Logout error:",
+              error
+            );
 
-                 <br><br>
+            logoutButton.textContent =
+              "Logout";
 
-                 ${error.message || "Unknown error"}
+            navLogout.textContent =
+              "Logout";
 
-               </div>
+            alert(
+              "Unable to log out. Please try again."
+            );
 
-             `;
+            return;
+          }
 
-           }
 
+          window.location.href =
+            "index.html";
 
-           /* ==========================================
-              LOGOUT FUNCTION
-              ========================================== */
+        }
 
-           async function logout() {
 
-             logoutButton.textContent =
-               "Logging out...";
+        logoutButton.addEventListener(
+          "click",
+          logout
+        );
 
-             navLogout.textContent =
-               "Logging out...";
 
+        navLogout.addEventListener(
+          "click",
+          function (event) {
 
-             const {
-               error
-             } =
-               await accountSupabase.auth.signOut();
+            event.preventDefault();
 
+            logout();
 
-             if (error) {
+          }
+        );
 
-               console.error(
-                 "Logout error:",
-                 error
-               );
-
-               logoutButton.textContent =
-                 "Logout";
-
-               navLogout.textContent =
-                 "Logout";
-
-               alert(
-                 "Unable to log out. Please try again."
-               );
-
-               return;
-             }
-
-
-             window.location.href =
-               "index.html";
-
-           }
-
-
-           /* ==========================================
-              LOGOUT BUTTONS
-              ========================================== */
-
-           logoutButton.addEventListener(
-             "click",
-             logout
-           );
-
-
-           navLogout.addEventListener(
-             "click",
-             function (event) {
-
-               event.preventDefault();
-
-               logout();
-
-             }
-           );
-
-         }
-       );
+      }
+    );
 
   </script>
 
-
 </body>
 
-</html>
+  </html>
