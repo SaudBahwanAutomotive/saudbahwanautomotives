@@ -33,7 +33,16 @@
       align-items: start;
     }
 
+    /* =========================
+       IMAGE GALLERY
+    ========================= */
+
+    .gallery {
+      width: 100%;
+    }
+
     .car-image-box {
+      position: relative;
       background: #15181d;
       border-radius: 16px;
       overflow: hidden;
@@ -45,6 +54,80 @@
       object-fit: cover;
       display: block;
     }
+
+    .gallery-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.65);
+      color: white;
+      font-size: 25px;
+      cursor: pointer;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gallery-arrow:hover {
+      background: rgba(0, 0, 0, 0.85);
+    }
+
+    .gallery-prev {
+      left: 15px;
+    }
+
+    .gallery-next {
+      right: 15px;
+    }
+
+    .image-counter {
+      position: absolute;
+      right: 15px;
+      bottom: 15px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 7px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+    .thumbnail-container {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+
+    .thumbnail {
+      width: 90px;
+      height: 65px;
+      flex: 0 0 auto;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      opacity: 0.65;
+      transition: 0.2s ease;
+    }
+
+    .thumbnail:hover {
+      opacity: 1;
+    }
+
+    .thumbnail.active {
+      border-color: white;
+      opacity: 1;
+    }
+
+    /* =========================
+       VEHICLE INFO
+    ========================= */
 
     .car-info h1 {
       font-size: 42px;
@@ -96,6 +179,10 @@
       color: #bbb;
       line-height: 1.7;
     }
+
+    /* =========================
+       RESERVATION
+    ========================= */
 
     .reservation-box {
       margin-top: 40px;
@@ -203,7 +290,12 @@
       color: #aaa;
     }
 
+    /* =========================
+       MOBILE
+    ========================= */
+
     @media (max-width: 800px) {
+
       .car-layout {
         grid-template-columns: 1fr;
       }
@@ -219,6 +311,17 @@
       .car-price {
         font-size: 25px;
       }
+
+      .thumbnail {
+        width: 80px;
+        height: 58px;
+      }
+
+      .gallery-arrow {
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+      }
     }
   </style>
 </head>
@@ -227,19 +330,34 @@
 
   <header>
     <div class="container">
+
       <nav>
+
         <a href="index.html" class="logo">
           SaudBahwanAutomotives
         </a>
 
         <div class="nav-links">
-          <a href="index.html">Home</a>
-          <a href="inventory.html">Inventory</a>
-          <a href="contact.html">Contact</a>
+
+          <a href="index.html">
+            Home
+          </a>
+
+          <a href="inventory.html">
+            Inventory
+          </a>
+
+          <a href="contact.html">
+            Contact
+          </a>
+
         </div>
+
       </nav>
+
     </div>
   </header>
+
 
   <main class="car-page">
 
@@ -247,67 +365,174 @@
       ← Back to Inventory
     </a>
 
+
     <div id="loading" class="loading">
       Loading vehicle...
     </div>
+
 
     <div id="vehicleContent" style="display:none;">
 
       <div class="car-layout">
 
+
+        <!-- =========================
+             LEFT SIDE
+        ========================= -->
+
         <div>
 
-          <div class="car-image-box">
-            <img id="carImage" src="" alt="Vehicle">
+          <div class="gallery">
+
+            <div class="car-image-box">
+
+              <img
+                id="carImage"
+                src=""
+                alt="Vehicle"
+              >
+
+              <button
+                type="button"
+                class="gallery-arrow gallery-prev"
+                id="prevImage"
+                aria-label="Previous image"
+              >
+                ‹
+              </button>
+
+              <button
+                type="button"
+                class="gallery-arrow gallery-next"
+                id="nextImage"
+                aria-label="Next image"
+              >
+                ›
+              </button>
+
+              <div
+                id="imageCounter"
+                class="image-counter"
+              >
+                1 / 1
+              </div>
+
+            </div>
+
+
+            <div
+              id="thumbnailContainer"
+              class="thumbnail-container"
+            >
+            </div>
+
           </div>
 
+
           <div class="description">
-            <h2>Vehicle Description</h2>
+
+            <h2>
+              Vehicle Description
+            </h2>
+
             <p id="carDescription"></p>
+
           </div>
 
         </div>
 
+
+        <!-- =========================
+             RIGHT SIDE
+        ========================= -->
+
         <div class="car-info">
 
-          <span id="carStatus" class="car-status"></span>
+          <span
+            id="carStatus"
+            class="car-status"
+          ></span>
+
 
           <h1 id="carTitle"></h1>
 
-          <div id="carPrice" class="car-price"></div>
+
+          <div
+            id="carPrice"
+            class="car-price"
+          ></div>
+
 
           <div class="spec-grid">
 
+
             <div class="spec">
-              <span>Year</span>
+
+              <span>
+                Year
+              </span>
+
               <strong id="carYear"></strong>
+
             </div>
 
+
             <div class="spec">
-              <span>Mileage</span>
+
+              <span>
+                Mileage
+              </span>
+
               <strong id="carMileage"></strong>
+
             </div>
 
+
             <div class="spec">
-              <span>Transmission</span>
+
+              <span>
+                Transmission
+              </span>
+
               <strong id="carTransmission"></strong>
+
             </div>
 
+
             <div class="spec">
-              <span>Fuel Type</span>
+
+              <span>
+                Fuel Type
+              </span>
+
               <strong id="carFuel"></strong>
+
             </div>
 
+
             <div class="spec">
-              <span>Condition</span>
+
+              <span>
+                Condition
+              </span>
+
               <strong id="carCondition"></strong>
+
             </div>
+
 
           </div>
 
+
+          <!-- =========================
+               RESERVATION FORM
+          ========================= -->
+
           <div class="reservation-box">
 
-            <h2>Reserve This Vehicle</h2>
+            <h2>
+              Reserve This Vehicle
+            </h2>
 
             <p>
               Interested in this vehicle? Submit your details and our
@@ -315,10 +540,15 @@
               the next steps.
             </p>
 
+
             <form id="reservationForm">
 
+
               <div class="form-group">
-                <label for="customerName">Full Name</label>
+
+                <label for="customerName">
+                  Full Name
+                </label>
 
                 <input
                   type="text"
@@ -326,10 +556,15 @@
                   required
                   placeholder="Your full name"
                 >
+
               </div>
 
+
               <div class="form-group">
-                <label for="customerEmail">Email Address</label>
+
+                <label for="customerEmail">
+                  Email Address
+                </label>
 
                 <input
                   type="email"
@@ -337,10 +572,15 @@
                   required
                   placeholder="you@example.com"
                 >
+
               </div>
 
+
               <div class="form-group">
-                <label for="customerPhone">Phone Number</label>
+
+                <label for="customerPhone">
+                  Phone Number
+                </label>
 
                 <input
                   type="tel"
@@ -348,7 +588,9 @@
                   required
                   placeholder="Your phone number"
                 >
+
               </div>
+
 
               <div class="form-group">
 
@@ -357,12 +599,23 @@
                 </label>
 
                 <select id="contactMethod">
-                  <option value="Phone">Phone</option>
-                  <option value="Email">Email</option>
-                  <option value="WhatsApp">WhatsApp</option>
+
+                  <option value="Phone">
+                    Phone
+                  </option>
+
+                  <option value="Email">
+                    Email
+                  </option>
+
+                  <option value="WhatsApp">
+                    WhatsApp
+                  </option>
+
                 </select>
 
               </div>
+
 
               <div class="form-group">
 
@@ -376,6 +629,7 @@
                 ></textarea>
 
               </div>
+
 
               <label class="checkbox-row">
 
@@ -393,6 +647,7 @@
 
               </label>
 
+
               <button
                 type="submit"
                 class="reserve-btn"
@@ -401,10 +656,12 @@
                 Submit Reservation Request
               </button>
 
+
               <div
                 id="formMessage"
                 class="message"
               ></div>
+
 
             </form>
 
@@ -418,20 +675,27 @@
 
   </main>
 
+
   <footer>
+
     <div class="container">
+
       <p>
         © 2026 SaudBahwanAutomotives.
         All rights reserved.
       </p>
+
     </div>
+
   </footer>
+
 
   <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <!-- Supabase configuration -->
   <script src="app.js"></script>
+
 
   <script>
 
@@ -480,8 +744,23 @@
     const reserveButton =
       document.getElementById("reserveButton");
 
+    const thumbnailContainer =
+      document.getElementById("thumbnailContainer");
 
-    // Get vehicle ID from URL
+    const prevImageButton =
+      document.getElementById("prevImage");
+
+    const nextImageButton =
+      document.getElementById("nextImage");
+
+    const imageCounter =
+      document.getElementById("imageCounter");
+
+
+    /* =========================
+       VEHICLE ID
+    ========================= */
+
     const urlParams =
       new URLSearchParams(
         window.location.search
@@ -491,42 +770,74 @@
       urlParams.get("id");
 
 
+    /* =========================
+       IMAGE VARIABLES
+    ========================= */
+
+    let vehicleImages = [];
+
+    let currentImageIndex = 0;
+
+
+    /* =========================
+       ERROR
+    ========================= */
+
     function showError(message) {
 
       loading.innerHTML = `
-        <h2>Vehicle Not Found</h2>
 
-        <p>${message}</p>
+        <h2>
+          Vehicle Not Found
+        </h2>
 
         <p>
+          ${message}
+        </p>
+
+        <p>
+
           <a href="inventory.html">
             Return to Inventory
           </a>
+
         </p>
+
       `;
 
     }
 
 
-    /*
-      OMR PRICE FORMAT
-    */
+    /* =========================
+       OMR PRICE
+    ========================= */
+
     function formatPrice(price) {
 
-      const number = Number(price);
+      const number =
+        Number(price);
 
       if (isNaN(number)) {
+
         return "Price unavailable";
+
       }
 
       return "ر.ع. " +
-        number.toLocaleString("en-US", {
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 3
-        });
+        number.toLocaleString(
+          "en-US",
+          {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 3
+          }
+        );
 
     }
 
+
+    /* =========================
+       MILEAGE
+    ========================= */
 
     function formatMileage(mileage) {
 
@@ -534,7 +845,9 @@
         mileage === null ||
         mileage === undefined
       ) {
+
         return "N/A";
+
       }
 
       return Number(mileage)
@@ -543,6 +856,256 @@
 
     }
 
+
+    /* =========================
+       DISPLAY IMAGE
+    ========================= */
+
+    function displayImage(index) {
+
+      if (!vehicleImages.length) {
+        return;
+      }
+
+
+      if (index < 0) {
+
+        index =
+          vehicleImages.length - 1;
+
+      }
+
+
+      if (
+        index >=
+        vehicleImages.length
+      ) {
+
+        index = 0;
+
+      }
+
+
+      currentImageIndex =
+        index;
+
+
+      carImage.src =
+        vehicleImages[index];
+
+
+      imageCounter.textContent =
+        `${index + 1} / ${vehicleImages.length}`;
+
+
+      const thumbnails =
+        document.querySelectorAll(
+          ".thumbnail"
+        );
+
+
+      thumbnails.forEach(
+        (thumbnail, thumbnailIndex) => {
+
+          thumbnail.classList.toggle(
+            "active",
+            thumbnailIndex === index
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =========================
+       CREATE GALLERY
+    ========================= */
+
+    function createGallery() {
+
+      thumbnailContainer.innerHTML = "";
+
+
+      vehicleImages.forEach(
+        (image, index) => {
+
+          const thumbnail =
+            document.createElement("img");
+
+
+          thumbnail.src =
+            image;
+
+
+          thumbnail.alt =
+            `Vehicle image ${index + 1}`;
+
+
+          thumbnail.className =
+            "thumbnail";
+
+
+          thumbnail.loading =
+            "lazy";
+
+
+          thumbnail.addEventListener(
+            "click",
+            function() {
+
+              displayImage(index);
+
+            }
+          );
+
+
+          thumbnailContainer.appendChild(
+            thumbnail
+          );
+
+        }
+      );
+
+
+      displayImage(0);
+
+
+      /*
+        Hide navigation when there
+        is only one image.
+      */
+
+      const showControls =
+        vehicleImages.length > 1;
+
+
+      prevImageButton.style.display =
+        showControls
+          ? "flex"
+          : "none";
+
+
+      nextImageButton.style.display =
+        showControls
+          ? "flex"
+          : "none";
+
+
+      imageCounter.style.display =
+        showControls
+          ? "block"
+          : "none";
+
+    }
+
+
+    /* =========================
+       LOAD VEHICLE IMAGES
+    ========================= */
+
+    async function loadVehicleImages(
+      vehicle
+    ) {
+
+      /*
+        Start with the existing
+        main image.
+      */
+
+      vehicleImages = [];
+
+
+      if (vehicle.image_url) {
+
+        vehicleImages.push(
+          vehicle.image_url
+        );
+
+      }
+
+
+      /*
+        Get additional images
+        from vehicle_images table.
+      */
+
+      const {
+        data: additionalImages,
+        error
+      } = await supabaseClient
+        .from("vehicle_images")
+        .select("image_url")
+        .eq("vehicle_id", vehicle.id)
+        .order("created_at", {
+          ascending: true
+        });
+
+
+      /*
+        If the table is not ready yet,
+        don't break the vehicle page.
+      */
+
+      if (error) {
+
+        console.warn(
+          "Additional vehicle images unavailable:",
+          error.message
+        );
+
+      }
+
+
+      if (
+        additionalImages &&
+        additionalImages.length
+      ) {
+
+        additionalImages.forEach(
+          image => {
+
+            if (
+              image.image_url &&
+              !vehicleImages.includes(
+                image.image_url
+              )
+            ) {
+
+              vehicleImages.push(
+                image.image_url
+              );
+
+            }
+
+          }
+        );
+
+      }
+
+
+      /*
+        Fallback image
+        if vehicle has no photo.
+      */
+
+      if (!vehicleImages.length) {
+
+        vehicleImages.push(
+          "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80"
+        );
+
+      }
+
+
+      createGallery();
+
+    }
+
+
+    /* =========================
+       LOAD VEHICLE
+    ========================= */
 
     async function loadVehicle() {
 
@@ -553,6 +1116,7 @@
         );
 
         return;
+
       }
 
 
@@ -578,6 +1142,7 @@
         );
 
         return;
+
       }
 
 
@@ -587,31 +1152,34 @@
           "This vehicle could not be found."
         );
 
-        return;
+        ret        return;
+
       }
 
 
-      // Page title
+      /* =========================
+         PAGE TITLE
+      ========================= */
+
       document.title =
         `${vehicle.year} ${vehicle.make} ${vehicle.model} | SaudBahwanAutomotives`;
 
 
-      // Vehicle image
-      carImage.src =
-        vehicle.image_url ||
-        "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80";
+      /* =========================
+         LOAD VEHICLE GALLERY
+      ========================= */
+
+      await loadVehicleImages(vehicle);
 
 
-      carImage.alt =
-        `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
+      /* =========================
+         VEHICLE INFORMATION
+      ========================= */
 
-
-      // Main information
       carTitle.textContent =
         `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
 
 
-      // OMR price
       carPrice.textContent =
         formatPrice(vehicle.price);
 
@@ -645,8 +1213,13 @@
         "Please contact us for more information about this vehicle.";
 
 
+      /* =========================
+         SHOW VEHICLE
+      ========================= */
+
       loading.style.display =
         "none";
+
 
       vehicleContent.style.display =
         "block";
@@ -654,7 +1227,96 @@
     }
 
 
-    // Reservation form
+    /* =========================
+       NEXT IMAGE
+    ========================= */
+
+    nextImageButton.addEventListener(
+      "click",
+      function() {
+
+        if (
+          vehicleImages.length <= 1
+        ) {
+          return;
+        }
+
+
+        displayImage(
+          currentImageIndex + 1
+        );
+
+      }
+    );
+
+
+    /* =========================
+       PREVIOUS IMAGE
+    ========================= */
+
+    prevImageButton.addEventListener(
+      "click",
+      function() {
+
+        if (
+          vehicleImages.length <= 1
+        ) {
+          return;
+        }
+
+
+        displayImage(
+          currentImageIndex - 1
+        );
+
+      }
+    );
+
+
+    /* =========================
+       KEYBOARD GALLERY CONTROL
+    ========================= */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (
+          vehicleImages.length <= 1
+        ) {
+          return;
+        }
+
+
+        if (
+          event.key === "ArrowRight"
+        ) {
+
+          displayImage(
+            currentImageIndex + 1
+          );
+
+        }
+
+
+        if (
+          event.key === "ArrowLeft"
+        ) {
+
+          displayImage(
+            currentImageIndex - 1
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =========================
+       RESERVATION FORM
+    ========================= */
+
     reservationForm.addEventListener(
       "submit",
       async function(event) {
@@ -662,12 +1324,16 @@
         event.preventDefault();
 
 
+        /* Clear previous message */
+
         formMessage.className =
           "message";
 
         formMessage.textContent =
           "";
 
+
+        /* Check vehicle */
 
         if (!vehicleId) {
 
@@ -682,12 +1348,18 @@
         }
 
 
+        /* Disable button */
+
         reserveButton.disabled =
           true;
 
         reserveButton.textContent =
           "Submitting...";
 
+
+        /* =========================
+           CUSTOMER DETAILS
+        ========================= */
 
         const customerName =
           document
@@ -723,22 +1395,45 @@
             .trim();
 
 
+        /* =========================
+           SUBMIT RESERVATION
+        ========================= */
+
         const { error } =
           await supabaseClient
             .from("reservations")
             .insert([
               {
-                vehicle_id: vehicleId,
-                customer_name: customerName,
-                customer_email: customerEmail,
-                customer_phone: customerPhone,
-                contact_method: contactMethod,
-                message: message,
-                status: "Pending",
-                payment_status: "Not Paid"
+                vehicle_id:
+                  vehicleId,
+
+                customer_name:
+                  customerName,
+
+                customer_email:
+                  customerEmail,
+
+                customer_phone:
+                  customerPhone,
+
+                contact_method:
+                  contactMethod,
+
+                message:
+                  message,
+
+                status:
+                  "Pending",
+
+                payment_status:
+                  "Not Paid"
               }
             ]);
 
+
+        /* =========================
+           RESERVATION ERROR
+        ========================= */
 
         if (error) {
 
@@ -769,6 +1464,10 @@
         }
 
 
+        /* =========================
+           SUCCESS
+        ========================= */
+
         formMessage.className =
           "message success";
 
@@ -791,10 +1490,13 @@
     );
 
 
-    // Start
+    /* =========================
+       START PAGE
+    ========================= */
+
     loadVehicle();
 
   </script>
 
 </body>
-              </html>
+</html>
