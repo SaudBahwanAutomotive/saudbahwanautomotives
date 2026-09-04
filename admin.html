@@ -9,14 +9,20 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
+    /* ================================
+       ADMIN PAGE
+    ================================= */
+
     body {
-      background: #f5f5f5;
+      background: #ffffff !important;
+      color: #111111 !important;
     }
 
     .admin-page {
       max-width: 1400px;
       margin: 0 auto;
       padding: 30px 20px 60px;
+      color: #111111;
     }
 
     .admin-header {
@@ -30,25 +36,37 @@
 
     .admin-header h1 {
       margin: 0;
+      color: #111111 !important;
     }
 
     .admin-header p {
       margin: 6px 0 0;
-      color: #666;
+      color: #555555 !important;
     }
 
     .admin-section {
-      background: #fff;
+      background: #ffffff !important;
+      color: #111111 !important;
       padding: 25px;
       margin-bottom: 25px;
       border-radius: 12px;
-      box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e5e5e5;
     }
 
     .admin-section h2 {
       margin-top: 0;
       margin-bottom: 20px;
+      color: #111111 !important;
     }
+
+    .admin-section p {
+      color: #333333 !important;
+    }
+
+    /* ================================
+       FORM
+    ================================= */
 
     .form-grid {
       display: grid;
@@ -68,6 +86,7 @@
       display: block;
       font-weight: 600;
       margin-bottom: 6px;
+      color: #111111 !important;
     }
 
     .form-group input,
@@ -76,14 +95,29 @@
       width: 100%;
       box-sizing: border-box;
       padding: 11px;
-      border: 1px solid #ccc;
+      border: 1px solid #bbbbbb;
       border-radius: 6px;
       font-size: 15px;
+      background: #ffffff !important;
+      color: #111111 !important;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #777777 !important;
+      opacity: 1;
     }
 
     .form-group textarea {
       min-height: 100px;
       resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #111111;
     }
 
     .button-row {
@@ -111,23 +145,23 @@
     }
 
     .primary {
-      background: #111;
-      color: #fff;
+      background: #111111 !important;
+      color: #ffffff !important;
     }
 
     .success {
-      background: #198754;
-      color: #fff;
+      background: #198754 !important;
+      color: #ffffff !important;
     }
 
     .danger {
-      background: #dc3545;
-      color: #fff;
+      background: #dc3545 !important;
+      color: #ffffff !important;
     }
 
     .secondary {
-      background: #777;
-      color: #fff;
+      background: #666666 !important;
+      color: #ffffff !important;
     }
 
     .small-btn {
@@ -135,6 +169,10 @@
       font-size: 12px;
       margin: 2px;
     }
+
+    /* ================================
+       MESSAGES
+    ================================= */
 
     .message {
       display: none;
@@ -144,14 +182,20 @@
     }
 
     .success-message {
-      background: #e8f7ed;
-      color: #176b38;
+      background: #e8f7ed !important;
+      color: #176b38 !important;
+      border: 1px solid #b7dfc5;
     }
 
     .error-message {
-      background: #fdeaea;
-      color: #9b1c1c;
+      background: #fdeaea !important;
+      color: #9b1c1c !important;
+      border: 1px solid #efb5b5;
     }
+
+    /* ================================
+       TABLES
+    ================================= */
 
     .table-wrapper {
       overflow-x: auto;
@@ -161,19 +205,28 @@
       width: 100%;
       border-collapse: collapse;
       min-width: 900px;
+      background: #ffffff !important;
+      color: #111111 !important;
     }
 
     th,
     td {
       padding: 12px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #eeeeee;
       text-align: left;
       vertical-align: top;
+      color: #111111 !important;
+      background: #ffffff;
     }
 
     th {
-      background: #f7f7f7;
+      background: #f3f3f3 !important;
       font-weight: 700;
+      color: #111111 !important;
+    }
+
+    tr:hover td {
+      background: #fafafa !important;
     }
 
     .vehicle-thumb {
@@ -182,6 +235,10 @@
       object-fit: cover;
       border-radius: 5px;
     }
+
+    /* ================================
+       STATUS
+    ================================= */
 
     .status {
       display: inline-block;
@@ -192,60 +249,75 @@
     }
 
     .pending {
-      background: #fff3cd;
-      color: #856404;
+      background: #fff3cd !important;
+      color: #856404 !important;
     }
 
     .confirmed {
-      background: #d1e7dd;
-      color: #0f5132;
+      background: #d1e7dd !important;
+      color: #0f5132 !important;
     }
 
     .cancelled {
-      background: #f8d7da;
-      color: #842029;
+      background: #f8d7da !important;
+      color: #842029 !important;
     }
 
     .paid {
-      background: #d1e7dd;
-      color: #0f5132;
+      background: #d1e7dd !important;
+      color: #0f5132 !important;
     }
 
     .not-paid {
-      background: #f8d7da;
-      color: #842029;
+      background: #f8d7da !important;
+      color: #842029 !important;
     }
 
     .under-review {
-      background: #fff3cd;
-      color: #856404;
+      background: #fff3cd !important;
+      color: #856404 !important;
     }
 
     .rejected {
-      background: #f8d7da;
-      color: #842029;
+      background: #f8d7da !important;
+      color: #842029 !important;
     }
+
+    /* ================================
+       PHOTO MANAGER
+    ================================= */
 
     .photo-manager {
       display: none;
       margin-top: 20px;
       padding: 20px;
-      background: #f8f8f8;
+      background: #ffffff !important;
+      color: #111111 !important;
       border-radius: 10px;
+      border: 1px solid #dddddd;
+    }
+
+    .photo-manager h2,
+    .photo-manager p {
+      color: #111111 !important;
     }
 
     .photo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: repeat(
+        auto-fill,
+        minmax(150px, 1fr)
+      );
       gap: 15px;
       margin-top: 20px;
     }
 
     .photo-card {
-      background: #fff;
+      background: #ffffff !important;
+      color: #111111 !important;
       border-radius: 8px;
       overflow: hidden;
-      border: 1px solid #ddd;
+      border: 1px solid #dddddd;
     }
 
     .photo-card img {
@@ -265,7 +337,7 @@
     }
 
     .no-proof {
-      color: #777;
+      color: #666666 !important;
       font-size: 12px;
     }
 
@@ -273,7 +345,12 @@
       padding: 10px 16px;
     }
 
+    /* ================================
+       MOBILE
+    ================================= */
+
     @media (max-width: 700px) {
+
       .form-grid {
         grid-template-columns: 1fr;
       }
@@ -285,6 +362,11 @@
       .admin-section {
         padding: 18px;
       }
+
+      .admin-page {
+        padding: 20px 12px 50px;
+      }
+
     }
   </style>
 </head>
@@ -297,7 +379,10 @@
 
       <div>
         <h1>Admin Dashboard</h1>
-        <p>Manage vehicles, photos, reservations and payments.</p>
+
+        <p>
+          Manage vehicles, photos, reservations and payments.
+        </p>
       </div>
 
       <button
@@ -324,7 +409,10 @@
         <div class="form-grid">
 
           <div class="form-group">
-            <label for="make">Make</label>
+            <label for="make">
+              Make
+            </label>
+
             <input
               type="text"
               id="make"
@@ -332,8 +420,12 @@
             >
           </div>
 
+
           <div class="form-group">
-            <label for="model">Model</label>
+            <label for="model">
+              Model
+            </label>
+
             <input
               type="text"
               id="model"
@@ -341,8 +433,12 @@
             >
           </div>
 
+
           <div class="form-group">
-            <label for="year">Year</label>
+            <label for="year">
+              Year
+            </label>
+
             <input
               type="number"
               id="year"
@@ -350,8 +446,12 @@
             >
           </div>
 
+
           <div class="form-group">
-            <label for="price">Price (OMR)</label>
+            <label for="price">
+              Price (OMR)
+            </label>
+
             <input
               type="number"
               id="price"
@@ -360,16 +460,24 @@
             >
           </div>
 
+
           <div class="form-group">
-            <label for="mileage">Mileage (km)</label>
+            <label for="mileage">
+              Mileage (km)
+            </label>
+
             <input
               type="number"
               id="mileage"
             >
           </div>
 
+
           <div class="form-group">
-            <label for="transmission">Transmission</label>
+            <label for="transmission">
+              Transmission
+            </label>
+
             <input
               type="text"
               id="transmission"
@@ -377,8 +485,12 @@
             >
           </div>
 
+
           <div class="form-group">
-            <label for="fuel">Fuel</label>
+            <label for="fuel">
+              Fuel
+            </label>
+
             <input
               type="text"
               id="fuel"
@@ -386,25 +498,54 @@
             >
           </div>
 
+
           <div class="form-group">
-            <label for="condition">Condition</label>
+            <label for="condition">
+              Condition
+            </label>
+
             <select id="condition">
-              <option value="New">New</option>
-              <option value="Used">Used</option>
+
+              <option value="New">
+                New
+              </option>
+
+              <option value="Used">
+                Used
+              </option>
+
             </select>
           </div>
 
+
           <div class="form-group">
-            <label for="status">Status</label>
+            <label for="status">
+              Status
+            </label>
+
             <select id="status">
-              <option value="Available">Available</option>
-              <option value="Reserved">Reserved</option>
-              <option value="Sold">Sold</option>
+
+              <option value="Available">
+                Available
+              </option>
+
+              <option value="Reserved">
+                Reserved
+              </option>
+
+              <option value="Sold">
+                Sold
+              </option>
+
             </select>
           </div>
 
+
           <div class="form-group">
-            <label for="image_url">Main Image URL</label>
+            <label for="image_url">
+              Main Image URL
+            </label>
+
             <input
               type="url"
               id="image_url"
@@ -412,15 +553,22 @@
             >
           </div>
 
+
           <div class="form-group full">
-            <label for="description">Description</label>
+
+            <label for="description">
+              Description
+            </label>
+
             <textarea
               id="description"
               placeholder="Vehicle description..."
             ></textarea>
+
           </div>
 
         </div>
+
 
         <div class="button-row">
 
@@ -431,6 +579,7 @@
           >
             Add Vehicle
           </button>
+
 
           <button
             type="button"
@@ -446,6 +595,7 @@
 
       </form>
 
+
       <div
         id="vehicleMessage"
         class="message"
@@ -458,7 +608,9 @@
 
     <section class="admin-section">
 
-      <h2>Inventory</h2>
+      <h2>
+        Inventory
+      </h2>
 
       <div class="table-wrapper">
 
@@ -476,6 +628,7 @@
             </tr>
 
           </thead>
+
 
           <tbody id="vehiclesTableBody">
 
@@ -505,10 +658,12 @@
         Vehicle Photos
       </h2>
 
+
       <p>
         Vehicle:
         <strong id="photoVehicleName"></strong>
       </p>
+
 
       <input
         type="file"
@@ -516,6 +671,7 @@
         accept="image/jpeg,image/png,image/webp"
         multiple
       >
+
 
       <div class="button-row">
 
@@ -527,6 +683,7 @@
           Upload Photos
         </button>
 
+
         <button
           type="button"
           class="secondary"
@@ -537,10 +694,12 @@
 
       </div>
 
+
       <div
         id="photoMessage"
         class="message"
       ></div>
+
 
       <div
         id="photoGrid"
@@ -554,7 +713,10 @@
 
     <section class="admin-section">
 
-      <h2>Reservations & Payments</h2>
+      <h2>
+        Reservations & Payments
+      </h2>
+
 
       <div class="table-wrapper">
 
@@ -578,6 +740,7 @@
 
           </thead>
 
+
           <tbody id="reservationsTableBody">
 
             <tr>
@@ -598,7 +761,9 @@
 
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script src="app.js"></script>
+
 
   <script>
 
@@ -626,15 +791,24 @@
         value === undefined ||
         value === ""
       ) {
+
         return "Price on request";
+
       }
+
 
       const number =
         Number(value);
 
-      if (Number.isNaN(number)) {
+
+      if (
+        Number.isNaN(number)
+      ) {
+
         return escapeHtml(value);
+
       }
+
 
       return (
         "ر.ع. " +
@@ -660,12 +834,16 @@
           "vehicleMessage"
         );
 
-      box.textContent = text;
+
+      box.textContent =
+        text;
+
 
       box.className =
         success
           ? "message success-message"
           : "message error-message";
+
 
       box.style.display =
         "block";
@@ -683,12 +861,16 @@
           "photoMessage"
         );
 
-      box.textContent = text;
+
+      box.textContent =
+        text;
+
 
       box.className =
         success
           ? "message success-message"
           : "message error-message";
+
 
       box.style.display =
         "block";
@@ -744,8 +926,10 @@
           "Access denied. Admin account required."
         );
 
+
         window.location.href =
           "index.html";
+
 
         return false;
 
@@ -830,6 +1014,7 @@
                 "Available"
               );
 
+
             const statusClass =
               status
                 .toLowerCase()
@@ -848,33 +1033,46 @@
               <tr>
 
                 <td>
+
                   <img
                     src="${escapeHtml(image)}"
                     class="vehicle-thumb"
                     alt="Vehicle"
                   >
+
                 </td>
 
+
                 <td>
+
                   <strong>
                     ${escapeHtml(vehicle.make)}
                     ${escapeHtml(vehicle.model)}
                   </strong>
+
                 </td>
+
 
                 <td>
                   ${escapeHtml(vehicle.year)}
                 </td>
 
+
                 <td>
                   ${formatOMR(vehicle.price)}
                 </td>
 
+
                 <td>
-                  <span class="status ${statusClass}">
+
+                  <span
+                    class="status ${statusClass}"
+                  >
                     ${escapeHtml(status)}
                   </span>
+
                 </td>
+
 
                 <td>
 
@@ -885,6 +1083,7 @@
                   >
                     Edit
                   </button>
+
 
                   <button
                     type="button"
@@ -897,6 +1096,7 @@
                   >
                     Photos
                   </button>
+
 
                   <button
                     type="button"
@@ -919,9 +1119,7 @@
 
 
     document
-      .getElementById(
-        "vehicleForm"
-      )
+      .getElementById("vehicleForm")
       .addEventListener(
         "submit",
         async function(event) {
@@ -935,15 +1133,15 @@
             );
 
 
-          button.disabled = true;
+          button.disabled =
+            true;
 
 
           const vehicleData = {
 
             make:
               document
-                .getElementById("make")
-                .value
+                .getElementById("make")                .value
                 .trim(),
 
             model:
@@ -1092,7 +1290,7 @@
         error
       } =
         await supabaseClient
-                    .from("vehicles")
+          .from("vehicles")
           .select("*")
           .eq(
             "id",
@@ -1721,11 +1919,6 @@
       }
 
 
-      /*
-       * Remove the corresponding
-       * storage file when possible.
-       */
-
       try {
 
         const marker =
@@ -1910,7 +2103,8 @@
               );
 
 
-            let actionButtons = "";
+            let actionButtons =
+              "";
 
 
             if (
@@ -2085,16 +2279,21 @@
                 </td>
 
                 <td>
-                  ${reservation.created_at
-                    ? new Date(
-                        reservation.created_at
-                      ).toLocaleString()
-                    : "-"
+                  ${
+                    reservation.created_at
+                      ? new Date(
+                          reservation.created_at
+                        ).toLocaleString()
+                      : "-"
                   }
-                </td>
+                </td>                </td>
 
                 <td>
-                  ${actionButtons}
+                  <div class="action-buttons">
+
+                    ${actionButtons}
+
+                  </div>
                 </td>
 
               </tr>
@@ -2107,20 +2306,16 @@
     }
 
 
-    async function confirmReservation(
-      id
-    ) {
+    async function confirmReservation(id) {
 
       const confirmed =
         confirm(
           "Confirm this reservation?"
         );
 
-
       if (!confirmed) {
         return;
       }
-
 
       const {
         error
@@ -2135,7 +2330,6 @@
             id
           );
 
-
       if (error) {
 
         alert(
@@ -2147,26 +2341,21 @@
 
       }
 
-
       await loadReservations();
 
     }
 
 
-    async function cancelReservation(
-      id
-    ) {
+    async function cancelReservation(id) {
 
       const confirmed =
         confirm(
           "Cancel this reservation?"
         );
 
-
       if (!confirmed) {
         return;
       }
-
 
       const {
         error
@@ -2181,7 +2370,6 @@
             id
           );
 
-
       if (error) {
 
         alert(
@@ -2193,26 +2381,21 @@
 
       }
 
-
       await loadReservations();
 
     }
 
 
-    async function markAsPaid(
-      id
-    ) {
+    async function markAsPaid(id) {
 
       const confirmed =
         confirm(
           "Have you verified that the customer's payment has actually been received?"
         );
 
-
       if (!confirmed) {
         return;
       }
-
 
       const {
         error
@@ -2226,7 +2409,6 @@
             "id",
             id
           );
-
 
       if (error) {
 
@@ -2239,26 +2421,21 @@
 
       }
 
-
       await loadReservations();
 
     }
 
 
-    async function approvePayment(
-      id
-    ) {
+    async function approvePayment(id) {
 
       const confirmed =
         confirm(
-          "Approve this payment after verifying that the money has actually been received?"
+          "Have you verified the payment proof and confirmed that the payment was actually received?"
         );
-
 
       if (!confirmed) {
         return;
       }
-
 
       const {
         error
@@ -2273,7 +2450,6 @@
             id
           );
 
-
       if (error) {
 
         alert(
@@ -2285,26 +2461,21 @@
 
       }
 
-
       await loadReservations();
 
     }
 
 
-    async function rejectPayment(
-      id
-    ) {
+    async function rejectPayment(id) {
 
       const confirmed =
         confirm(
           "Reject this payment proof?"
         );
 
-
       if (!confirmed) {
         return;
-            }
-
+      }
 
       const {
         error
@@ -2319,7 +2490,6 @@
             id
           );
 
-
       if (error) {
 
         alert(
@@ -2331,7 +2501,6 @@
 
       }
 
-
       await loadReservations();
 
     }
@@ -2341,65 +2510,111 @@
       reservationId
     ) {
 
-      const {
-        data: reservation,
-        error: reservationError
-      } =
-        await supabaseClient
-          .from("reservations")
-          .select(
-            "payment_proof_path"
-          )
-          .eq(
-            "id",
-            reservationId
-          )
-          .single();
+      try {
+
+        const {
+          data: reservation,
+          error: reservationError
+        } =
+          await supabaseClient
+            .from("reservations")
+            .select(
+              "payment_proof_path"
+            )
+            .eq(
+              "id",
+              reservationId
+            )
+            .single();
 
 
-      if (reservationError) {
+        if (reservationError) {
+          throw reservationError;
+        }
 
-        alert(
-          "Unable to load payment proof: " +
-          reservationError.message
+
+        if (
+          !reservation ||
+          !reservation.payment_proof_path
+        ) {
+
+          alert(
+            "No payment proof has been uploaded."
+          );
+
+          return;
+
+        }
+
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient
+            .storage
+            .from("payment-proofs")
+            .createSignedUrl(
+              reservation.payment_proof_path,
+              600
+            );
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        if (
+          !data ||
+          !data.signedUrl
+        ) {
+
+          alert(
+            "Unable to create a secure payment proof link."
+          );
+
+          return;
+
+        }
+
+
+        window.open(
+          data.signedUrl,
+          "_blank"
         );
 
-        return;
+
+      } catch (error) {
+
+        alert(
+          "Unable to view payment proof: " +
+          error.message
+        );
 
       }
 
+    }
 
-      if (
-        !reservation ||
-        !reservation.payment_proof_path
-      ) {
 
-        alert(
-          "No payment proof has been uploaded."
-        );
+    /*
+     * LOGOUT
+     */
 
-        return;
-
-      }
-
+    async function logout() {
 
       const {
-        data,
         error
       } =
         await supabaseClient
-          .storage
-          .from("payment-proofs")
-          .createSignedUrl(
-            reservation.payment_proof_path,
-            600
-          );
+          .auth
+          .signOut();
 
 
       if (error) {
 
         alert(
-          "Unable to open payment proof: " +
+          "Unable to log out: " +
           error.message
         );
 
@@ -2408,40 +2623,71 @@
       }
 
 
-      if (
-        !data ||
-        !data.signedUrl
-      ) {
+      window.location.href =
+        "login.html";
 
-        alert(
-          "Unable to generate secure payment proof link."
-        );
+    }
+
+
+    /*
+     * INITIAL LOAD
+     */
+
+    (async function () {
+
+      const {
+        data: {
+          session
+        }
+      } =
+        await supabaseClient
+          .auth
+          .getSession();
+
+
+      if (!session) {
+
+        window.location.href =
+          "login.html";
 
         return;
 
       }
 
 
-      window.open(
-        data.signedUrl,
-        "_blank"
-      );
-
-    }
-
-
-    /*
-     * INITIALIZE
-     */
-
-    async function initializeAdmin() {
-
-      const isAdmin =
-        await checkAdmin();
+      const {
+        data: profile,
+        error
+      } =
+        await supabaseClient
+          .from("profiles")
+          .select("role")
+          .eq(
+            "id",
+            session.user.id
+          )
+          .single();
 
 
-      if (!isAdmin) {
+      if (
+        error ||
+        !profile ||
+        profile.role !== "admin"
+      ) {
+
+        alert(
+          "Access denied. Admin account required."
+        );
+
+        await supabaseClient
+          .auth
+          .signOut();
+
+        window.location.href =
+          "login.html";
+
         return;
+
       }
 
 
@@ -2449,23 +2695,7 @@
 
       await loadReservations();
 
-    }
-
-
-    async function logout() {
-
-      await supabaseClient
-        .auth
-        .signOut();
-
-
-      window.location.href =
-        "login.html";
-
-    }
-
-
-    initializeAdmin();
+    })();
 
   </script>
 
