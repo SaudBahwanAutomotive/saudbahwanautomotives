@@ -54,10 +54,6 @@
       color: #111111;
     }
 
-    /* =========================================
-       LOADING
-    ========================================= */
-
     #loading {
       background: #ffffff !important;
       color: #111111 !important;
@@ -66,18 +62,11 @@
       font-size: 18px;
     }
 
-    /* =========================================
-       VEHICLE CONTENT
-    ========================================= */
-
     #vehicleContent {
+      display: none;
       background: #ffffff !important;
       color: #111111 !important;
     }
-
-    /* =========================================
-       GALLERY
-    ========================================= */
 
     .vehicle-gallery {
       background: #ffffff !important;
@@ -155,10 +144,6 @@
       border-color: #111111;
     }
 
-    /* =========================================
-       VEHICLE INFORMATION
-    ========================================= */
-
     .vehicle-info,
     .vehicle-details,
     .specifications,
@@ -186,10 +171,6 @@
       line-height: 1.7;
     }
 
-    /* =========================================
-       SPECIFICATIONS
-    ========================================= */
-
     .spec {
       background: #ffffff !important;
       color: #111111 !important;
@@ -204,10 +185,6 @@
     .spec p {
       color: #111111 !important;
     }
-
-    /* =========================================
-       RESERVATION
-    ========================================= */
 
     .reservation-section,
     #reservationSection {
@@ -225,10 +202,6 @@
     #reservationSection h3 {
       color: #111111 !important;
     }
-
-    /* =========================================
-       FORM
-    ========================================= */
 
     form label {
       display: block;
@@ -269,10 +242,6 @@
       outline: 2px solid #dddddd;
     }
 
-    /* =========================================
-       BUTTONS
-    ========================================= */
-
     button {
       font-family: inherit;
     }
@@ -298,11 +267,8 @@
       cursor: not-allowed;
     }
 
-    /* =========================================
-       PAYMENT SECTION
-    ========================================= */
-
     #paymentSection {
+      display: none;
       background: #ffffff !important;
       color: #111111 !important;
       border: 1px solid #cccccc;
@@ -326,10 +292,6 @@
       border-radius: 6px;
       width: 100%;
     }
-
-    /* =========================================
-       MESSAGES
-    ========================================= */
 
     .message {
       padding: 13px;
@@ -362,6 +324,7 @@
     }
 
     #reviewMessage {
+      display: none;
       background: #fff8e1 !important;
       color: #5d4600 !important;
       border: 1px solid #d6b656;
@@ -371,10 +334,6 @@
       margin-top: 15px;
     }
 
-    /* =========================================
-       LINKS
-    ========================================= */
-
     .car-page a {
       color: #0645ad !important;
     }
@@ -383,9 +342,43 @@
       color: #002b70 !important;
     }
 
-    /* =========================================
-       MOBILE
-    ========================================= */
+    .back-link {
+      display: inline-block;
+      margin-bottom: 25px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .vehicle-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .spec {
+      margin-bottom: 0;
+    }
+
+    .spec-label {
+      display: block;
+      font-size: 13px;
+      color: #666666 !important;
+      margin-bottom: 5px;
+    }
+
+    .spec-value {
+      display: block;
+      font-size: 16px;
+      font-weight: 600;
+      color: #111111 !important;
+    }
 
     @media (max-width: 768px) {
 
@@ -426,19 +419,31 @@
         height: 55px;
       }
 
+      .spec-grid {
+        grid-template-columns: 1fr;
+      }
+
     }
 
   </style>
 
 </head>
 
-
 <body>
 
   <main class="car-page">
 
+    <a
+      href="inventory.html"
+      class="back-link"
+    >
+      ← Back to Inventory
+    </a>
 
-    <!-- LOADING -->
+
+    <!-- =========================================
+         LOADING
+    ========================================= -->
 
     <div id="loading">
 
@@ -447,25 +452,31 @@
     </div>
 
 
-    <!-- VEHICLE CONTENT -->
+    <!-- =========================================
+         ERROR
+    ========================================= -->
 
     <div
-      id="vehicleContent"
-      style="display: none;"
-    >
+      id="errorMessage"
+      class="message error-message"
+      style="display:none;"
+    ></div>
 
 
-      <!-- VEHICLE GALLERY -->
+    <!-- =========================================
+         VEHICLE CONTENT
+    ========================================= -->
+
+    <div id="vehicleContent">
+
+
+      <!-- =======================================
+           GALLERY
+      ======================================== -->
 
       <section class="vehicle-gallery">
 
         <div class="main-image-container">
-
-          <img
-            id="mainCarImage"
-            src=""
-            alt="Vehicle"
-          >
 
           <button
             type="button"
@@ -474,8 +485,16 @@
             onclick="previousImage()"
             aria-label="Previous image"
           >
-            &#10094;
+            ‹
           </button>
+
+
+          <img
+            id="mainVehicleImage"
+            src=""
+            alt="Vehicle"
+          >
+
 
           <button
             type="button"
@@ -484,7 +503,7 @@
             onclick="nextImage()"
             aria-label="Next image"
           >
-            &#10095;
+            ›
           </button>
 
         </div>
@@ -498,7 +517,9 @@
       </section>
 
 
-      <!-- VEHICLE DETAILS -->
+      <!-- =======================================
+           VEHICLE INFORMATION
+      ======================================== -->
 
       <section class="vehicle-info">
 
@@ -506,62 +527,124 @@
           Vehicle
         </h1>
 
+
         <div id="carPrice">
-          -
+          ر.ع. 0
         </div>
 
 
-        <div class="specifications">
+        <p id="carDescription">
+          Loading description...
+        </p>
+
+
+        <div class="spec-grid">
+
 
           <div class="spec">
-            <strong>Year:</strong>
-            <span id="carYear"></span>
+
+            <span class="spec-label">
+              Year
+            </span>
+
+            <span
+              id="carYear"
+              class="spec-value"
+            >
+              -
+            </span>
+
           </div>
+
 
           <div class="spec">
-            <strong>Mileage:</strong>
-            <span id="carMileage"></span>
+
+            <span class="spec-label">
+              Mileage
+            </span>
+
+            <span
+              id="carMileage"
+              class="spec-value"
+            >
+              -
+            </span>
+
           </div>
+
 
           <div class="spec">
-            <strong>Transmission:</strong>
-            <span id="carTransmission"></span>
+
+            <span class="spec-label">
+              Transmission
+            </span>
+
+            <span
+              id="carTransmission"
+              class="spec-value"
+            >
+              -
+            </span>
+
           </div>
+
 
           <div class="spec">
-            <strong>Fuel:</strong>
-            <span id="carFuel"></span>
+
+            <span class="spec-label">
+              Fuel
+            </span>
+
+            <span
+              id="carFuel"
+              class="spec-value"
+            >
+              -
+            </span>
+
           </div>
+
 
           <div class="spec">
-            <strong>Condition:</strong>
-            <span id="carCondition"></span>
+
+            <span class="spec-label">
+              Condition
+            </span>
+
+            <span
+              id="carCondition"
+              class="spec-value"
+            >
+              -
+            </span>
+
           </div>
+
 
           <div class="spec">
-            <strong>Status:</strong>
-            <span id="carStatus"></span>
+
+            <span class="spec-label">
+              Status
+            </span>
+
+            <span
+              id="carStatus"
+              class="spec-value"
+            >
+              -
+            </span>
+
           </div>
 
-        </div>
-
-
-        <div class="details-card">
-
-          <h2>
-            Description
-          </h2>
-
-          <p id="carDescription">
-            -
-          </p>
 
         </div>
 
       </section>
 
 
-      <!-- RESERVATION SECTION -->
+      <!-- =======================================
+           RESERVATION
+      ======================================== -->
 
       <section
         id="reservationSection"
@@ -573,68 +656,62 @@
         </h2>
 
         <p>
-          Complete the form below and our team will contact you regarding your reservation.
+          Submit your details and our team will contact you regarding your reservation.
         </p>
 
 
         <form id="reservationForm">
 
 
-          <div>
+          <div style="margin-bottom:15px;">
 
             <label for="customerName">
               Full Name *
             </label>
 
             <input
-              type="text"
               id="customerName"
+              type="text"
               required
+              placeholder="Enter your full name"
             >
 
           </div>
 
 
-          <br>
-
-
-          <div>
+          <div style="margin-bottom:15px;">
 
             <label for="customerEmail">
               Email Address *
             </label>
 
             <input
-              type="email"
               id="customerEmail"
+              type="email"
               required
+              placeholder="Enter your email"
             >
 
           </div>
 
 
-          <br>
-
-
-          <div>
+          <div style="margin-bottom:15px;">
 
             <label for="customerPhone">
               Phone Number *
             </label>
 
             <input
-              type="tel"
               id="customerPhone"
+              type="tel"
               required
+              placeholder="Enter your phone number"
             >
 
           </div>
 
 
-          <br>
-
-
-          <div>
+          <div style="margin-bottom:15px;">
 
             <label for="contactMethod">
               Preferred Contact Method *
@@ -646,7 +723,11 @@
             >
 
               <option value="">
-                Select one
+                Select contact method
+              </option>
+
+              <option value="Email">
+                Email
               </option>
 
               <option value="Phone">
@@ -657,19 +738,12 @@
                 WhatsApp
               </option>
 
-              <option value="Email">
-                Email
-              </option>
-
             </select>
 
           </div>
 
 
-          <br>
-
-
-          <div>
+          <div style="margin-bottom:15px;">
 
             <label for="message">
               Message
@@ -677,18 +751,15 @@
 
             <textarea
               id="message"
-              placeholder="Any questions or information you would like us to know?"
+              placeholder="Any questions or additional information?"
             ></textarea>
 
           </div>
 
 
-          <br>
-
-
           <button
-            type="submit"
             id="reservationButton"
+            type="submit"
           >
             Submit Reservation
           </button>
@@ -697,84 +768,76 @@
           <div
             id="reservationSuccess"
             class="message success-message"
-            style="display: none;"
+            style="display:none;"
           ></div>
 
 
           <div
             id="reservationError"
             class="message error-message"
-            style="display: none;"
+            style="display:none;"
           ></div>
-
 
         </form>
 
       </section>
 
 
-      <!-- PAYMENT SECTION -->
+      <!-- =======================================
+           PAYMENT SECTION
+      ======================================== -->
 
       <section
         id="paymentSection"
-        style="display: none;"
       >
 
         <h2>
           Payment Confirmation
         </h2>
 
+
         <p>
-          If you have already made the payment for your reservation, upload a screenshot or image of your payment confirmation below.
+          If you have already made your payment, upload a screenshot or image of your payment confirmation below.
         </p>
 
 
-        <form
-          onsubmit="event.preventDefault(); uploadPaymentProof();"
-        >
+        <div style="margin-top:20px;">
 
           <label for="paymentProof">
-            Payment Screenshot *
+            Payment Screenshot
           </label>
 
-
           <input
-            type="file"
             id="paymentProof"
+            type="file"
             accept="image/jpeg,image/png,image/webp"
           >
 
-
-          <br>
-          <br>
+        </div>
 
 
-          <button
-            type="submit"
-            id="uploadPaymentButton"
-          >
-            Upload Payment Proof
-          </button>
-
-        </form>
+        <button
+          id="uploadPaymentButton"
+          type="button"
+          onclick="uploadPaymentProof()"
+          style="margin-top:15px;"
+        >
+          Upload Payment Proof
+        </button>
 
 
         <div
           id="paymentUploadMessage"
           class="message"
-          style="display: none;"
+          style="display:none;"
         ></div>
 
 
         <div
           id="reviewMessage"
-          style="display: none;"
         >
-
-          Your payment confirmation has been submitted and is now under review. Our team will verify the payment and update your reservation.
-
+          Your payment proof has been submitted and is now under review. Our team will verify the payment before confirming your reservation.
         </div>
-
 
       </section>
 
@@ -784,14 +847,11 @@
   </main>
 
 
-  <!-- SUPABASE -->
+  <!-- =========================================
+       SUPABASE
+  ========================================= -->
 
-  <script
-    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-  ></script>
-
-
-  <!-- APP -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script src="app.js"></script>
 
@@ -802,29 +862,26 @@
        VARIABLES
     ========================================= */
 
-    let vehicleId = null;
-
-    let vehicleImages = [];
-
-    let currentImageIndex = 0;
-
-    let reservationId = null;
-
-    let paymentUploadToken = null;
-
-
-    /* =========================================
-       GET VEHICLE ID
-    ========================================= */
-
     const params =
       new URLSearchParams(
         window.location.search
       );
 
 
-    vehicleId =
+    const vehicleId =
       params.get("id");
+
+
+    let vehicleImages = [];
+
+
+    let currentImageIndex = 0;
+
+
+    let reservationId = null;
+
+
+    let paymentUploadToken = null;
 
 
     /* =========================================
@@ -842,7 +899,7 @@
         number.toLocaleString(
           "en-US",
           {
-            minimumFractionDigits: 2,
+            minimumFractionDigits: 0,
             maximumFractionDigits: 2
           }
         )
@@ -857,37 +914,20 @@
 
     function escapeHtml(value) {
 
-      if (
+      const div =
+        window.document.createElement(
+          "div"
+        );
+
+
+      div.textContent =
         value === null ||
         value === undefined
-      ) {
-
-        return "";
-
-      }
+          ? ""
+          : String(value);
 
 
-      return String(value)
-        .replace(
-          /&/g,
-          "&amp;"
-        )
-        .replace(
-          /</g,
-          "&lt;"
-        )
-        .replace(
-          />/g,
-          "&gt;"
-        )
-        .replace(
-          /"/g,
-          "&quot;"
-        )
-        .replace(
-          /'/g,
-          "&#039;"
-        );
+      return div.innerHTML;
 
     }
 
@@ -898,31 +938,24 @@
 
     function showError(message) {
 
-      const loadingElement =
+      window.document.getElementById(
+        "loading"
+      ).style.display =
+        "none";
+
+
+      const errorBox =
         window.document.getElementById(
-          "loading"
+          "errorMessage"
         );
 
 
-      loadingElement.style.display =
+      errorBox.textContent =
+        message;
+
+
+      errorBox.style.display =
         "block";
-
-
-      loadingElement.innerHTML =
-        `
-          <div
-            style="
-              background:#ffebee;
-              color:#9b111e;
-              border:1px solid #e57373;
-              padding:20px;
-              border-radius:8px;
-              font-weight:600;
-            "
-          >
-            ${escapeHtml(message)}
-          </div>
-        `;
 
     }
 
@@ -931,22 +964,32 @@
        LOAD VEHICLE IMAGES
     ========================================= */
 
-    async function loadVehicleImages(vehicle) {
+    async function loadVehicleImages(
+      vehicle
+    ) {
 
       vehicleImages = [];
 
 
+      /*
+       * Main vehicle image
+       */
+
       if (
-        vehicle &&
-        vehicle.image_url
+        vehicle.image_url &&
+        vehicle.image_url.trim()
       ) {
 
         vehicleImages.push(
-          vehicle.image_url
+          vehicle.image_url.trim()
         );
 
       }
 
+
+      /*
+       * Additional images
+       */
 
       const {
         data,
@@ -955,7 +998,7 @@
         await supabaseClient
           .from("vehicle_images")
           .select(
-            "id,image_url"
+            "image_url"
           )
           .eq(
             "vehicle_id",
@@ -976,15 +1019,7 @@
           error
         );
 
-        return;
-
-      }
-
-
-      if (
-        data &&
-        data.length
-      ) {
+      } else if (data) {
 
         data.forEach(
           function(image) {
@@ -1008,6 +1043,21 @@
       }
 
 
+      /*
+       * Fallback image
+       */
+
+      if (
+        vehicleImages.length === 0
+      ) {
+
+        vehicleImages.push(
+          "https://via.placeholder.com/1200x800?text=Vehicle"
+        );
+
+      }
+
+
       currentImageIndex = 0;
 
 
@@ -1024,7 +1074,7 @@
 
       const mainImage =
         window.document.getElementById(
-          "mainCarImage"
+          "mainVehicleImage"
         );
 
 
@@ -1046,84 +1096,23 @@
         );
 
 
-      thumbnailContainer.innerHTML =
-        "";
-
-
       if (
         !vehicleImages.length
       ) {
-
-        mainImage.src =
-          "https://via.placeholder.com/1200x700?text=No+Image";
-
-        mainImage.alt =
-          "No vehicle image available";
-
-        previousButton.style.display =
-          "none";
-
-        nextButton.style.display =
-          "none";
 
         return;
 
       }
 
-
-      if (
-        currentImageIndex < 0
-      ) {
-
-        currentImageIndex = 0;
-
-      }
-
-
-      if (
-        currentImageIndex >=
-        vehicleImages.length
-      ) {
-
-        currentImageIndex =
-          vehicleImages.length - 1;
-
-      }
-
-
       mainImage.src =
-        vehicleImages[
-          currentImageIndex
-        ];
-
+        vehicleImages[currentImageIndex];
 
       mainImage.alt =
         "Vehicle image " +
-        (
-          currentImageIndex + 1
-        );
+        (currentImageIndex + 1);
 
-
-      if (
-        vehicleImages.length <= 1
-      ) {
-
-        previousButton.style.display =
-               "none";
-
-        nextButton.style.display =
-          "none";
-
-      } else {
-
-        previousButton.style.display =
-          "block";
-
-        nextButton.style.display =
-          "block";
-
-      }
-
+      thumbnailContainer.innerHTML =
+        "";
 
       vehicleImages.forEach(
         function(imageUrl, index) {
@@ -1137,15 +1126,14 @@
             imageUrl;
 
           thumbnail.alt =
-            "Thumbnail " +
+            "Vehicle thumbnail " +
             (index + 1);
 
           thumbnail.loading =
             "lazy";
 
           if (
-            index ===
-            currentImageIndex
+            index === currentImageIndex
           ) {
 
             thumbnail.classList.add(
@@ -1173,6 +1161,32 @@
         }
       );
 
+
+      /*
+       * Hide navigation when
+       * there is only one image
+       */
+
+      if (
+        vehicleImages.length <= 1
+      ) {
+
+        previousButton.style.display =
+          "none";
+
+        nextButton.style.display =
+          "none";
+
+      } else {
+
+        previousButton.style.display =
+          "block";
+
+        nextButton.style.display =
+          "block";
+
+      }
+
     }
 
 
@@ -1193,7 +1207,6 @@
 
       currentImageIndex--;
 
-      
       if (
         currentImageIndex < 0
       ) {
@@ -1225,7 +1238,6 @@
 
 
       currentImageIndex++;
-
 
       if (
         currentImageIndex >=
@@ -1259,163 +1271,151 @@
       }
 
 
-      try {
-
-        const {
-          data: vehicle,
-          error
-        } =
-          await supabaseClient
-            .from("vehicles")
-            .select("*")
-            .eq(
-              "id",
-              vehicleId
-            )
-            .maybeSingle();
+      const {
+        data: vehicle,
+        error
+      } =
+        await supabaseClient
+          .from("vehicles")
+          .select("*")
+          .eq(
+            "id",
+            vehicleId
+          )
+          .single();
 
 
-        if (error) {
-
-          console.error(
-            "Vehicle error:",
-            error
-          );
-
-          throw error;
-
-        }
-
-
-        if (!vehicle) {
-
-          showError(
-            "Vehicle not found."
-          );
-
-          return;
-
-        }
-
-
-        /* ================================
-           VEHICLE INFORMATION
-        ================================= */
-
-        window.document.getElementById(
-          "carTitle"
-        ).textContent =
-          vehicle.title ||
-          (
-            (vehicle.make || "") +
-            " " +
-            (vehicle.model || "")
-          ).trim() ||
-          "Vehicle";
-
-
-        window.document.getElementById(
-          "carPrice"
-        ).textContent =
-          formatOMR(
-            vehicle.price
-          );
-
-
-        window.document.getElementById(
-          "carYear"
-        ).textContent =
-          vehicle.year ||
-          "-";
-
-
-        window.document.getElementById(
-          "carMileage"
-        ).textContent =
-          vehicle.mileage !== null &&
-          vehicle.mileage !== undefined
-            ? Number(
-                vehicle.mileage
-              ).toLocaleString(
-                "en-US"
-              ) + " km"
-            : "-";
-
-
-        window.document.getElementById(
-          "carTransmission"
-        ).textContent =
-          vehicle.transmission ||
-          "-";
-
-
-        window.document.getElementById(
-          "carFuel"
-        ).textContent =
-          vehicle.fuel ||
-          "-";
-
-
-        window.document.getElementById(
-          "carCondition"
-        ).textContent =
-          vehicle.condition ||
-          "-";
-
-
-        window.document.getElementById(
-          "carStatus"
-        ).textContent =
-          vehicle.status ||
-          "-";
-
-
-        window.document.getElementById(
-          "carDescription"
-        ).textContent =
-          vehicle.description ||
-          "No description available.";
-
-
-        /* ================================
-           LOAD VEHICLE GALLERY
-        ================================= */
-
-        await loadVehicleImages(
-          vehicle
-        );
-
-
-        /* ================================
-           SHOW VEHICLE
-        ================================= */
-
-        window.document.getElementById(
-          "loading"
-        ).style.display =
-          "none";
-
-
-        window.document.getElementById(
-          "vehicleContent"
-        ).style.display =
-          "block";
-
-
-      } catch (error) {
+      if (error) {
 
         console.error(
           "Vehicle loading error:",
           error
         );
 
-
         showError(
-          error.message ||
-          "An unexpected error occurred."
+          "Unable to load vehicle."
         );
 
+        return;
+
       }
+
+
+      if (!vehicle) {
+
+        showError(
+          "Vehicle not found."
+        );
+
+        return;
+
+      }
+
+
+      /*
+       * Fill vehicle information
+       */
+
+      window.document.getElementById(
+        "carTitle"
+      ).textContent =
+        (
+          vehicle.make ||
+          ""
+        ) +
+        " " +
+        (
+          vehicle.model ||
+          ""
+        );
+
+
+      window.document.getElementById(
+        "carPrice"
+      ).textContent =
+        formatOMR(
+          vehicle.price
+        );
+
+
+      window.document.getElementById(
+        "carDescription"
+      ).textContent =
+        vehicle.description ||
+        "Contact us for more information about this vehicle.";
+
+
+      window.document.getElementById(
+        "carYear"
+      ).textContent =
+        vehicle.year ||
+        "-";
+
+
+      window.document.getElementById(
+        "carMileage"
+      ).textContent =
+        vehicle.mileage !== null &&
+        vehicle.mileage !== undefined
+          ? Number(
+              vehicle.mileage
+            ).toLocaleString(
+              "en-US"
+            ) + " km"
+          : "-";
+
+
+      window.document.getElementById(
+        "carTransmission"
+      ).textContent =
+        vehicle.transmission ||
+        "-";
+
+
+      window.document.getElementById(
+        "carFuel"
+      ).textContent =
+        vehicle.fuel ||
+        "-";
+
+
+      window.document.getElementById(
+        "carCondition"
+      ).textContent =
+        vehicle.condition ||
+        "-";
+
+
+      window.document.getElementById(
+        "carStatus"
+      ).textContent =
+        vehicle.status ||
+        "-";
+
+
+      /*
+       * Load gallery
+       */
+
+      await loadVehicleImages(
+        vehicle
+      );
+
+
+      /*
+       * Show page
+       */
+
+      window.document.getElementById(
+        "loading"
+      ).style.display =
+        "none";
+
+
+      window.document.getElementById(
+        "vehicleContent"
+      ).style.display =
+        "block";
 
     }
 
@@ -1425,53 +1425,45 @@
     ========================================= */
 
     function showReservationMessage(
-      message,
-      success = true
+      type,
+      message
     ) {
 
-      const successBox =
+      const success =
         window.document.getElementById(
           "reservationSuccess"
         );
 
-
-      const errorBox =
+      const error =
         window.document.getElementById(
           "reservationError"
         );
 
 
-      successBox.style.display =
+      success.style.display =
+        "none";
+
+      error.style.display =
         "none";
 
 
-      errorBox.style.display =
-        "none";
+      if (
+        type === "success"
+      ) {
 
+        success.textContent =
+          message;
 
-      if (success) {
-
-        if (message) {
-
-          successBox.textContent =
-            message;
-
-          successBox.style.display =
-            "block";
-
-        }
+        success.style.display =
+          "block";
 
       } else {
 
-        if (message) {
+        error.textContent =
+          message;
 
-          errorBox.textContent =
-            message;
-
-          errorBox.style.display =
-            "block";
-
-        }
+        error.style.display =
+          "block";
 
       }
 
@@ -1483,8 +1475,8 @@
     ========================================= */
 
     function showPaymentMessage(
-      message,
-      success = true
+      type,
+      message
     ) {
 
       const box =
@@ -1493,17 +1485,17 @@
         );
 
 
+      box.textContent =
+        message;
+
+
       box.className =
         "message " +
         (
-          success
+          type === "success"
             ? "success-message"
             : "error-message"
         );
-
-
-      box.textContent =
-        message;
 
 
       box.style.display =
@@ -1516,240 +1508,249 @@
        RESERVATION FORM
     ========================================= */
 
-    window.document
-      .getElementById(
-        "reservationForm"
-      )
-      .addEventListener(
-        "submit",
-        async function(event) {
+    window.document.getElementById(
+      "reservationForm"
+    ).addEventListener(
+      "submit",
+      async function(event) {
 
-          event.preventDefault();
+        event.preventDefault();
 
 
-          const button =
-            window.document.getElementById(
-              "reservationButton"
-            );
-
-
-          button.disabled =
-            true;
-
-
-          button.textContent =
-            "Submitting...";
-
-
-          showReservationMessage(
-            "",
-            true
+        const button =
+          window.document.getElementById(
+            "reservationButton"
           );
 
 
-          showReservationMessage(
-            "",
-            false
-          );
+        button.disabled =
+          true;
+
+        button.textContent =
+          "Submitting...";
 
 
-          try {
+        try {
 
-            if (!vehicleId) {
-
-              throw new Error(
-                "Vehicle ID is missing."
-              );
-
-            }
+          const customerName =
+            window.document.getElementById(
+              "customerName"
+            ).value.trim();
 
 
-            const customerName =
-              window.document
-                .getElementById(
-                  "customerName"
-                )
-                .value
-                .trim();
+          const customerEmail =
+            window.document.getElementById(
+              "customerEmail"
+            ).value.trim();
 
 
-            const customerEmail =
-              window.document
-                .getElementById(
-                  "customerEmail"
-                )
-                .value
-                .trim();
+          const customerPhone =
+            window.document.getElementById(
+              "customerPhone"
+            ).value.trim();
 
 
-            const customerPhone =
-              window.document
-                .getElementById(
-                  "customerPhone"
-                )
-                .value
-                .trim();
+          const contactMethod =
+            window.document.getElementById(
+              "contactMethod"
+            ).value;
 
 
-            const contactMethod =
-              window.document
-                .getElementById(
-                  "contactMethod"
-                )
-                .value;
+          const message =
+            window.document.getElementById(
+              "message"
+            ).value.trim();
 
 
-            const message =
-              window.document
-                .getElementById(
-                  "message"
-                )
-                .value
-                .trim();
+          if (
+            !customerName ||
+            !customerEmail ||
+            !customerPhone ||
+            !contactMethod
+          ) {
 
-
-            if (
-              !customerName ||
-              !customerEmail ||
-              !customerPhone ||
-              !contactMethod
-            ) {
-
-              throw new Error(
-                "Please complete all required fields."
-              );
-
-            }
-
-
-            paymentUploadToken =
-              crypto.randomUUID().replace(
-                /-/g,
-                ""
-              ) +
-              crypto.randomUUID().replace(
-                /-/g,
-                ""
-              );
-
-
-            const {
-              data,
-              error
-            } =
-              await supabaseClient
-                .from("reservations")
-                .insert([
-                  {
-                    vehicle_id:
-                      vehicleId,
-
-                    customer_name:
-                      customerName,
-
-                    customer_email:
-                      customerEmail,
-
-                    customer_phone:
-                      customerPhone,
-
-                    contact_method:
-                      contactMethod,
-
-                    message:
-                      message,
-
-                    status:
-                      "Pending",
-
-                    payment_status:
-                      "Not Paid",
-
-                    payment_upload_token:
-                      paymentUploadToken
-                  }
-                ])
-                .select(
-                  "id"
-                )
-                .single();
-
-
-            if (error) {
-
-              throw error;
-
-            }
-
-
-            if (
-              !data ||
-              !data.id
-            ) {
-
-              throw new Error(
-                "Reservation was submitted but no reservation ID was returned."
-              );
-
-            }
-
-
-            reservationId =
-              data.id;
-
-
-            showReservationMessage(
-              "Your reservation has been submitted successfully. You can upload your payment confirmation below if you have already made the payment.",
-              true
+            throw new Error(
+              "Please complete all required fields."
             );
 
-
-            window.document.getElementById(
-              "paymentSection"
-            ).style.display =
-              "block";
+          }
 
 
-            window.document.getElementById(
-              "paymentSection"
-            ).scrollIntoView({
-              behavior: "smooth",
-              block: "start"
-            });
+          /*
+           * Generate reservation ID
+           * locally so we do not need
+           * to SELECT the reservation
+           * after inserting it.
+           */
+
+          const newReservationId =
+            crypto.randomUUID();
 
 
-            window.document.getElementById(
-              "reservationForm"
-            ).reset();
+          /*
+           * Generate secure upload token.
+           */
+
+          paymentUploadToken =
+            crypto.randomUUID();
 
 
-          } catch (error) {
+          const {
+            error
+          } =
+            await supabaseClient
+              .from("reservations")
+              .insert([
+                {
+                  id:
+                    newReservationId,
+
+                  vehicle_id:
+                    vehicleId,
+
+                  customer_name:
+                    customerName,
+
+                  customer_email:
+                    customerEmail,
+
+                  customer_phone:
+                    customerPhone,
+
+                  contact_method:
+                    contactMethod,
+
+                  message:
+                    message,
+
+                  status:
+                    "Pending",
+
+                  payment_status:
+                    "Not Paid",
+
+                  payment_upload_token:
+                    paymentUploadToken
+                }
+              ]);
+
+
+          if (error) {
 
             console.error(
               "Reservation error:",
               error
             );
 
-
-            showReservationMessage(
-              error.message ||
-              "Unable to submit reservation.",
-              false
-            );
-
-          } finally {
-
-            button.disabled =
-              false;
-
-
-            button.textContent =
-              "Submit Reservation";
+            throw error;
 
           }
 
+
+          reservationId =
+            newReservationId;
+
+
+          /*
+           * Reservation submitted.
+           */
+
+          showReservationMessage(
+            "success",
+            "Your reservation has been submitted successfully. Please keep this page open if you would like to upload your payment confirmation."
+          );
+
+
+          /*
+           * Show payment section.
+           */
+
+          window.document.getElementById(
+            "paymentSection"
+          ).style.display =
+            "block";
+
+
+          /*
+           * Scroll to payment section.
+           */
+
+          window.document.getElementById(
+            "paymentSection"
+          ).scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+
+          /*
+           * Prevent duplicate
+           * reservation submissions.
+           */
+
+          button.disabled =
+            true;
+
+          button.textContent =
+            "Reservation Submitted";
+
+
+          /*
+           * Keep customer details
+           * visible but prevent
+           * accidental resubmission.
+           */
+
+          window.document.getElementById(
+            "customerName"
+          ).disabled =
+            true;
+
+          window.document.getElementById(
+            "customerEmail"
+          ).disabled =
+            true;
+
+          window.document.getElementById(
+            "customerPhone"
+          ).disabled =
+            true;
+
+          window.document.getElementById(
+            "contactMethod"
+          ).disabled =
+            true;
+
+          window.document.getElementById(
+            "message"
+          ).disabled =
+            true;
+
+        } catch (error) {
+
+          console.error(
+            "Reservation submission error:",
+            error
+          );
+
+
+          showReservationMessage(
+            "error",
+            error.message ||
+            "Unable to submit reservation. Please try again."
+          );
+
+
+          button.disabled =
+            false;
+
+          button.textContent =
+            "Submit Reservation";
+
         }
-      );
+
+      }
+    );
 
 
     /* =========================================
@@ -1758,43 +1759,64 @@
 
     async function uploadPaymentProof() {
 
-      if (
-        !reservationId ||
-        !paymentUploadToken
-      ) {
-
-        showPaymentMessage(
-          "Please submit a reservation before uploading payment proof.",
-          false
-        );
-
-        return;
-
-      }
-
-
-      const input =
+      const fileInput =
         window.document.getElementById(
           "paymentProof"
         );
 
 
-      const file =
-        input.files &&
-        input.files[0];
+      const button =
+        window.document.getElementById(
+          "uploadPaymentButton"
+        );
 
 
-      if (!file) {
+      if (!reservationId) {
 
         showPaymentMessage(
-          "Please select a payment screenshot or image.",
-          false
+          "error",
+          "Please submit a reservation first."
         );
 
         return;
 
       }
 
+
+      if (!paymentUploadToken) {
+
+        showPaymentMessage(
+          "error",
+          "Payment upload information is missing. Please submit the reservation again."
+        );
+
+        return;
+
+      }
+
+
+      if (
+        !fileInput.files ||
+        !fileInput.files.length
+      ) {
+
+        showPaymentMessage(
+          "error",
+          "Please select a payment screenshot."
+        );
+
+        return;
+
+      }
+
+
+      const file =
+        fileInput.files[0];
+
+
+      /*
+       * Validate file type.
+       */
 
       const allowedTypes = [
         "image/jpeg",
@@ -1810,8 +1832,8 @@
       ) {
 
         showPaymentMessage(
-          "Only JPEG, PNG and WEBP images are allowed.",
-          false
+          "error",
+          "Please upload a JPG, PNG, or WEBP image."
         );
 
         return;
@@ -1819,52 +1841,71 @@
       }
 
 
-      const maxSize =
-        5 * 1024 * 1024;
-
+      /*
+       * Maximum file size:
+       * 5 MB
+       */
 
       if (
-        file.size > maxSize
+        file.size >
+        5 * 1024 * 1024
       ) {
 
         showPaymentMessage(
-          "The payment image must be 5 MB or smaller.",
-          false
+          "error",
+          "Payment screenshot must be 5 MB or smaller."
         );
 
         return;
 
       }
-
-
-      const button =
-        window.document.getElementById(
-          "uploadPaymentButton"
-        );
 
 
       button.disabled =
         true;
 
-
       button.textContent =
         "Uploading...";
 
 
-      showPaymentMessage(
-        "Uploading payment proof...",
-        true
-      );
-
-
       try {
 
-        const safeName =
-          file.name.replace(
-            /[^a-zA-Z0-9._-]/g,
-            "-"
-          );
+        const originalName =
+          file.name ||
+          "payment-proof";
 
+
+        const extension =
+          originalName.includes(".")
+            ? originalName
+                .split(".")
+                .pop()
+                .toLowerCase()
+            : "jpg";
+
+
+        const safeExtension =
+          [
+            "jpg",
+            "jpeg",
+            "png",
+            "webp"
+          ].includes(
+            extension
+          )
+            ? extension
+            : "jpg";
+
+
+        /*
+         * Secure path:
+         *
+         * reservation UUID
+         * /
+         * upload token
+         * /
+         * random filename
+         */
 
         const filePath =
           reservationId +
@@ -1872,71 +1913,107 @@
           paymentUploadToken +
           "/" +
           crypto.randomUUID() +
-          "-" +
-          safeName;
+          "." +
+          safeExtension;
 
+
+        /*
+         * Upload file.
+         */
 
         const {
-          error: uploadError
+          error:
+            uploadError
         } =
           await supabaseClient
             .storage
-            .from("payment-proofs")
+            .from(
+              "payment-proofs"
+            )
             .upload(
               filePath,
-              file
+              file,
+              {
+                cacheControl:
+                  "3600",
+
+                contentType:
+                  file.type,
+
+                upsert:
+                  false
+              }
             );
 
 
         if (uploadError) {
+
+          console.error(
+            "Payment proof upload error:",
+            uploadError
+          );
 
           throw uploadError;
 
         }
 
 
+        /*
+         * Link uploaded file
+         * to reservation using
+         * secure RPC.
+         */
+
         const {
-          data,
-          error: rpcError
+          data:
+            linked,
+          error:
+            rpcError
         } =
-          await supabaseClient.rpc(
-            "submit_payment_proof",
-            {
-              p_reservation_id:
-                reservationId,
+          await supabaseClient
+            .rpc(
+              "submit_payment_proof",
+              {
+                p_reservation_id:
+                  reservationId,
 
-              p_token:
-                paymentUploadToken,
+                p_token:
+                  paymentUploadToken,
 
-              p_path:
-                filePath
-            }
-          );
+                p_path:
+                  filePath
+              }
+            );
 
 
         if (rpcError) {
+
+          console.error(
+            "Payment proof RPC error:",
+            rpcError
+          );
 
           throw rpcError;
 
         }
 
 
-        if (!data) {
+        if (!linked) {
 
           throw new Error(
-            "The payment proof could not be linked to the reservation."
+            "Payment proof could not be linked to this reservation."
           );
 
         }
 
 
-        input.value =
-          "";
-
+        /*
+         * Success.
+         */
 
         showPaymentMessage(
-          "Payment proof uploaded successfully.",
-          true
+          "success",
+          "Payment proof uploaded successfully."
         );
 
 
@@ -1946,39 +2023,33 @@
           "block";
 
 
-        window.document.getElementById(
-          "reviewMessage"
-        ).scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
+        fileInput.disabled =
+          true;
 
+
+        button.disabled =
+          true;
 
         button.textContent =
           "Payment Proof Submitted";
 
-
       } catch (error) {
 
         console.error(
-          "Payment upload error:",
+          "Payment proof error:",
           error
         );
 
 
         showPaymentMessage(
-          "Upload failed: " +
-          (
-            error.message ||
-            "Unknown error"
-          ),
-          false
+          "error",
+          error.message ||
+          "Unable to upload payment proof. Please try again."
         );
 
 
         button.disabled =
           false;
-
 
         button.textContent =
           "Upload Payment Proof";
@@ -1999,3 +2070,4 @@
 </body>
 
 </html>
+      
