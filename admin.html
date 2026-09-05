@@ -10,84 +10,67 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* ================================
-       ADMIN PAGE
-    ================================= */
-
     body {
-      background: #ffffff !important;
-      color: #111111 !important;
+      background: #f5f6f8;
     }
 
     .admin-page {
       max-width: 1400px;
       margin: 0 auto;
       padding: 30px 20px 60px;
-      color: #111111;
     }
 
     .admin-header {
+      background: #fff;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 25px;
     }
 
     .admin-header h1 {
-      margin: 0;
-      color: #111111 !important;
+      margin: 0 0 6px;
     }
 
     .admin-header p {
-      margin: 6px 0 0;
-      color: #555555 !important;
+      margin: 0;
+      color: #666;
     }
 
     .admin-section {
-      background: #ffffff !important;
-      color: #111111 !important;
+      background: #fff;
+      border-radius: 12px;
       padding: 25px;
       margin-bottom: 25px;
-      border-radius: 12px;
-      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
-      border: 1px solid #e5e5e5;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
     }
 
     .admin-section h2 {
       margin-top: 0;
-      margin-bottom: 20px;
-      color: #111111 !important;
     }
-
-    .admin-section p {
-      color: #333333 !important;
-    }
-
-    /* ================================
-       FORM
-    ================================= */
 
     .form-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
+      gap: 18px;
     }
 
     .form-group {
-      margin-bottom: 5px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
     }
 
-    .form-group.full {
+    .form-group.full-width {
       grid-column: 1 / -1;
     }
 
     .form-group label {
-      display: block;
       font-weight: 600;
-      margin-bottom: 6px;
-      color: #111111 !important;
     }
 
     .form-group input,
@@ -95,49 +78,56 @@
     .form-group textarea {
       width: 100%;
       box-sizing: border-box;
-      padding: 11px;
-      border: 1px solid #bbbbbb;
-      border-radius: 6px;
+      padding: 12px;
+      border: 1px solid #d5d9df;
+      border-radius: 7px;
       font-size: 15px;
-      background: #ffffff !important;
-      color: #111111 !important;
-    }
-
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: #777777 !important;
-      opacity: 1;
+      background: #fff;
     }
 
     .form-group textarea {
-      min-height: 100px;
+      min-height: 130px;
       resize: vertical;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: #111111;
     }
 
     .button-row {
       display: flex;
-      gap: 10px;
       flex-wrap: wrap;
-      margin-top: 20px;
+      gap: 8px;
+      margin-top: 18px;
     }
 
     button {
       border: none;
-      border-radius: 6px;
-      padding: 10px 15px;
+      border-radius: 7px;
+      padding: 11px 16px;
       cursor: pointer;
       font-weight: 600;
     }
 
-    button:hover {
-      opacity: 0.9;
+    button.primary {
+      background: #111827;
+      color: #fff;
+    }
+
+    button.success {
+      background: #198754;
+      color: #fff;
+    }
+
+    button.danger {
+      background: #dc3545;
+      color: #fff;
+    }
+
+    button.secondary {
+      background: #6c757d;
+      color: #fff;
+    }
+
+    button.small-btn {
+      padding: 7px 10px;
+      font-size: 12px;
     }
 
     button:disabled {
@@ -145,58 +135,22 @@
       cursor: not-allowed;
     }
 
-    .primary {
-      background: #111111 !important;
-      color: #ffffff !important;
-    }
-
-    .success {
-      background: #198754 !important;
-      color: #ffffff !important;
-    }
-
-    .danger {
-      background: #dc3545 !important;
-      color: #ffffff !important;
-    }
-
-    .secondary {
-      background: #666666 !important;
-      color: #ffffff !important;
-    }
-
-    .small-btn {
-      padding: 7px 10px;
-      font-size: 12px;
-      margin: 2px;
-    }
-
-    /* ================================
-       MESSAGES
-    ================================= */
-
     .message {
       display: none;
+      padding: 12px 15px;
+      border-radius: 7px;
       margin-top: 15px;
-      padding: 12px;
-      border-radius: 6px;
     }
 
     .success-message {
-      background: #e8f7ed !important;
-      color: #176b38 !important;
-      border: 1px solid #b7dfc5;
+      background: #e8f7ed;
+      color: #176b38;
     }
 
     .error-message {
-      background: #fdeaea !important;
-      color: #9b1c1c !important;
-      border: 1px solid #efb5b5;
+      background: #fdecec;
+      color: #a32626;
     }
-
-    /* ================================
-       TABLES
-    ================================= */
 
     .table-wrapper {
       overflow-x: auto;
@@ -206,40 +160,28 @@
       width: 100%;
       border-collapse: collapse;
       min-width: 900px;
-      background: #ffffff !important;
-      color: #111111 !important;
     }
 
     th,
     td {
       padding: 12px;
-      border-bottom: 1px solid #eeeeee;
+      border-bottom: 1px solid #e5e7eb;
       text-align: left;
       vertical-align: top;
-      color: #111111 !important;
-      background: #ffffff;
     }
 
     th {
-      background: #f3f3f3 !important;
+      background: #f8f9fa;
       font-weight: 700;
-      color: #111111 !important;
     }
 
-    tr:hover td {
-      background: #fafafa !important;
-    }
-
-    .vehicle-thumb {
+    .inventory-image {
       width: 90px;
-      height: 60px;
+      height: 65px;
       object-fit: cover;
-      border-radius: 5px;
+      border-radius: 6px;
+      background: #eee;
     }
-
-    /* ================================
-       STATUS
-    ================================= */
 
     .status {
       display: inline-block;
@@ -250,75 +192,49 @@
     }
 
     .pending {
-      background: #fff3cd !important;
-      color: #856404 !important;
+      background: #fff3cd;
+      color: #856404;
     }
 
-    .confirmed {
-      background: #d1e7dd !important;
-      color: #0f5132 !important;
-    }
-
-    .cancelled {
-      background: #f8d7da !important;
-      color: #842029 !important;
-    }
-
+    .confirmed,
     .paid {
-      background: #d1e7dd !important;
-      color: #0f5132 !important;
+      background: #d1e7dd;
+      color: #0f5132;
     }
 
-    .not-paid {
-      background: #f8d7da !important;
-      color: #842029 !important;
-    }
-
-    .under-review {
-      background: #fff3cd !important;
-      color: #856404 !important;
-    }
-
+    .cancelled,
     .rejected {
-      background: #f8d7da !important;
-      color: #842029 !important;
+      background: #f8d7da;
+      color: #842029;
     }
 
-    /* ================================
-       PHOTO MANAGER
-    ================================= */
+    .not-paid,
+    .under-review {
+      background: #cff4fc;
+      color: #055160;
+    }
 
     .photo-manager {
       display: none;
-      margin-top: 20px;
+      margin-top: 25px;
       padding: 20px;
-      background: #ffffff !important;
-      color: #111111 !important;
+      border: 1px solid #ddd;
       border-radius: 10px;
-      border: 1px solid #dddddd;
-    }
-
-    .photo-manager h2,
-    .photo-manager p {
-      color: #111111 !important;
+      background: #fafafa;
     }
 
     .photo-grid {
       display: grid;
-      grid-template-columns: repeat(
-        auto-fill,
-        minmax(150px, 1fr)
-      );
-      gap: 15px;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 18px;
       margin-top: 20px;
     }
 
     .photo-card {
-      background: #ffffff !important;
-      color: #111111 !important;
-      border-radius: 8px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 9px;
       overflow: hidden;
-      border: 1px solid #dddddd;
     }
 
     .photo-card.cover-photo {
@@ -326,10 +242,14 @@
     }
 
     .photo-card img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
       display: block;
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .photo-card-actions {
+      padding: 10px;
     }
 
     .cover-label {
@@ -342,44 +262,31 @@
       text-align: center;
     }
 
-    .photo-card button {
-      margin: 10px;
-      width: calc(100% - 20px);
+    .photo-empty {
+      color: #666;
+      padding: 15px 0;
     }
-
-    .proof-box {
-      display: inline-block;
-    }
-
-    .no-proof {
-      color: #666666 !important;
-      font-size: 12px;
-    }
-
-    .logout-button {
-      padding: 10px 16px;
-    }
-
-    /* ================================
-       MOBILE
-    ================================= */
 
     @media (max-width: 700px) {
-
-      .form-grid {
-        grid-template-columns: 1fr;
+      .admin-page {
+        padding: 15px 10px 40px;
       }
 
-      .form-group.full {
-        grid-column: auto;
+      .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
       }
 
       .admin-section {
         padding: 18px;
       }
 
-      .admin-page {
-        padding: 20px 12px 50px;
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full-width {
+        grid-column: auto;
       }
     }
   </style>
@@ -387,45 +294,34 @@
 
 <body>
 
-  <main class="admin-page">
+  <div class="admin-page">
 
     <div class="admin-header">
-
       <div>
         <h1>Admin Dashboard</h1>
-
-        <p>
-          Manage vehicles, photos, reservations and payments.
-        </p>
+        <p>Manage vehicles, photos, reservations and payments.</p>
       </div>
 
       <button
-        type="button"
-        class="danger logout-button"
+        class="danger"
         onclick="logout()"
       >
         Logout
       </button>
-
     </div>
 
-    <!-- VEHICLE FORM -->
 
+    <!-- VEHICLE FORM -->
     <section class="admin-section">
 
-      <h2 id="vehicleFormTitle">
-        Add Vehicle
-      </h2>
+      <h2 id="vehicleFormTitle">Add Vehicle</h2>
 
       <form id="vehicleForm">
 
         <div class="form-grid">
 
           <div class="form-group">
-            <label for="make">
-              Make
-            </label>
-
+            <label for="make">Make</label>
             <input
               type="text"
               id="make"
@@ -433,11 +329,9 @@
             >
           </div>
 
-          <div class="form-group">
-            <label for="model">
-              Model
-            </label>
 
+          <div class="form-group">
+            <label for="model">Model</label>
             <input
               type="text"
               id="model"
@@ -445,131 +339,104 @@
             >
           </div>
 
-          <div class="form-group">
-            <label for="year">
-              Year
-            </label>
 
+          <div class="form-group">
+            <label for="year">Year</label>
             <input
               type="number"
               id="year"
+              min="1900"
+              max="2100"
               required
             >
           </div>
 
-          <div class="form-group">
-            <label for="price">
-              Price (OMR)
-            </label>
 
+          <div class="form-group">
+            <label for="price">Price (OMR)</label>
             <input
               type="number"
               id="price"
+              min="0"
               step="0.01"
-              required
             >
           </div>
 
-          <div class="form-group">
-            <label for="mileage">
-              Mileage (km)
-            </label>
 
+          <div class="form-group">
+            <label for="mileage">Mileage (km)</label>
             <input
               type="number"
               id="mileage"
+              min="0"
             >
           </div>
 
-          <div class="form-group">
-            <label for="transmission">
-              Transmission
-            </label>
 
+          <div class="form-group">
+            <label for="transmission">Transmission</label>
             <input
               type="text"
               id="transmission"
-              placeholder="Automatic"
+              placeholder="Automatic / Manual"
             >
           </div>
 
-          <div class="form-group">
-            <label for="fuel">
-              Fuel
-            </label>
 
+          <div class="form-group">
+            <label for="fuel">Fuel</label>
             <input
               type="text"
               id="fuel"
-              placeholder="Petrol"
+              placeholder="Petrol / Diesel / Hybrid"
             >
           </div>
 
-          <div class="form-group">
-            <label for="condition">
-              Condition
-            </label>
 
+          <div class="form-group">
+            <label for="condition">Condition</label>
             <select id="condition">
-              <option value="New">
-                New
-              </option>
-
-              <option value="Used">
-                Used
-              </option>
+              <option value="New">New</option>
+              <option value="Used">Used</option>
             </select>
           </div>
+
 
           <div class="form-group">
-            <label for="status">
-              Status
-            </label>
-
+            <label for="status">Status</label>
             <select id="status">
-              <option value="Available">
-                Available
-              </option>
-
-              <option value="Reserved">
-                Reserved
-              </option>
-
-              <option value="Sold">
-                Sold
-              </option>
+              <option value="Available">Available</option>
+              <option value="Reserved">Reserved</option>
+              <option value="Sold">Sold</option>
             </select>
           </div>
 
-          <div class="form-group full">
 
-            <label for="description">
-              Description
-            </label>
-
+          <div class="form-group full-width">
+            <label for="description">Description</label>
             <textarea
               id="description"
-              placeholder="Vehicle description..."
+              placeholder="Enter vehicle description..."
             ></textarea>
-
           </div>
 
         </div>
+
 
         <div class="button-row">
 
           <button
             type="submit"
-            id="vehicleSubmitButton"
             class="primary"
+            id="vehicleSubmitButton"
           >
             Add Vehicle
           </button>
 
           <button
             type="button"
-            id="cancelEditButton"
             class="secondary"
+            id="cancelEditButton"
             onclick="cancelEdit()"
             style="display:none;"
           >
@@ -578,29 +445,23 @@
 
         </div>
 
+        <div
+          id="vehicleMessage"
+          class="message"
+        ></div>
+
       </form>
 
-      <div
-        id="vehicleMessage"
-        class="message"
-      ></div>
-
-    </section>
-
-    <!-- VEHICLES -->
-
+  </section>    <!-- INVENTORY -->
     <section class="admin-section">
 
-      <h2>
-        Inventory
-      </h2>
+      <h2>Inventory</h2>
 
       <div class="table-wrapper">
 
         <table>
 
           <thead>
-
             <tr>
               <th>Image</th>
               <th>Vehicle</th>
@@ -609,87 +470,94 @@
               <th>Status</th>
               <th>Actions</th>
             </tr>
-
           </thead>
 
           <tbody id="vehiclesTableBody">
-
             <tr>
-              <td colspan="6">
-                Loading vehicles...
-              </td>
+              <td colspan="6">Loading vehicles...</td>
             </tr>
-
           </tbody>
 
         </table>
 
       </div>
 
-    </section>
 
-    <!-- PHOTO MANAGER -->
-
-    <section
-      id="photoManager"
-      class="admin-section photo-manager"
-    >
-
-      <h2>
-        Vehicle Photos
-      </h2>
-
-      <p>
-        Vehicle:
-        <strong id="photoVehicleName"></strong>
-      </p>
-
-      <input
-        type="file"
-        id="photoFiles"
-        accept="image/jpeg,image/png,image/webp"
-        multiple
+      <!-- PHOTO MANAGER -->
+      <div
+        id="photoManager"
+        class="photo-manager"
       >
 
-      <div class="button-row">
+        <h3>
+          Photo Manager:
+          <span id="photoVehicleName"></span>
+        </h3>
 
-        <button
-          type="button"
-          class="primary"
-          onclick="uploadPhotos()"
-        >
-          Upload Photos
-        </button>
+        <p>
+          Upload photos for this vehicle and select one
+          as the cover photo.
+        </p>
 
-        <button
-          type="button"
-          class="secondary"
-          onclick="closePhotoManager()"
-        >
-          Close
-        </button>
+
+        <div class="form-group">
+
+          <label for="photoFiles">
+            Select Vehicle Photos
+          </label>
+
+          <input
+            type="file"
+            id="photoFiles"
+            accept="image/jpeg,image/png,image/webp"
+            multiple
+          >
+
+        </div>
+
+
+        <div class="button-row">
+
+          <button
+            type="button"
+            class="success"
+            onclick="uploadPhotos()"
+          >
+            Upload Photos
+          </button>
+
+          <button
+            type="button"
+            class="secondary"
+            onclick="closePhotoManager()"
+          >
+            Close
+          </button>
+
+        </div>
+
+
+        <div
+          id="photoMessage"
+          class="message"
+        ></div>
+
+
+        <div
+          id="photoGrid"
+          class="photo-grid"
+        ></div>
 
       </div>
 
-      <div
-        id="photoMessage"
-        class="message"
-      ></div>
-
-      <div
-        id="photoGrid"
-        class="photo-grid"
-      ></div>
-
     </section>
 
-    <!-- RESERVATIONS -->
 
+
+    <!-- RESERVATIONS -->
     <section class="admin-section">
 
-      <h2>
-        Reservations & Payments
-      </h2>
+      <h2>Reservations</h2>
 
       <div class="table-wrapper">
 
@@ -729,25 +597,30 @@
 
     </section>
 
-  </main>
+  </div>
 
+
+  <!-- SUPABASE -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+  <!-- YOUR SUPABASE CONFIG -->
   <script src="app.js"></script>
 
-  <script>    let editingVehicleId = null;
+
+  <!-- ALL ADMIN JAVASCRIPT -->
+  <script>
+
+    let editingVehicleId = null;
     let selectedPhotoVehicleId = null;
 
 
     function escapeHtml(value) {
-
       return String(value ?? "")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
-
     }
 
 
@@ -758,30 +631,22 @@
         value === undefined ||
         value === ""
       ) {
-
         return "Price on request";
-
       }
 
       const number = Number(value);
 
       if (Number.isNaN(number)) {
-
         return escapeHtml(value);
-
       }
 
-      return (
-        "ر.ع. " +
-        number.toLocaleString(
-          "en-US",
-          {
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 2
-          }
-        )
+      return "ر.ع. " + number.toLocaleString(
+        "en-US",
+        {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 2
+        }
       );
-
     }
 
 
@@ -803,7 +668,6 @@
           : "message error-message";
 
       box.style.display = "block";
-
     }
 
 
@@ -825,31 +689,24 @@
           : "message error-message";
 
       box.style.display = "block";
-
     }
 
 
     async function checkAdmin() {
 
       const {
-        data: {
-          user
-        },
+        data: { user },
         error: userError
       } =
         await supabaseClient.auth.getUser();
 
 
-      if (
-        userError ||
-        !user
-      ) {
+      if (userError || !user) {
 
         window.location.href =
           "login.html";
 
         return false;
-
       }
 
 
@@ -860,10 +717,7 @@
         await supabaseClient
           .from("profiles")
           .select("role")
-          .eq(
-            "id",
-            user.id
-          )
+          .eq("id", user.id)
           .single();
 
 
@@ -881,18 +735,12 @@
           "index.html";
 
         return false;
-
       }
 
 
       return true;
-
     }
 
-
-    /*
-     * VEHICLES
-     */
 
     async function loadVehicles() {
 
@@ -900,6 +748,10 @@
         document.getElementById(
           "vehiclesTableBody"
         );
+
+
+      tbody.innerHTML =
+        '<tr><td colspan="6">Loading vehicles...</td></tr>';
 
 
       const {
@@ -919,124 +771,92 @@
 
       if (error) {
 
+        console.error(error);
+
         tbody.innerHTML =
-          `
-            <tr>
-              <td colspan="6">
-                Database error:
-                ${escapeHtml(error.message)}
-              </td>
-            </tr>
-          `;
+          `<tr>
+            <td colspan="6">
+              Database error:
+              ${escapeHtml(error.message)}
+            </td>
+          </tr>`;
 
         return;
-
       }
 
 
-      if (
-        !vehicles ||
-        !vehicles.length
-      ) {
+      if (!vehicles || !vehicles.length) {
 
         tbody.innerHTML =
-          `
-            <tr>
-              <td colspan="6">
-                No vehicles found.
-              </td>
-            </tr>
-          `;
+          '<tr><td colspan="6">No vehicles found.</td></tr>';
 
         return;
-
       }
 
 
       tbody.innerHTML =
-        vehicles.map(
-          vehicle => {
+        vehicles.map(vehicle => {
 
-            const status =
-              String(
-                vehicle.status ||
-                "Available"
-              );
+          const imageUrl =
+            vehicle.image_url ||
+            "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=500&q=80";
 
 
-            const statusClass =
-              status
-                .toLowerCase()
-                .replace(
-                  /\s+/g,
-                  "-"
-                );
+          return `
+            <tr>
 
+              <td>
+                <img
+                  src="${escapeHtml(imageUrl)}"
+                  class="inventory-image"
+                  alt="${escapeHtml(
+                    vehicle.make + " " + vehicle.model
+                  )}"
+                >
+              </td>
 
-            const image =
-              vehicle.image_url ||
-              "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=400&q=80";
+              <td>
+                <strong>
+                  ${escapeHtml(vehicle.make)}
+                  ${escapeHtml(vehicle.model)}
+                </strong>
+              </td>
 
+              <td>
+                ${escapeHtml(vehicle.year)}
+              </td>
 
-            return `
-              <tr>
+              <td>
+                ${formatOMR(vehicle.price)}
+              </td>
 
-                <td>
+              <td>
+                <span
+                  class="status ${reservationStatusClass(
+                    vehicle.status || "Available"
+                  )}"
+                >
+                  ${escapeHtml(
+                    vehicle.status || "Available"
+                  )}
+                </span>
+              </td>
 
-                  <img
-                    src="${escapeHtml(image)}"
-                    class="vehicle-thumb"
-                    alt="Vehicle"
-                  >
+              <td>
 
-                </td>
-
-
-                <td>
-
-                  <strong>
-                    ${escapeHtml(vehicle.make)}
-                    ${escapeHtml(vehicle.model)}
-                  </strong>
-
-                </td>
-
-
-                <td>
-                  ${escapeHtml(vehicle.year)}
-                </td>
-
-
-                <td>
-                  ${formatOMR(vehicle.price)}
-                </td>
-
-
-                <td>
-
-                  <span
-                    class="status ${statusClass}"
-                  >
-                    ${escapeHtml(status)}
-                  </span>
-
-                </td>
-
-
-                <td>
+                <div class="button-row">
 
                   <button
                     type="button"
-                    class="primary small-btn"
+                    class="small-btn primary"
                     onclick="editVehicle('${vehicle.id}')"
                   >
                     Edit
                   </button>
 
-
                   <button
                     type="button"
-                    class="secondary small-btn"
+                    class="small-btn success"
                     onclick="managePhotos(
                       '${vehicle.id}',
                       '${escapeHtml(vehicle.make)}',
@@ -1046,30 +866,24 @@
                     Photos
                   </button>
 
-
                   <button
                     type="button"
-                    class="danger small-btn"
+                    class="small-btn danger"
                     onclick="deleteVehicle('${vehicle.id}')"
                   >
                     Delete
                   </button>
 
-                </td>
+                </div>
 
-              </tr>
-            `;
+              </td>
 
-          }
-        )
-        .join("");
+            </tr>
+          `;
 
+        }).join("");
     }
 
-
-    /*
-     * VEHICLE FORM
-     */
 
     document
       .getElementById("vehicleForm")
@@ -1084,7 +898,6 @@
             document.getElementById(
               "vehicleSubmitButton"
             );
-
 
           button.disabled = true;
 
@@ -1111,22 +924,26 @@
               ),
 
             price:
-              Number(
-                document
-                  .getElementById("price")
-                  .value
-              ),
+              document
+                .getElementById("price")
+                .value === ""
+                ? null
+                : Number(
+                    document
+                      .getElementById("price")
+                      .value
+                  ),
 
             mileage:
               document
                 .getElementById("mileage")
-                .value
-                ? Number(
+                .value === ""
+                ? null
+                : Number(
                     document
                       .getElementById("mileage")
                       .value
-                  )
-                : null,
+                  ),
 
             transmission:
               document
@@ -1161,60 +978,62 @@
 
           try {
 
-            let error;
-
-
             if (editingVehicleId) {
 
-              const result =
+              const {
+                error
+              } =
                 await supabaseClient
                   .from("vehicles")
-                  .update(
-                    vehicleData
-                  )
+                  .update(vehicleData)
                   .eq(
                     "id",
                     editingVehicleId
                   );
 
-              error =
-                result.error;
+
+              if (error) {
+                throw error;
+              }
+
+
+              showVehicleMessage(
+                "Vehicle updated successfully."
+              );
 
             } else {
 
-              const result =
+              const {
+                error
+              } =
                 await supabaseClient
                   .from("vehicles")
-                  .insert([
+                  .insert(
                     vehicleData
-                  ]);
+                  );
 
-              error =
-                result.error;
 
+              if (error) {
+                throw error;
+              }
+
+
+              showVehicleMessage(
+                "Vehicle added successfully."
+              );
             }
-
-
-            if (error) {
-              throw error;
-            }
-
-
-            showVehicleMessage(
-              editingVehicleId
-                ? "Vehicle updated successfully."
-                : "Vehicle added successfully."
-            );
 
 
             cancelEdit();
 
             await loadVehicles();
 
-
           } catch (error) {
 
+            console.error(error);
+
             showVehicleMessage(
+              "Could not save vehicle: " +
               error.message,
               false
             );
@@ -1231,218 +1050,172 @@
 
     async function editVehicle(id) {
 
-      const {
-        data: vehicle,
-        error
-      } =
-        await supabaseClient
-          .from("vehicles")
-          .select("*")
-          .eq(
-            "id",
-            id
-          )
-          .single();
+      try {
+
+        const {
+          data: vehicle,
+          error
+        } =
+          await supabaseClient
+            .from("vehicles")
+            .select("*")
+            .eq("id", id)
+            .single();
 
 
-      if (error) {
+        if (error) {
+          throw error;
+        }
+
+
+        document.getElementById("make").value =
+          vehicle.make || "";
+
+        document.getElementById("model").value =
+          vehicle.model || "";
+
+        document.getElementById("year").value =
+          vehicle.year || "";
+
+        document.getElementById("price").value =
+          vehicle.price ?? "";
+
+        document.getElementById("mileage").value =
+          vehicle.mileage ?? "";
+
+        document.getElementById("transmission").value =
+          vehicle.transmission || "";
+
+        document.getElementById("fuel").value =
+          vehicle.fuel || "";
+
+        document.getElementById("condition").value =
+          vehicle.condition || "Used";
+
+        document.getElementById("status").value =
+          vehicle.status || "Available";
+
+        document.getElementById("description").value =
+          vehicle.description || "";
+
+
+        editingVehicleId = id;
+
+
+        document.getElementById(
+          "vehicleFormTitle"
+        ).textContent =
+          "Edit Vehicle";
+
+
+        document.getElementById(
+          "vehicleSubmitButton"
+        ).textContent =
+          "Update Vehicle";
+
+
+        document.getElementById(
+          "cancelEditButton"
+        ).style.display =
+          "inline-block";
+
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+
+
+      } catch (error) {
+
+        console.error(error);
 
         alert(
-          "Unable to load vehicle: " +
+          "Could not load vehicle: " +
           error.message
         );
 
-        return;
-
       }
-
-
-      if (!vehicle) {
-
-        alert(
-          "Vehicle not found."
-        );
-
-        return;
-
-      }
-
-
-      editingVehicleId =
-        vehicle.id;
-
-
-      document
-        .getElementById("make")
-        .value =
-        vehicle.make || "";
-
-
-      document
-        .getElementById("model")
-        .value =
-        vehicle.model || "";
-
-
-      document
-        .getElementById("year")
-        .value =
-        vehicle.year || "";
-
-
-      document
-        .getElementById("price")
-        .value =
-        vehicle.price || "";
-
-
-      document
-        .getElementById("mileage")
-        .value =
-        vehicle.mileage || "";
-
-
-      document
-        .getElementById("transmission")
-        .value =
-        vehicle.transmission || "";
-
-
-      document
-        .getElementById("fuel")
-        .value =
-        vehicle.fuel || "";
-
-
-      document
-        .getElementById("condition")
-        .value =
-        vehicle.condition || "New";
-
-
-      document
-        .getElementById("status")
-        .value =
-        vehicle.status || "Available";
-
-
-      document
-        .getElementById("description")
-        .value =
-        vehicle.description || "";
-
-
-      document
-        .getElementById("vehicleFormTitle")
-        .textContent =
-        "Edit Vehicle";
-
-
-      document
-        .getElementById("vehicleSubmitButton")
-        .textContent =
-        "Update Vehicle";
-
-
-      document
-        .getElementById("cancelEditButton")
-        .style.display =
-        "inline-block";
-
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
 
     }
 
 
     function cancelEdit() {
 
-      editingVehicleId =
-        null;
-
+      editingVehicleId = null;
 
       document
         .getElementById("vehicleForm")
         .reset();
 
 
-      document
-        .getElementById("vehicleFormTitle")
-        .textContent =
+      document.getElementById(
+        "vehicleFormTitle"
+      ).textContent =
         "Add Vehicle";
 
 
-      document
-        .getElementById("vehicleSubmitButton")
-        .textContent =
+      document.getElementById(
+        "vehicleSubmitButton"
+      ).textContent =
         "Add Vehicle";
 
 
-      document
-        .getElementById("cancelEditButton")
-        .style.display =
+      document.getElementById(
+        "cancelEditButton"
+      ).style.display =
         "none";
-
     }
 
 
     async function deleteVehicle(id) {
 
-      const confirmed =
-        confirm(
+      if (
+        !confirm(
           "Are you sure you want to delete this vehicle? This will also delete its additional photos."
-        );
-
-
-      if (!confirmed) {
+        )
+      ) {
         return;
       }
 
 
-      const {
-        error
-      } =
-        await supabaseClient
-          .from("vehicles")
-          .delete()
-          .eq(
-            "id",
-            id
-          );
+      try {
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("vehicles")
+            .delete()
+            .eq("id", id);
 
 
-      if (error) {
+        if (error) {
+          throw error;
+        }
+
+
+        if (
+          selectedPhotoVehicleId === id
+        ) {
+          closePhotoManager();
+        }
+
+
+        await loadVehicles();
+
+      } catch (error) {
+
+        console.error(error);
 
         alert(
-          "Unable to delete vehicle: " +
+          "Could not delete vehicle: " +
           error.message
         );
-
-        return;
-
       }
-
-
-      if (
-        selectedPhotoVehicleId === id
-      ) {
-
-        closePhotoManager();
-
-      }
-
-
-      await loadVehicles();
 
     }
 
-
-    /*
-     * VEHICLE PHOTOS
-     */
 
     async function managePhotos(
       vehicleId,
@@ -1454,22 +1227,21 @@
         vehicleId;
 
 
-      document
-        .getElementById("photoManager")
-        .style.display =
+      document.getElementById(
+        "photoManager"
+      ).style.display =
         "block";
 
 
-      document
-        .getElementById("photoVehicleName")
-        .textContent =
+      document.getElementById(
+        "photoVehicleName"
+      ).textContent =
         make + " " + model;
 
 
-      document
-        .getElementById("photoFiles")
-        .value =
-        "";
+      document.getElementById(
+        "photoFiles"
+      ).value = "";
 
 
       showPhotoMessage(
@@ -1478,33 +1250,30 @@
 
 
       await loadVehiclePhotos();
-
     }
 
 
     function closePhotoManager() {
 
-      selectedPhotoVehicleId =
-        null;
+      selectedPhotoVehicleId = null;
 
 
-      document
-        .getElementById("photoManager")
-        .style.display =
+      document.getElementById(
+        "photoManager"
+      ).style.display =
         "none";
 
 
-      document
-        .getElementById("photoGrid")
-        .innerHTML =
+      document.getElementById(
+        "photoGrid"
+      ).innerHTML =
         "";
 
 
-      document
-        .getElementById("photoMessage")
-        .style.display =
+      document.getElementById(
+        "photoMessage"
+      ).style.display =
         "none";
-
     }
 
 
@@ -1519,6 +1288,44 @@
         document.getElementById(
           "photoGrid"
         );
+
+
+      grid.innerHTML =
+        '<div class="photo-empty">Loading photos...</div>';
+
+
+      const {
+        data: vehicle,
+        error: vehicleError
+      } =
+        await supabaseClient
+          .from("vehicles")
+          .select("image_url")
+          .eq(
+            "id",
+            selectedPhotoVehicleId
+          )
+          .single();
+
+
+      if (vehicleError) {
+
+        console.error(vehicleError);
+
+        showPhotoMessage(
+          "Could not load vehicle: " +
+          vehicleError.message,
+          false
+        );
+
+        return;
+      }
+
+
+      const coverUrl =
+        vehicle
+          ? vehicle.image_url
+          : null;
 
 
       const {
@@ -1542,917 +1349,1305 @@
 
       if (error) {
 
-        grid.innerHTML =
-          `
-            <p>
-              Unable to load photos:
-              ${escapeHtml(error.message)}
-            </p>
-          `;
+        console.error(error);
+
+        showPhotoMessage(
+          "Could not load photos: " +
+          error.message,
+          false
+        );
+
+        grid.innerHTML = "";
 
         return;
-
       }
 
 
-      if (
-        !photos ||
-        !photos.length
-      ) {
+      if (!photos || !photos.length) {
 
         grid.innerHTML =
-          `
-            <p>
-              No additional photos uploaded yet.
-            </p>
-          `;
-
-        document
-          .getElementById("photoMessage")
-          .style.display =
-          "none";
+          '<div class="photo-empty">No additional photos uploaded yet.</div>';
 
         return;
-
       }
-
-
-      const {
-        data: vehicle,
-        error: vehicleError
-      } =
-        await supabaseClient
-          .from("vehicles")
-          .select("image_url")
-          .eq(
-            "id",
-            selectedPhotoVehicleId
-          )
-          .single();
-
-
-      if (vehicleError) {
-
-        grid.innerHTML =
-          `
-            <p>
-              Unable to load vehicle cover:
-              ${escapeHtml(vehicleError.message)}
-            </p>
-          `;
-
-        return;
-
-      }
-
-
-      const coverUrl =
-        vehicle
-          ? vehicle.image_url
-          : null;
 
 
       grid.innerHTML =
-        photos.map(
-          photo => {
+        photos.map(photo => {
 
-            const isCover =
-              Boolean(
-                coverUrl &&
-                coverUrl === photo.image_url
-              );
+          const isCover =
+            coverUrl === photo.image_url;
 
 
-            return `
-              <div
-                class="photo-card ${isCover ? "cover-photo" : ""}"
+          return `
+            <div
+              class="photo-card ${
+                isCover
+                  ? "cover-photo"
+                  : ""
+              }"
+            >
+
+              <img
+                src="${escapeHtml(
+                  photo.image_url
+                )}"
+                alt="Vehicle photo"
               >
 
-                <img
-                  src="${escapeHtml(photo.image_url)}"
-                  alt="Vehicle photo"
-                >
-
-                ${
-                  isCover
-                    ? `
-                      <span class="cover-label">
-                        ✓ Cover Photo
-                      </span>
-                    `
-                    : ""
-                }
-
-
-                ${
-                  !isCover
-                    ? `
+              ${
+                isCover
+                  ? `
+                    <span class="cover-label">
+                      ✓ Cover Photo
+                    </span>
+                  `
+                  : `
+                    <div class="photo-card-actions">
                       <button
                         type="button"
-                        class="success"
+                        class="small-btn success"
                         onclick="setAsCover(
                           '${photo.id}',
-                          '${escapeHtml(photo.image_url)}'
+                          '${escapeHtml(
+                            photo.image_url
+                          )}'
                         )"
                       >
                         ⭐ Set as Cover
                       </button>
-                    `
-                    : ""
-                }
+                    </div>
+                  `
+              }
 
+              <div class="photo-card-actions">
 
                 <button
                   type="button"
-                  class="danger"
+                  class="small-btn danger"
                   onclick="deletePhoto('${photo.id}')"
                 >
                   Delete Photo
                 </button>
 
               </div>
-            `;
 
-          }
-        )
-        .join("");
+            </div>
+          `;
 
+        }).join("");
+      
+    async function setAsCover(photoId) {
 
-      document
-        .getElementById("photoMessage")
-        .style.display =
-        "none";
-      <script>
-async function setAsCover(photoId, imageUrl) {
-  if (!selectedPhotoVehicleId) return;
-
-  showPhotoMessage("Setting cover photo...");
-
-  try {
-    const { error } = await supabaseClient
-      .from("vehicles")
-      .update({
-        image_url: imageUrl
-      })
-      .eq("id", selectedPhotoVehicleId);
-
-    if (error) throw error;
-
-    showPhotoMessage("Cover photo updated successfully.");
-
-    await loadVehiclePhotos();
-    await loadVehicles();
-
-  } catch (error) {
-    console.error(error);
-    showPhotoMessage(
-      "Could not set cover photo: " + error.message,
-      false
-    );
-  }
-}
-
-
-async function uploadPhotos() {
-  if (!selectedPhotoVehicleId) {
-    showPhotoMessage("Please select a vehicle first.", false);
-    return;
-  }
-
-  const input = document.getElementById("photoFiles");
-  const files = Array.from(input.files || []);
-
-  if (!files.length) {
-    showPhotoMessage("Please select at least one photo.", false);
-    return;
-  }
-
-  const allowedTypes = [
-    "image/jpeg",
-    "image/png",
-    "image/webp"
-  ];
-
-  const maxSize = 5 * 1024 * 1024;
-
-  showPhotoMessage("Uploading photos...");
-
-  try {
-    for (const file of files) {
-
-      if (!allowedTypes.includes(file.type)) {
-        throw new Error(
-          `"${file.name}" is not a supported image type.`
-        );
+      if (!selectedPhotoVehicleId) {
+        return;
       }
 
-      if (file.size > maxSize) {
-        throw new Error(
-          `"${file.name}" is larger than 5 MB.`
-        );
-      }
+      showPhotoMessage("Setting cover photo...");
 
-      const safeName = file.name.replace(
-        /[^a-zA-Z0-9._-]/g,
-        "-"
-      );
+      try {
 
-      const filePath =
-        selectedPhotoVehicleId +
-        "/" +
-        crypto.randomUUID() +
-        "-" +
-        safeName;
-
-      const { error: uploadError } =
-        await supabaseClient
-          .storage
-          .from("vehicle-images")
-          .upload(filePath, file);
-
-      if (uploadError) {
-        throw uploadError;
-      }
-
-      const { data: publicUrlData } =
-        supabaseClient
-          .storage
-          .from("vehicle-images")
-          .getPublicUrl(filePath);
-
-      const imageUrl =
-        publicUrlData.publicUrl;
-
-      const { error: insertError } =
-        await supabaseClient
-          .from("vehicle_images")
-          .insert({
-            vehicle_id: selectedPhotoVehicleId,
-            image_url: imageUrl
-          });
-
-      if (insertError) {
-        throw insertError;
-      }
-    }
-
-    input.value = "";
-
-    showPhotoMessage(
-      "Photos uploaded successfully."
-    );
-
-    await loadVehiclePhotos();
-    await loadVehicles();
-
-  } catch (error) {
-    console.error(error);
-
-    showPhotoMessage(
-      "Upload failed: " + error.message,
-      false
-    );
-  }
-}
-
-
-async function deletePhoto(id) {
-  if (!confirm("Delete this vehicle photo?")) {
-    return;
-  }
-
-  try {
-    const { data: photo, error: fetchError } =
-      await supabaseClient
-        .from("vehicle_images")
-        .select("id, vehicle_id, image_url")
-        .eq("id", id)
-        .single();
-
-    if (fetchError) {
-      throw fetchError;
-    }
-
-    if (!photo) {
-      throw new Error("Photo not found.");
-    }
-
-    /*
-      Check whether this photo is currently being
-      used as the vehicle cover photo.
-    */
-    const { data: vehicle, error: vehicleError } =
-      await supabaseClient
-        .from("vehicles")
-        .select("id, image_url")
-        .eq("id", photo.vehicle_id)
-        .single();
-
-    if (vehicleError) {
-      throw vehicleError;
-    }
-
-    const isCover =
-      vehicle &&
-      vehicle.image_url === photo.image_url;
-
-
-    /*
-      Delete the photo record from vehicle_images.
-    */
-    const { error: deleteError } =
-      await supabaseClient
-        .from("vehicle_images")
-        .delete()
-        .eq("id", id);
-
-    if (deleteError) {
-      throw deleteError;
-    }
-
-
-    /*
-      If the deleted photo was the cover photo,
-      clear vehicles.image_url so the vehicle does
-      not point to a deleted image.
-    */
-    if (isCover) {
-      const { error: clearCoverError } =
-        await supabaseClient
-          .from("vehicles")
-          .update({
-            image_url: null
-          })
-          .eq("id", photo.vehicle_id);
-
-      if (clearCoverError) {
-        console.warn(
-          "Could not clear cover image:",
-          clearCoverError
-        );
-      }
-    }
-
-
-    /*
-      Remove the actual file from Supabase Storage.
-    */
-    try {
-      const marker = "/vehicle-images/";
-
-      const markerIndex =
-        photo.image_url.indexOf(marker);
-
-      if (markerIndex !== -1) {
-
-        const storagePath =
-          decodeURIComponent(
-            photo.image_url.substring(
-              markerIndex + marker.length
-            )
-          );
-
-        const { error: storageError } =
+        const {
+          data: photo,
+          error: photoError
+        } =
           await supabaseClient
-            .storage
-            .from("vehicle-images")
-            .remove([storagePath]);
+            .from("vehicle_images")
+            .select("id, vehicle_id, image_url")
+            .eq("id", photoId)
+            .single();
 
-        if (storageError) {
-          console.warn(
-            "Storage deletion failed:",
-            storageError
+
+        if (photoError) {
+          throw photoError;
+        }
+
+
+        if (
+          !photo ||
+          photo.vehicle_id !== selectedPhotoVehicleId
+        ) {
+          throw new Error(
+            "Invalid vehicle photo."
           );
         }
+
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("vehicles")
+            .update({
+              image_url: photo.image_url
+            })
+            .eq(
+              "id",
+              selectedPhotoVehicleId
+            );
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        showPhotoMessage(
+          "Cover photo updated successfully."
+        );
+
+
+        await loadVehiclePhotos();
+        await loadVehicles();
+
+      } catch (error) {
+
+        console.error(error);
+
+        showPhotoMessage(
+          "Could not set cover photo: " +
+          error.message,
+          false
+        );
+      }
+    }
+
+
+
+    async function uploadPhotos() {
+
+      if (!selectedPhotoVehicleId) {
+
+        showPhotoMessage(
+          "Please select a vehicle first.",
+          false
+        );
+
+        return;
       }
 
-    } catch (storageException) {
-      console.warn(
-        "Could not remove storage file:",
-        storageException
+
+      const input =
+        document.getElementById(
+          "photoFiles"
+        );
+
+
+      const files =
+        Array.from(
+          input.files || []
+        );
+
+
+      if (!files.length) {
+
+        showPhotoMessage(
+          "Please select at least one photo.",
+          false
+        );
+
+        return;
+      }
+
+
+      const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+      ];
+
+
+      const maxSize =
+        5 * 1024 * 1024;
+
+
+      showPhotoMessage(
+        "Uploading photos..."
       );
+
+
+      try {
+
+        for (const file of files) {
+
+          if (
+            !allowedTypes.includes(
+              file.type
+            )
+          ) {
+
+            throw new Error(
+              `"${file.name}" is not a supported image type.`
+            );
+          }
+
+
+          if (file.size > maxSize) {
+
+            throw new Error(
+              `"${file.name}" is larger than 5 MB.`
+            );
+          }
+
+
+          const safeName =
+            file.name.replace(
+              /[^a-zA-Z0-9._-]/g,
+              "-"
+            );
+
+
+          /*
+            Every vehicle gets its own
+            storage folder.
+          */
+          const filePath =
+            selectedPhotoVehicleId +
+            "/" +
+            crypto.randomUUID() +
+            "-" +
+            safeName;
+
+
+          const {
+            error: uploadError
+          } =
+            await supabaseClient
+              .storage
+              .from("vehicle-images")
+              .upload(
+                filePath,
+                file
+              );
+
+
+          if (uploadError) {
+            throw uploadError;
+          }
+
+
+          const {
+            data: publicUrlData
+          } =
+            supabaseClient
+              .storage
+              .from("vehicle-images")
+              .getPublicUrl(
+                filePath
+              );
+
+
+          const imageUrl =
+            publicUrlData.publicUrl;
+
+
+          const {
+            error: insertError
+          } =
+            await supabaseClient
+              .from("vehicle_images")
+              .insert({
+                vehicle_id:
+                  selectedPhotoVehicleId,
+                image_url:
+                  imageUrl
+              });
+
+
+          if (insertError) {
+            throw insertError;
+          }
+
+        }
+
+
+        input.value = "";
+
+
+        showPhotoMessage(
+          "Photos uploaded successfully."
+        );
+
+
+        await loadVehiclePhotos();
+        await loadVehicles();
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        showPhotoMessage(
+          "Upload failed: " +
+          error.message,
+          false
+        );
+      }
     }
 
 
-    showPhotoMessage(
-      "Photo deleted successfully."
-    );
 
-    await loadVehiclePhotos();
-    await loadVehicles();
+    async function deletePhoto(id) {
 
-  } catch (error) {
-    console.error(error);
-
-    showPhotoMessage(
-      "Could not delete photo: " +
-      error.message,
-      false
-    );
-  }
-}
-
-
-function reservationStatusClass(status) {
-  return String(status || "")
-    .toLowerCase()
-    .replace(/\s+/g, "-");
-}
-
-
-function paymentStatusClass(status) {
-  return String(status || "")
-    .toLowerCase()
-    .replace(/\s+/g, "-");
-}
-
-
-async function loadReservations() {
-  const tbody =
-    document.getElementById(
-      "reservationsTableBody"
-    );
-
-  tbody.innerHTML =
-    '<tr><td colspan="11">Loading reservations...</td></tr>';
-
-  const { data: reservations, error } =
-    await supabaseClient
-      .from("reservations")
-      .select(`
-        *,
-        vehicles (
-          make,
-          model,
-          year
+      if (
+        !confirm(
+          "Delete this vehicle photo?"
         )
-      `)
-      .order("created_at", {
-        ascending: false
-      });
-
-  if (error) {
-    console.error(error);
-
-    tbody.innerHTML =
-      `<tr>
-        <td colspan="11">
-          Database error:
-          ${escapeHtml(error.message)}
-        </td>
-      </tr>`;
-
-    return;
-  }
-
-  if (!reservations || !reservations.length) {
-    tbody.innerHTML =
-      '<tr><td colspan="11">No reservations found.</td></tr>';
-
-    return;
-  }
+      ) {
+        return;
+      }
 
 
-  tbody.innerHTML =
-    reservations.map(reservation => {
+      try {
 
-      const vehicle =
-        reservation.vehicles;
+        const {
+          data: photo,
+          error: fetchError
+        } =
+          await supabaseClient
+            .from("vehicle_images")
+            .select(
+              "id, vehicle_id, image_url"
+            )
+            .eq("id", id)
+            .single();
 
-      const vehicleName =
-        vehicle
-          ? `${vehicle.make || ""} ${vehicle.model || ""} ${vehicle.year || ""}`
-          : "Vehicle unavailable";
 
-      const reservationStatus =
-        reservation.status || "Pending";
+        if (fetchError) {
+          throw fetchError;
+        }
 
-      const paymentStatus =
-        reservation.payment_status || "Not Paid";
 
-      const hasProof =
-        Boolean(
-          reservation.payment_proof_path
+        if (!photo) {
+          throw new Error(
+            "Photo not found."
+          );
+        }
+
+
+        /*
+          Check whether this is currently
+          the vehicle's cover photo.
+        */
+        const {
+          data: vehicle,
+          error: vehicleError
+        } =
+          await supabaseClient
+            .from("vehicles")
+            .select(
+              "id, image_url"
+            )
+            .eq(
+              "id",
+              photo.vehicle_id
+            )
+            .single();
+
+
+        if (vehicleError) {
+          throw vehicleError;
+        }
+
+
+        const isCover =
+          vehicle &&
+          vehicle.image_url ===
+            photo.image_url;
+
+
+        /*
+          Delete photo metadata.
+        */
+        const {
+          error: deleteError
+        } =
+          await supabaseClient
+            .from("vehicle_images")
+            .delete()
+            .eq("id", id);
+
+
+        if (deleteError) {
+          throw deleteError;
+        }
+
+
+        /*
+          If the deleted image was the
+          cover, remove it from vehicles.
+        */
+        if (isCover) {
+
+          const {
+            error: clearCoverError
+          } =
+            await supabaseClient
+              .from("vehicles")
+              .update({
+                image_url: null
+              })
+              .eq(
+                "id",
+                photo.vehicle_id
+              );
+
+
+          if (clearCoverError) {
+
+            console.warn(
+              "Could not clear cover image:",
+              clearCoverError
+            );
+          }
+        }
+
+
+        /*
+          Remove the actual file from
+          Supabase Storage.
+        */
+        try {
+
+          const marker =
+            "/vehicle-images/";
+
+
+          const markerIndex =
+            photo.image_url.indexOf(
+              marker
+            );
+
+
+          if (markerIndex !== -1) {
+
+            const storagePath =
+              decodeURIComponent(
+                photo.image_url.substring(
+                  markerIndex +
+                  marker.length
+                )
+              );
+
+
+            const {
+              error: storageError
+            } =
+              await supabaseClient
+                .storage
+                .from("vehicle-images")
+                .remove([
+                  storagePath
+                ]);
+
+
+            if (storageError) {
+
+              console.warn(
+                "Storage deletion failed:",
+                storageError
+              );
+            }
+          }
+
+        } catch (storageException) {
+
+          console.warn(
+            "Could not remove storage file:",
+            storageException
+          );
+        }
+
+
+        showPhotoMessage(
+          "Photo deleted successfully."
         );
 
 
-      let actionButtons = "";
+        await loadVehiclePhotos();
+        await loadVehicles();
 
 
-      if (reservationStatus !== "Confirmed") {
-        actionButtons += `
-          <button
-            class="small-btn success"
-            onclick="confirmReservation('${reservation.id}')"
-          >
-            Confirm
-          </button>
-        `;
+      } catch (error) {
+
+        console.error(error);
+
+        showPhotoMessage(
+          "Could not delete photo: " +
+          error.message,
+          false
+        );
       }
-
-
-      if (reservationStatus !== "Cancelled") {
-        actionButtons += `
-          <button
-            class="small-btn danger"
-            onclick="cancelReservation('${reservation.id}')"
-          >
-            Cancel
-          </button>
-        `;
-      }
-
-
-      if (paymentStatus !== "Paid") {
-        actionButtons += `
-          <button
-            class="small-btn success"
-            onclick="markAsPaid('${reservation.id}')"
-          >
-            Mark as Paid
-          </button>
-        `;
-      }
-
-
-      if (paymentStatus === "Under Review") {
-        actionButtons += `
-          <button
-            class="small-btn success"
-            onclick="approvePayment('${reservation.id}')"
-          >
-            Approve Payment
-          </button>
-
-          <button
-            class="small-btn danger"
-            onclick="rejectPayment('${reservation.id}')"
-          >
-            Reject Payment
-          </button>
-        `;
-      }
-
-
-      return `
-        <tr>
-
-          <td>
-            ${escapeHtml(
-              reservation.customer_name
-            )}
-          </td>
-
-          <td>
-            ${escapeHtml(vehicleName)}
-          </td>
-
-          <td>
-            ${escapeHtml(
-              reservation.email
-            )}
-          </td>
-
-          <td>
-            ${escapeHtml(
-              reservation.phone
-            )}
-          </td>
-
-          <td>
-            ${escapeHtml(
-              reservation.contact_method
-            )}
-          </td>
-
-          <td>
-            ${escapeHtml(
-              reservation.message
-            )}
-          </td>
-
-          <td>
-            <span
-              class="status ${reservationStatusClass(
-                reservationStatus
-              )}"
-            >
-              ${escapeHtml(
-                reservationStatus
-              )}
-            </span>
-          </td>
-
-          <td>
-            <span
-              class="status ${paymentStatusClass(
-                paymentStatus
-              )}"
-            >
-              ${escapeHtml(
-                paymentStatus
-              )}
-            </span>
-          </td>
-
-          <td>
-            ${
-              hasProof
-                ? `
-                  <button
-                    class="small-btn secondary"
-                    onclick="viewPaymentProof('${reservation.id}')"
-                  >
-                    View Proof
-                  </button>
-                `
-                : "No Proof"
-            }
-          </td>
-
-          <td>
-            ${
-              reservation.created_at
-                ? new Date(
-                    reservation.created_at
-                  ).toLocaleString()
-                : "-"
-            }
-          </td>
-
-          <td>
-            <div class="button-row">
-              ${actionButtons}
-            </div>
-          </td>
-
-        </tr>
-      `;
-
-    }).join("");
-    }
-async function confirmReservation(id) {
-  if (!confirm("Confirm this reservation?")) {
-    return;
-  }
-
-  try {
-    const { error } = await supabaseClient
-      .from("reservations")
-      .update({
-        status: "Confirmed"
-      })
-      .eq("id", id);
-
-    if (error) throw error;
-
-    await loadReservations();
-
-  } catch (error) {
-    console.error(error);
-    alert(
-      "Could not confirm reservation: " +
-      error.message
-    );
-  }
-}
-
-
-async function cancelReservation(id) {
-  if (!confirm("Cancel this reservation?")) {
-    return;
-  }
-
-  try {
-    const { error } = await supabaseClient
-      .from("reservations")
-      .update({
-        status: "Cancelled"
-      })
-      .eq("id", id);
-
-    if (error) throw error;
-
-    await loadReservations();
-
-  } catch (error) {
-    console.error(error);
-    alert(
-      "Could not cancel reservation: " +
-      error.message
-    );
-  }
-}
-
-
-async function markAsPaid(id) {
-  if (
-    !confirm(
-      "Have you verified that the payment has been received?"
-    )
-  ) {
-    return;
-  }
-
-  try {
-    const { error } = await supabaseClient
-      .from("reservations")
-      .update({
-        payment_status: "Paid"
-      })
-      .eq("id", id);
-
-    if (error) throw error;
-
-    await loadReservations();
-
-  } catch (error) {
-    console.error(error);
-    alert(
-      "Could not update payment status: " +
-      error.message
-    );
-  }
-}
-
-
-async function approvePayment(id) {
-  if (
-    !confirm(
-      "Have you verified the payment proof and confirmed that payment was received?"
-    )
-  ) {
-    return;
-  }
-
-  try {
-    const { error } = await supabaseClient
-      .from("reservations")
-      .update({
-        payment_status: "Paid"
-      })
-      .eq("id", id);
-
-    if (error) throw error;
-
-    await loadReservations();
-
-  } catch (error) {
-    console.error(error);
-    alert(
-      "Could not approve payment: " +
-      error.message
-    );
-  }
-}
-
-
-async function rejectPayment(id) {
-  if (
-    !confirm(
-      "Reject this payment proof?"
-    )
-  ) {
-    return;
-  }
-
-  try {
-    const { error } = await supabaseClient
-      .from("reservations")
-      .update({
-        payment_status: "Rejected"
-      })
-      .eq("id", id);
-
-    if (error) throw error;
-
-    await loadReservations();
-
-  } catch (error) {
-    console.error(error);
-    alert(
-      "Could not reject payment: " +
-      error.message
-    );
-  }
-}
-
-
-async function viewPaymentProof(reservationId) {
-  try {
-
-    const { data: reservation, error } =
-      await supabaseClient
-        .from("reservations")
-        .select("payment_proof_path")
-        .eq("id", reservationId)
-        .single();
-
-    if (error) {
-      throw error;
     }
 
-    if (
-      !reservation ||
-      !reservation.payment_proof_path
+
+
+    function reservationStatusClass(
+      status
     ) {
-      alert("No payment proof found.");
-      return;
+
+      return String(
+        status || ""
+      )
+        .toLowerCase()
+        .replace(
+          /\s+/g,
+          "-"
+        );
     }
 
 
-    const { data, error: signedUrlError } =
-      await supabaseClient
-        .storage
-        .from("payment-proofs")
-        .createSignedUrl(
-          reservation.payment_proof_path,
-          600
+
+    function paymentStatusClass(
+      status
+    ) {
+
+      return String(
+        status || ""
+      )
+        .toLowerCase()
+        .replace(
+          /\s+/g,
+          "-"
+        );
+    }
+
+
+
+    async function loadReservations() {
+
+      const tbody =
+        document.getElementById(
+          "reservationsTableBody"
         );
 
-    if (signedUrlError) {
-      throw signedUrlError;
+
+      tbody.innerHTML =
+        '<tr><td colspan="11">Loading reservations...</td></tr>';
+
+
+      const {
+        data: reservations,
+        error
+      } =
+        await supabaseClient
+          .from("reservations")
+          .select(`
+            *,
+            vehicles (
+              make,
+              model,
+              year
+            )
+          `)
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
+
+
+      if (error) {
+
+        console.error(error);
+
+        tbody.innerHTML =
+          `<tr>
+            <td colspan="11">
+              Database error:
+              ${escapeHtml(
+                error.message
+              )}
+            </td>
+          </tr>`;
+
+        return;
+      }
+
+
+      if (
+        !reservations ||
+        !reservations.length
+      ) {
+
+        tbody.innerHTML =
+          '<tr><td colspan="11">No reservations found.</td></tr>';
+
+        return;
+      }
+
+
+      tbody.innerHTML =
+        reservations
+          .map(
+            reservation => {
+
+              const vehicle =
+                reservation.vehicles;
+
+
+              const vehicleName =
+                vehicle
+                  ? `${vehicle.make || ""}
+                     ${vehicle.model || ""}
+                     ${vehicle.year || ""}`
+                  : "Vehicle unavailable";
+
+
+              const reservationStatus =
+                reservation.status ||
+                "Pending";
+
+
+              const paymentStatus =
+                reservation.payment_status ||
+                "Not Paid";
+
+
+              const hasProof =
+                Boolean(
+                  reservation.payment_proof_path
+                );
+
+
+              let actionButtons = "";
+
+
+              if (
+                reservationStatus !==
+                "Confirmed"
+              ) {
+
+                actionButtons += `
+                  <button
+                    type="button"
+                    class="small-btn success"
+                    onclick="confirmReservation('${reservation.id}')"
+                  >
+                    Confirm
+                  </button>
+                `;
+              }
+
+
+              if (
+                reservationStatus !==
+                "Cancelled"
+              ) {
+
+                actionButtons += `
+                  <button
+                    type="button"
+                    class="small-btn danger"
+                    onclick="cancelReservation('${reservation.id}')"
+                  >
+                    Cancel
+                  </button>
+                `;
+              }
+
+
+              if (
+                paymentStatus !==
+                "Paid"
+              ) {
+
+                actionButtons += `
+                  <button
+                    type="button"
+                    class="small-btn success"
+                    onclick="markAsPaid('${reservation.id}')"
+                  >
+                    Mark as Paid
+                  </button>
+                `;
+              }
+
+
+              if (
+                paymentStatus ===
+                "Under Review"
+              ) {
+
+                actionButtons += `
+                  <button
+                    type="button"
+                    class="small-btn success"
+                    onclick="approvePayment('${reservation.id}')"
+                  >
+                    Approve Payment
+                  </button>
+
+                  <button
+                    type="button"
+                    class="small-btn danger"
+                    onclick="rejectPayment('${reservation.id}')"
+                  >
+                    Reject Payment
+                  </button>
+                `;
+              }
+
+
+              return `
+                <tr>
+
+                  <td>
+                    ${escapeHtml(
+                      reservation.customer_name
+                    )}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      vehicleName
+                    )}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      reservation.email
+                    )}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      reservation.phone
+                    )}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      reservation.contact_method
+                    )}
+                  </td>
+
+                  <td>
+                    ${escapeHtml(
+                      reservation.message
+                    )}
+                  </td>
+
+                  <td>
+                    <span
+                      class="status ${reservationStatusClass(
+                        reservationStatus
+                      )}"
+                    >
+                      ${escapeHtml(
+                        reservationStatus
+                      )}
+                    </span>
+                  </td>
+
+                  <td>
+                    <span
+                      class="status ${paymentStatusClass(
+                        paymentStatus
+                      )}"
+                    >
+                      ${escapeHtml(
+                        paymentStatus
+                      )}
+                    </span>
+                  </td>
+
+                  <td>
+                    ${
+                      hasProof
+                        ? `
+                          <button
+                            type="button"
+                            class="small-btn secondary"
+                            onclick="viewPaymentProof('${reservation.id}')"
+                          >
+                            View Proof
+                          </button>
+                        `
+                        : "No Proof"
+                    }
+                  </td>
+
+                  <td>
+                    ${
+                      reservation.created_at
+                        ? new Date(
+                            reservation.created_at
+                          ).toLocaleString()
+                        : "-"
+                    }
+                  </td>
+
+                  <td>
+                    <div class="button-row">
+                      ${actionButtons}
+                    </div>
+                  </td>
+
+                </tr>
+              `;
+
+            }
+          )
+          .join("");
+  }
+    }    async function confirmReservation(id) {
+
+      if (
+        !confirm(
+          "Confirm this reservation?"
+        )
+      ) {
+        return;
+      }
+
+
+      try {
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("reservations")
+            .update({
+              status: "Confirmed"
+            })
+            .eq("id", id);
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        await loadReservations();
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert(
+          "Could not confirm reservation: " +
+          error.message
+        );
+      }
     }
 
-    if (!data || !data.signedUrl) {
-      alert("Could not create payment proof link.");
-      return;
+
+
+    async function cancelReservation(id) {
+
+      if (
+        !confirm(
+          "Cancel this reservation?"
+        )
+      ) {
+        return;
+      }
+
+
+      try {
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("reservations")
+            .update({
+              status: "Cancelled"
+            })
+            .eq("id", id);
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        await loadReservations();
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert(
+          "Could not cancel reservation: " +
+          error.message
+        );
+      }
     }
 
-    window.open(
-      data.signedUrl,
-      "_blank"
-    );
-
-  } catch (error) {
-    console.error(error);
-
-    alert(
-      "Could not open payment proof: " +
-      error.message
-    );
-  }
-}
 
 
-async function logout() {
-  try {
-    await supabaseClient.auth.signOut();
-  } catch (error) {
-    console.error(error);
-  }
+    async function markAsPaid(id) {
 
-  window.location.href = "login.html";
-}
-
-
-/*
-  Page initialization
-*/
-(async function initializeAdminPage() {
-
-  const {
-    data: { session }
-  } = await supabaseClient.auth.getSession();
-
-  if (!session) {
-    window.location.href = "login.html";
-    return;
-  }
+      if (
+        !confirm(
+          "Have you verified that the payment has been received?"
+        )
+      ) {
+        return;
+      }
 
 
-  const {
-    data: profile,
-    error: profileError
-  } = await supabaseClient
-    .from("profiles")
-    .select("role")
-    .eq("id", session.user.id)
-    .single();
+      try {
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("reservations")
+            .update({
+              payment_status: "Paid"
+            })
+            .eq("id", id);
 
 
-  if (
-    profileError ||
-    !profile ||
-    profile.role !== "admin"
-  ) {
-    alert(
-      "Access denied. Admin account required."
-    );
-
-    await supabaseClient.auth.signOut();
-
-    window.location.href = "login.html";
-    return;
-  }
+        if (error) {
+          throw error;
+        }
 
 
-  await loadVehicles();
-  await loadReservations();
+        await loadReservations();
 
-})();
-</script>
+      } catch (error) {
+
+        console.error(error);
+
+        alert(
+          "Could not update payment status: " +
+          error.message
+        );
+      }
+    }
+
+
+
+    async function approvePayment(id) {
+
+      if (
+        !confirm(
+          "Have you verified the payment proof and confirmed that payment was received?"
+        )
+      ) {
+        return;
+      }
+
+
+      try {
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("reservations")
+            .update({
+              payment_status: "Paid"
+            })
+            .eq("id", id);
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        await loadReservations();
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert(
+          "Could not approve payment: " +
+          error.message
+        );
+      }
+    }
+
+
+
+    async function rejectPayment(id) {
+
+      if (
+        !confirm(
+          "Reject this payment proof?"
+        )
+      ) {
+        return;
+      }
+
+
+      try {
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("reservations")
+            .update({
+              payment_status: "Rejected"
+            })
+            .eq("id", id);
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        await loadReservations();
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert(
+          "Could not reject payment: " +
+          error.message
+        );
+      }
+    }
+
+
+
+    async function viewPaymentProof(
+      reservationId
+    ) {
+
+      try {
+
+        const {
+          data: reservation,
+          error
+        } =
+          await supabaseClient
+            .from("reservations")
+            .select(
+              "payment_proof_path"
+            )
+            .eq(
+              "id",
+              reservationId
+            )
+            .single();
+
+
+        if (error) {
+          throw error;
+        }
+
+
+        if (
+          !reservation ||
+          !reservation.payment_proof_path
+        ) {
+
+          alert(
+            "No payment proof found."
+          );
+
+          return;
+        }
+
+
+        const {
+          data,
+          error: signedUrlError
+        } =
+          await supabaseClient
+            .storage
+            .from("payment-proofs")
+            .createSignedUrl(
+              reservation.payment_proof_path,
+              600
+            );
+
+
+        if (signedUrlError) {
+          throw signedUrlError;
+        }
+
+
+        if (
+          !data ||
+          !data.signedUrl
+        ) {
+
+          alert(
+            "Could not create payment proof link."
+          );
+
+          return;
+        }
+
+
+        window.open(
+          data.signedUrl,
+          "_blank"
+        );
+
+      } catch (error) {
+
+        console.error(error);
+
+        alert(
+          "Could not open payment proof: " +
+          error.message
+        );
+      }
+    }
+
+
+
+    async function logout() {
+
+      try {
+
+        await supabaseClient
+          .auth
+          .signOut();
+
+      } catch (error) {
+
+        console.error(error);
+      }
+
+
+      window.location.href =
+        "login.html";
+    }
+
+
+
+    /*
+      INITIALIZE ADMIN PAGE
+    */
+    (async function initializeAdminPage() {
+
+      try {
+
+        const {
+          data: {
+            session
+          },
+          error: sessionError
+        } =
+          await supabaseClient
+            .auth
+            .getSession();
+
+
+        if (sessionError) {
+          throw sessionError;
+        }
+
+
+        if (!session) {
+
+          window.location.href =
+            "login.html";
+
+          return;
+        }
+
+
+        const {
+          data: profile,
+          error: profileError
+        } =
+          await supabaseClient
+            .from("profiles")
+            .select("role")
+            .eq(
+              "id",
+              session.user.id
+            )
+            .single();
+
+
+        if (
+          profileError ||
+          !profile ||
+          profile.role !== "admin"
+        ) {
+
+          alert(
+            "Access denied. Admin account required."
+          );
+
+
+          await supabaseClient
+            .auth
+            .signOut();
+
+
+          window.location.href =
+            "login.html";
+
+          return;
+        }
+
+
+        await loadVehicles();
+
+        await loadReservations();
+
+
+      } catch (error) {
+
+        console.error(
+          "Admin initialization error:",
+          error
+        );
+
+
+        const vehicleTable =
+          document.getElementById(
+            "vehiclesTableBody"
+          );
+
+
+        const reservationTable =
+          document.getElementById(
+            "reservationsTableBody"
+          );
+
+
+        if (vehicleTable) {
+
+          vehicleTable.innerHTML =
+            `<tr>
+              <td colspan="6">
+                Could not load vehicles:
+                ${escapeHtml(
+                  error.message
+                )}
+              </td>
+            </tr>`;
+        }
+
+
+        if (reservationTable) {
+
+          reservationTable.innerHTML =
+            `<tr>
+              <td colspan="11">
+                Could not load reservations:
+                ${escapeHtml(
+                  error.message
+                )}
+              </td>
+            </tr>`;
+        }
+
+      }
+
+    })();
+
+  </script>
 
 </body>
+
 </html>
-    
